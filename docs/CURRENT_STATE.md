@@ -1,42 +1,37 @@
 # Current State
 
-**Recorded:** 2026-11-03
+**Last reviewed:** 2026-11-03
 
-## Status
+## What exists
 
-- **Project:** PLANNING.
-- **GitHub:** `angel-wm/AdventureWorks-Excel-Business-Intelligence`; private at initial setup.
-- **Source variant:** Microsoft AdventureWorks **OLTP** selected by project owner.
-- **Implementation:** NOT STARTED.
-- **Phases:** four planned, zero implemented.
-- **Time budget:** estimated 8–12 working days / 24–48 hands-on hours; unvalidated.
+- The private GitHub repository `angel-wm/AdventureWorks-Excel-Business-Intelligence`.
+- Planning documentation covering the OLTP scope, four phases, candidate model, KPIs, AI execution, Jira and validation.
+- Documentation presentation based on the owner's [Repository Documentation Readability Guide](https://github.com/angel-wm/repository-documentation-readability/blob/main/GUIDE.md), with the repository-local Codex skill.
 
-## Completed in current planning cycle
+## What is agreed
 
-- Created foundational repository documentation.
-- Described the intended business scope, source candidates, KPI semantics, architecture, AI workflow and validation plan.
-- Identified the need to verify installed Excel MCP capabilities.
-- Drafted consequential Research–Design–Review (RDR) records.
+- Use **Microsoft AdventureWorks OLTP**, not AdventureWorksDW or LT.
+- Build **commercial analytics** in Excel 365 Desktop: sales, customers, products, territory and scenarios, with profitability conditional on cost validity.
+- Use Power Query ingestion, Power Pivot/Data Model where appropriate, ChatGPT for Excel, Codex/Terra and the user's Excel MCP.
+- Keep **four phases**, with a provisional **8–12 working-day / 24–48-hour** effort estimate.
+- Use **Jira** to track epics and implementation tasks, and GitHub for versioned artifacts.
+- Give brief, practical explanations to the user in Spanish. Write repository documents in English.
+- Remain in **PLANNING** until explicitly authorized to begin implementation.
 
-## Not done
+## Not yet done
 
-- No official data files have been downloaded into the project.
-- No Power Query ingestion/transformation has been implemented.
-- No Excel workbook, Data Model, measures, charts or dashboards have been created.
-- No row counts, revenue/margin figures, test cases, MCP capabilities or refresh benchmarks have been validated.
-- No RDR has completed a formal design acceptance gate.
-- No license or public release has been approved.
+- No selected source snapshot has been profiled or downloaded into this project.
+- No workbook, Power Query pipeline, Data Model, formulas, charts or dashboards have been implemented.
+- No source totals, business KPIs, profit calculations or acceptance tests have passed.
+- The exact Excel MCP server capabilities are **not yet verified**.
+- Jira project, board, task IDs, GitHub integration and Atlassian account access have **not been set up or checked**.
+- No public release or license has been approved.
 
-## Open research
+## Next planning checks
 
-1. Confirm exact official source snapshot and whether CSV or restored SQL should be the ingestion baseline.
-2. Inspect source field mappings and order-status/date definitions.
-3. Verify cost-history applicability and trustworthy channel labeling.
-4. Inspect the exact Excel MCP server tool inventory from Codex.
-5. Ratify final MVP scope and accept RDRs before implementation.
+1. Confirm the exact AdventureWorks OLTP data package and reproducible mapping.
+2. Inspect the user's Excel MCP tools in Codex.
+3. Review the proposed Jira workflow and establish the actual Jira project after authorization.
+4. Approve Phase 1 scope, then separately authorize implementation.
 
-## Implementation authorization rule
-
-**Creating documentation is not permission to start implementation.** Explicit user authorization is required before downloading data, building or modifying workbooks, implementing Power Query, or releasing project artifacts.
-
-See [Roadmap](ROADMAP.md), [RDR Index](rdr/README.md) and [Validation Plan](VALIDATION_PLAN.md).
+The authoritative deliverable descriptions are in the [Project Brief](PROJECT_BRIEF.md), the [Roadmap](ROADMAP.md) and the [Validation Plan](VALIDATION_PLAN.md). This page records **observed project status**, not a second copy of the technical design.
