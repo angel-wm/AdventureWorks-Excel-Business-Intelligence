@@ -1,56 +1,42 @@
-# KPI Catalog — Proposed Commercial Semantics
+# KPI Catalog — Draft Business Definitions
 
-**Status:** DRAFT · All metrics require source validation. **No observed values, targets or baselines exist yet.**
+**Status:** Planned. No KPI has been calculated or verified. Definitions become final only after the source/date/status choices are confirmed.
 
-## Principles
+## Core sales metrics
 
-- Every KPI specifies **grain**, calculation, date basis, dimensions, exclusions, and validation.
-- Never mix **order-header totals** with **sales-line totals** as though they had the same additive grain.
-- `SalesOrderDetail.LineTotal` is a candidate canonical discounted line-sales amount; validate how it is computed and stored.
-- Sales totals must specify whether tax, freight, returns and canceled orders are included.
-- Use the sample's observed dates; do not invent recent 2026 sales.
-- Segment thresholds and scenario inputs are **assumptions**, not discovered business truths.
+| KPI | Intended rule | Important boundary |
+| --- | --- | --- |
+| Discounted Line Sales | Sum eligible `SalesOrderDetail.LineTotal` | Candidate sales measure; verify calculation and which statuses are eligible |
+| Order Count | Distinct eligible `SalesOrderID` | Never count sales lines as orders |
+| Units Sold | Sum eligible `SalesOrderDetail.OrderQty` | Sales-line grain |
+| Average Order Value | Discounted Line Sales / Order Count | Numerator and denominator must cover the same orders |
+| Monthly Sales Growth | Current monthly sales / prior comparable month − 1 | Missing/partial months need clear treatment |
+| Purchasing Customers | Distinct qualifying `CustomerID` | Selected time window and order status |
+| Repeat Customer Rate | Qualifying customers with at least two orders / purchasing customers | Observed behavior, not necessarily lifetime behavior |
+| Sales Share | Selected product/territory sales / relevant total | Explicit denominator and filters |
+| Weighted Discount Rate | (Undiscounted line value − discounted line value) / undiscounted line value | Do not average discount percentages unweighted |
+| Gross Profit / Margin | Line sales − justified cost of goods; gross profit / line sales | **Conditional** on a defensible historical-cost method |
 
-## Priority KPIs
+**Sales labeling matters:** Do not silently mix order-header `TotalDue` (which can include taxes/freight) with discounted line sales. Define dates, status exclusions, discounts, returns, cancellations, and all monetary amounts precisely before dashboard release.
 
-| ID | KPI | Proposed definition | Grain / notes |
-| --- | --- | --- | --- |
-| KPI-01 | Line Sales | `SUM(SalesOrderDetail[LineTotal])` for valid selected orders | Sales line; amount after applicable line discount, before header-level charges, subject to verification |
-| KPI-02 | Order Count | `DISTINCTCOUNT(SalesOrderHeader[SalesOrderID])` for selected orders | Header count, not line count |
-| KPI-03 | Units Sold | `SUM(SalesOrderDetail[OrderQty])` | Sales line |
-| KPI-04 | Average Order Value | KPI-01 / KPI-02 | Only comparable when line/header populations match |
-| KPI-05 | Month-over-Month Sales Growth | (Current month KPI-01 / Previous comparable month KPI-01) - 1 | Blank/N/A for no valid prior period; avoid partial-month misinterpretation |
-| KPI-06 | Distinct Purchasing Customers | Distinct `CustomerID` with qualifying orders | Selected time range and order status |
-| KPI-07 | Repeat Customer Rate | Customers with 2+ qualifying orders / purchasing customers | Same defined window; cannot infer lifetime behavior without historical coverage |
-| KPI-08 | Revenue Share by Product / Territory | Group KPI-01 / all eligible KPI-01 | Cross-filter context and denominators documented |
-| KPI-09 | Average Discount Rate | Weighted difference between undiscounted line price and realized line sales divided by undiscounted value | Prefer quantity-weighted discount, not arithmetic mean of rates |
-| KPI-10 | Gross Profit / Gross Margin | Sales minus matched cost of goods; Gross Profit / Sales | **Conditional**: only if historical product cost at the sale date is justified |
+## Customer intelligence
 
-## Customer segmentation (proposed)
+Use a stated `CustomerID`, analysis-as-of date and observation window for **RFM**:
 
-**RFM** will be based on eligible orders: 
-- **Recency:** elapsed days from a defined analysis/as-of date to the most recent qualifying order.
-- **Frequency:** qualifying distinct orders, not line rows.
-- **Monetary:** cumulative KPI-01 over the agreed observation window.
-- **Customer identity:** `CustomerID`, with Person and Store subtypes labeled accurately.
+- **Recency:** days since the last observed qualifying order.
+- **Frequency:** number of distinct qualifying orders.
+- **Monetary:** discounted line sales for those orders.
 
-Any RFM scoring cutoffs (quantiles, fixed bands) and handling of tied scores must be disclosed as model choices. New versus repeat is based on first **observed** purchase in the available dataset, not necessarily the customer's actual first-ever transaction.
+Scoring bands, ties and customer segment names must be recorded as modeling choices. The first purchase **observed in the sample** may not be the customer's first-ever transaction.
 
-## Channels and profitability
+## Channel, cost and scenarios
 
-- `OnlineOrderFlag` is a candidate segmentation field; its exact meaning must be verified before labeling chart series. Do not claim offline = reseller automatically.
-- Do not merge manufacturer, reseller and Internet concepts without field-level evidence.
-- List prices and standard costs may change. Using **current** `Product.StandardCost` against older transactions can materially misstate historical margin. Validate `ProductCostHistory` effective intervals or omit KPI-10.
-- Simulated price/discount changes affect a **scenario**, not the observed historical record; demand elasticity is not inferred.
+`OnlineOrderFlag` is a possible order-type dimension. Its semantics must be checked before calling it Internet/reseller or online/offline in a published chart.
 
-## Control and reconciliation requirements
+A product's current standard cost may not represent the cost at an older sale. Use validated cost history or omit the historical gross-profit metric. Pricing and discount scenario assumptions do **not** prove actual demand responses.
 
-1. KPI-01 equals the eligible source line-total sum at identical filters.
-2. Header-level and line-level order populations match under the chosen inclusion rule.
-3. KPI-02 is not multiplied by order detail cardinality.
-4. Territory/category/customer totals reconcile to KPI-01 including explicit '(Unknown)' members where needed.
-5. Weighted discount calculation matches source arithmetic for sampled orders.
-6. Historical-cost join preserves one cost row per eligible sales line.
-7. Date comparisons exclude or flag incomplete periods.
+## Reconciliation tests
 
-Related: [RDR-004](rdr/RDR-004-metric-semantics.md), [Validation Plan](VALIDATION_PLAN.md).
+At the same eligibility filters, sales, units, distinct order count and customer count must match source data. Category and territory breakdown totals must reconcile including unknown members. Test customer RFM calculations against specific orders, and ensure a historical-cost join never multiplies sales rows.
+
+See [Validation Plan](VALIDATION_PLAN.md). Jira tracks the implementation and review tasks; metric definitions live in this catalog.
