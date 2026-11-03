@@ -1,62 +1,49 @@
 # AdventureWorks — Excel Business Intelligence
 
-> **Status: PLANNING** · Repository: private · Implementation: **not started**
+**Status: Planning.** This repository currently contains project documentation only. No workbook, Power Query pipeline, data model, dashboard, or verified KPI has been implemented.
 
-An AI-assisted Microsoft Excel 365 Business Intelligence portfolio project using the **official Microsoft AdventureWorks OLTP** sample data. The goal is to transform transactional data into a reproducible commercial analytics model and interactive decision-support workbook.
+AdventureWorks — Excel Business Intelligence is a portfolio project that will turn **Microsoft AdventureWorks OLTP transactional data** into a practical **commercial decision-support solution in Excel 365 Desktop**. It will explore sales, customers, products, territories, profitability where cost data allow, and business scenarios.
 
-## What the project will analyze
+The distinction from ProcureFlow is intentional: **commercial intelligence and dimensional modeling**, not procurement, replenishment, or VBA-heavy operations.
 
-- Sales performance, growth, products, territories, and online/offline sales context.
-- Customer behavior, recurrence, and segmentation.
-- Product profitability, subject to validated historical-cost semantics.
-- Commercial scenarios for pricing, discounting, and sales targets.
-- Optional manufacturing analysis only when it materially enriches the commercial story.
+## Planned outcome
 
-This is **not** a reimplementation of ProcureFlow's procurement, inventory, or VBA automation system.
+An interactive Excel BI workbook with reproducible ingestion, auditable business measures, useful dashboards and scenario analysis. The project will use AI to **create and modify workbook components**, not merely explain how to build them.
 
-## Planned stack
-
-- Excel 365 Desktop: tables, formulas, charts, PivotTables, and dashboards.
-- Power Query for repeatable ingestion and preparation.
-- Power Pivot / Excel Data Model for appropriate dimensional relationships.
-- ChatGPT for Excel and Codex with the user's Excel MCP integration for AI-assisted workbook construction.
-- Git/GitHub for version control and traceability.
-
-Capabilities of the installed Excel MCP must be checked before relying on automation. AI output is not accepted without validation.
-
-## Documentation and RDR
-
-This repository uses a lean **Research–Design–Review (RDR)** approach to document consequential architecture choices *before* implementation. The RDRs are drafts until reviewed and explicitly accepted. Their findings distinguish **Verified**, **Documented**, and **Assumed** evidence.
-
-| Start here | Purpose |
+| Technology | Planned role |
 | --- | --- |
-| [Project Brief](docs/PROJECT_BRIEF.md) | Scope, audience, requirements, exclusions, and success criteria |
-| [Roadmap](docs/ROADMAP.md) | Four phases, milestones, estimates, and gates |
-| [Architecture](docs/ARCHITECTURE.md) | Proposed data and workbook layers |
-| [Source Map](docs/SOURCE_MAP.md) | Candidate OLTP tables, keys, grains, and data questions |
-| [KPI Catalog](docs/KPI_CATALOG.md) | Proposed business definitions and semantic cautions |
-| [AI Workflow](docs/AI_WORKFLOW.md) | Codex/MCP/ChatGPT execution and verification policy |
-| [Validation Plan](docs/VALIDATION_PLAN.md) | Technical and business acceptance checks |
-| [Current State](docs/CURRENT_STATE.md) | Facts about what exists and what remains open |
-| [RDR Index](docs/rdr/README.md) | Pre-implementation research/design/review records |
+| Excel 365 Desktop, Power Query, Power Pivot | Data preparation, analytical model and interactive workbook |
+| Codex with Terra (Medium / High / Extra High) | Development, analysis, review and tool coordination |
+| User's Excel MCP for Codex | Direct Excel actions **after its actual capabilities are verified** |
+| ChatGPT for Excel | Supported formula, sheet, formatting and chart work |
+| Jira | Lightweight planning and task tracking |
+| GitHub | Versioned artifacts, documentation and implementation evidence |
 
-## Planned execution
+## Project plan
 
-1. **Data Design & Preparation** — choose tables, establish metric definitions and keys.
-2. **Data Ingestion & Modeling** — build and verify Power Query and the model.
-3. **AI-Assisted Analytics & Dashboards** — implement analytical measures, visuals, and scenarios.
-4. **Validation, Documentation & Publication** — reconcile, test, and package portfolio evidence.
+Four phases are planned: **data design**, **ingestion and modeling**, **AI-assisted analytics and dashboards**, and **validation and publication**. The initial estimate is **8–12 working days (approximately 24–48 hours of effort)**; it will be revised after the data and tool checks. See the [Roadmap](docs/ROADMAP.md).
 
-**Planning estimate:** 8–12 working days and roughly 24–48 hours of effort; this is not a commitment and will be reassessed after an MCP capability test and source validation.
+The exact scope is deliberately smaller than the full OLTP database. No historical performance claims or profit figures are published before validating their underlying data.
 
-## Source data policy
+## Where to go next
 
-Official Microsoft source: [AdventureWorks OLTP install-script directory](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/adventure-works/oltp-install-script). [Microsoft's sample guidance](https://learn.microsoft.com/sql/samples/adventureworks-install-configure) explains the OLTP, DW, and LT variants.
+| Need | Read |
+| --- | --- |
+| Goals, requirements and exclusions | [Project Brief](docs/PROJECT_BRIEF.md) |
+| Phases, estimates and milestones | [Roadmap](docs/ROADMAP.md) |
+| Data flow, model and workbook design | [Architecture](docs/ARCHITECTURE.md) |
+| Candidate AdventureWorks OLTP source tables | [Source Map](docs/SOURCE_MAP.md) |
+| Proposed metric definitions | [KPI Catalog](docs/KPI_CATALOG.md) |
+| Division of work between AI tools and Excel | [AI Workflow](docs/AI_WORKFLOW.md) |
+| Jira board, epics, tasks and GitHub links | [Jira Workflow](docs/JIRA_WORKFLOW.md) |
+| Test plan and acceptance checks | [Validation Plan](docs/VALIDATION_PLAN.md) |
+| What's actually complete and what's pending | [Current State](docs/CURRENT_STATE.md) |
 
-Raw datasets are external artifacts: preserve source files unchanged, track provenance and any redistribution terms, and do not commit unnecessary bulk source data.
+## Data and documentation sources
 
-## Current boundary
+- [Microsoft's AdventureWorks sample documentation](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure) and [official OLTP installation files](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/adventure-works/oltp-install-script). The selected source snapshot, CSV schema and licensing/redistribution conditions must be recorded before use.
+- Documentation presentation follows the owner's [Repository Documentation Readability Guide (RDR)](https://github.com/angel-wm/repository-documentation-readability/blob/main/GUIDE.md), not the unrelated Research–Design–Review methodology. A repository-local copy of the owner's [Codex documentation skill](.agents/skills/repository-documentation-readability/SKILL.md) supports repeat use.
 
-Documentation exists to support future implementation. **No raw data has been downloaded for this project, no workbook or transformation has been built, and no KPI has been computed or validated.** Those activities require separate explicit authorization.
+## Implementation boundary
 
-**License:** to be selected before public release. Do not assume Microsoft's sample data is automatically covered by a future repository license.
+The repository is **private during planning**. Building workbooks, downloading data, changing production logic, setting up Jira issues, and publishing a portfolio release require separate authorization. The code and data are not yet available for a Quick Start, so none is presented as functional.
