@@ -1,54 +1,46 @@
 # Project Brief
 
-**State:** Planning baseline · **Implementation:** Not started
+**Status:** Planning. This document defines intended outcomes; it is not evidence of implemented functionality.
 
-## Problem and goal
+## Purpose
 
-AdventureWorks OLTP records business transactions, not a ready-made dimensional analytics model. The project will produce an Excel BI solution that helps commercial stakeholders explain sales performance, customer behavior, product economics and scenario tradeoffs.
+Build an Excel 365 Desktop BI solution using **Microsoft AdventureWorks OLTP**. The portfolio should demonstrate how raw operational transactions become a reliable analytical model and decisions. The main subjects are sales, customer behavior, products, territories, and commercial scenarios.
 
-The portfolio goal is to demonstrate **OLTP-to-BI modeling**, practical Excel analytics and **active AI-assisted implementation**, without reproducing ProcureFlow's operational workflow complexity.
+AI will actively produce supported spreadsheet artifacts using **ChatGPT for Excel** and **Codex with Terra and Excel MCP**, with independent validation. This is deliberately shorter and less tutorial-oriented than ProcureFlow.
 
-## Intended audience and questions
+## Business questions
 
-- **Sales manager:** How are revenue, order volume and selling mix changing over time, territory, product and order type?
-- **Commercial analyst:** Which customers buy repeatedly? How do value and frequency vary by segment?
-- **Product manager:** Which categories drive sales and, if trustworthy cost data allow, gross profit?
-- **Decision-maker:** What would an assumed price or discount adjustment do to selected sales scenarios?
+- **Sales:** Where do orders, sold units and discounted sales change by month, product, territory and order type?
+- **Customers:** Which observed customers are most valuable, most recent or recurring? Can we define defensible RFM segments?
+- **Products:** Which categories sell most? Is a historically defensible margin available?
+- **Commercial planning:** How do explicit price or discount assumptions affect a scenario, without rewriting historical facts?
 
-## Required capabilities (planned)
+## MVP requirements
 
-| ID | Requirement | Acceptance intent |
+| ID | Intended capability | Acceptance condition |
 | --- | --- | --- |
-| FR-01 | Reproducible import from official OLTP sources | Re-run refresh from the same unchanged source files |
-| FR-02 | Explicit grain and relationships | Model relationships and row counts are documented and verified |
-| FR-03 | Sales time-series and segmentation | Results reconcile to selected source facts |
-| FR-04 | Product and territory analysis | Correct slicing without duplication or many-to-many inflation |
-| FR-05 | Customer analysis | Clearly scoped customer population and time window |
-| FR-06 | Profitability if cost history is defensible | Historical costs handled or gross-margin KPI postponed |
-| FR-07 | Scenario worksheet | Inputs labeled as assumptions; baseline preserved |
-| FR-08 | Interactive and polished Excel dashboard | Usability, filters, formulas and visuals tested |
-| FR-09 | AI execution provenance | AI-generated work distinguished from manually verified facts |
+| FR-01 | Repeatable OLTP source ingestion | Same unaltered source produces stable results |
+| FR-02 | Fact/dimension model | Source grains, joins and keys reconcile |
+| FR-03 | Sales dashboard | Trend and breakdowns reconcile to eligible sales lines |
+| FR-04 | Customer dashboard | Customer counts and RFM logic verified against orders |
+| FR-05 | Product / territory analysis | Filters preserve totals and expose missing dimensions |
+| FR-06 | Profitability (conditional) | Historical cost approach passes checks, otherwise label as unavailable |
+| FR-07 | Scenario worksheet | Adjustable assumptions never change historical results |
+| FR-08 | AI build evidence | Readback and independent validation of edits |
+| FR-09 | Portfolio documentation | README, source attribution, tests and release evidence up to date |
 
-## Quality constraints
+## Out of scope
 
-- Excel 365 Desktop is the target runtime; specific OS and add-in/tool versions will be captured before execution.
-- The design must not require all OLTP source tables; minimize imported columns and row copies.
-- Source data stays unchanged; transformations are readable and repeatable.
-- No invented sales numbers, benchmarks, margin baselines or dates.
-- No misleading 'real-time' labels for historical sample data.
-- No mandatory VBA automation; consider only if demonstrated necessity.
+Full ERP, procurement/replenishment management, standalone forecasting, manufacturing execution, heavy VBA orchestration, and importing every OLTP table by default. Manufacturing analysis is optional and must answer a distinct useful question.
 
-## Out of scope initially
+## Constraints and decisions
 
-Full ERP replacement, operational replenishment, supplier-risk workflows, demand forecasting models, manufacturing execution systems, live SQL service deployment and duplicative end-to-end ProcureFlow features.
+- **Dataset variant:** AdventureWorks OLTP; precise snapshot / source package awaits confirmation.
+- **Ingestion:** Power Query preferred; official CSV files are a candidate; a SQL Server source remains a fallback if needed.
+- **Model:** Power Pivot / Excel Data Model where appropriate; capabilities must be tested.
+- **Project duration:** four phases, approximately 8–12 working days / 24–48 working hours (planning estimate).
+- **Tracking:** Jira for work status; GitHub for source/version history, per [Jira Workflow](JIRA_WORKFLOW.md).
+- **Documentation:** owner’s [RDR presentation guide](https://github.com/angel-wm/repository-documentation-readability/blob/main/GUIDE.md), keeping explanations concise without removing technical conditions.
+- **Safety of results:** never invent figures, silently modify source data, or call an untested AI result validated.
 
-## Open decisions
-
-1. Exact source packaging (official CSV installation scripts versus SQL restored database) and version/date coverage.
-2. Sales semantics (ordered vs shipped, line vs header level, freight and tax).
-3. Channel definition and correct use of `OnlineOrderFlag`.
-4. Historic product cost availability and validity.
-5. Actual Excel MCP tool coverage and how to operate Power Query/Power Pivot.
-6. Which dashboards are essential versus optional.
-
-**Change control:** Consequential options and supporting research belong in [RDRs](rdr/README.md); nothing is considered tested until [Validation Plan](VALIDATION_PLAN.md) is executed.
+See the [Source Map](SOURCE_MAP.md) for candidate tables and the [Validation Plan](VALIDATION_PLAN.md) for acceptance evidence.
