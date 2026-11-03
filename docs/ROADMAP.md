@@ -1,55 +1,42 @@
-# Roadmap — Four Phases
+# Roadmap — Four-Phase Delivery
 
-**Status:** PLANNING · Durations are estimates, not actuals.
+**Current phase:** Planning. **Implementation has not started.**
 
-| Phase | Estimated effort | Exit gate |
+The target is a **short, AI-accelerated** BI project. The 8–12 working-day estimate (about 24–48 hours of effort) is provisional, not a promise. The ranges below are directional and may overlap or require rework.
+
+| Phase | Planning range | Outcome and exit check |
 | --- | --- | --- |
-| 1 — Data Design & Preparation | 1–2 working days | Selected scope, source schemas, grains, semantics and MVP approved |
-| 2 — Data Ingestion & Modeling | 2–3 working days | Power Query refresh, facts/dimensions and model relationships verified |
-| 3 — AI-Assisted Analytics & Dashboards | 3–4 working days | Required KPIs, customer segmentation, visualizations and scenarios reconciled |
-| 4 — Validation, Documentation & Publication | 1–3 working days | Regression, documentation and portfolio readiness verified |
-
-**Overall planning range:** 8–12 working days / ~24–48 hands-on hours. Ranges are not additive day-by-day guarantees; overlap and rework may change totals. Estimate will be recalibrated after Phase 1.
+| 1. Data Design & Preparation | 1–2 days | Dataset version, source tables, grains, KPIs and workbook outline reviewed |
+| 2. Data Ingestion & Modeling | 2–3 days | Power Query pipeline and model refresh/reconcile correctly |
+| 3. AI-Assisted Analytics & Dashboards | 3–4 days | Sales, customer, product and scenario outputs tested |
+| 4. Validation, Documentation & Publication | 1–3 days | Regression, usability, traceability and release checks complete |
 
 ## Phase 1 — Data Design & Preparation
 
-- Inspect official source metadata, file structure, delimiters, encoding and field mappings.
-- Confirm one fact grain for sales; distinguish header and line-level amounts.
-- Select minimum tables for Date, Product, Customer, Territory and Channel.
-- Define target metric semantics, scope boundaries and source-to-target mapping.
-- Discover installed Excel MCP tools in Codex with a non-destructive capability check.
-- **Gate:** write down what is verified vs assumed; no unverified model relationship enters implementation.
+Inspect the official AdventureWorks OLTP snapshot and only the tables required by the commercial questions. Define key relationships, a sales-line grain, status/date semantics and the priority KPIs. Check the installed **Excel MCP tool inventory from Codex** before assigning direct Excel tasks.
+
+**Exit:** confirmed source selection, validated mapping assumptions and approved scope. Jira Epic 1.
 
 ## Phase 2 — Data Ingestion & Modeling
 
-- Obtain approved source files without modifying originals.
-- Build parameterized, reproducible Power Query source/staging/final layers.
-- Normalize data types, keys and date handling; prevent join-based row multiplication.
-- Build the Excel Data Model / Power Pivot relationships where practical.
-- Reconcile fact counts and representative totals to source facts.
-- **Gate:** refresh, data-quality checks and model-grain tests pass.
+Create a reproducible Power Query pipeline after authorization, with source → staging → analytical outputs. Build relationships in the Excel Data Model / Power Pivot where appropriate. Check keys, row counts, date handling and additive sales measures.
+
+**Exit:** refresh and reconciliation tests pass. Jira Epic 2.
 
 ## Phase 3 — AI-Assisted Analytics & Dashboards
 
-- Create formulas/measures using a division of work based on actual Excel MCP capabilities.
-- Build commercial views: trend, product, customer and territory.
-- Implement justified RFM/recurrence definitions and segmentation.
-- Add scenario assumptions with controls and baseline isolation.
-- Create/edit charts, PivotTables or compatible substitutes and visual layouts.
-- **Gate:** formulas, pivots, visuals and outputs agree with verified source-level totals.
+Use Codex/Terra, Excel MCP and ChatGPT for Excel to construct formulas, summaries, charts, customer RFM, commercial views and scenario worksheets, delegating only capabilities actually supported by those tools. Use Excel Desktop where native functions are unsupported.
+
+**Exit:** key outputs independently validated against transformed/source data. Jira Epic 3.
 
 ## Phase 4 — Validation, Documentation & Publication
 
-- Run regression, refresh and usability tests; capture reproducible evidence.
-- Review time windows, missing values, filter effects, performance and profit disclaimers.
-- Update RDR outcomes, current-state evidence and public README.
-- Decide source-data redistribution policy/license and capture portfolio screenshots.
-- **Gate:** acceptance criteria met; publication requires explicit authorization.
+Test repeatable refresh, formulas, model filters, scenarios and workbook usability. Record limitations, results, source attribution, screenshots and versioned release artifacts. Publication itself needs explicit approval.
 
-## Workflow discipline
+**Exit:** the [Validation Plan](VALIDATION_PLAN.md) is fulfilled or documented exceptions accepted. Jira Epic 4.
 
-- Complete and verify meaningful components before progressing.
-- Use RDR drafts for design exploration; accept only after review.
-- Codex/Excel MCP and ChatGPT for Excel are execution tools, not trusted calculation authorities.
-- Keep docs concise; do not produce large phase-closeout files unless a concrete issue demands them.
-- No source data, workbook or code implementation will be created by documentation planning alone.
+## Working approach
+
+Jira holds epics and short tasks; no separate heavyweight phase-closeout dossier is required. Use an issue only for work with a clear deliverable and test. Keep GitHub commits and PRs linked to Jira keys where practical. See [Jira Workflow](JIRA_WORKFLOW.md).
+
+After each meaningful step, summarize **built → verified → pending**. Reassess scope and timeline after the Phase 1 data and MCP checks rather than treating estimates as validated.
