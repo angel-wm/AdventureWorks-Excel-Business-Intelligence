@@ -1,80 +1,62 @@
 # Proposed Architecture
 
-**Design status:** DRAFT — no workbook, query or relationship currently exists.
+**Status: Draft.** No analytical model or workbook has been implemented.
 
-## Data flow
+## How data will move
 
 ```text
-Official AdventureWorks OLTP sources (immutable)
-    |
-    v
-Power Query: source access (src) -> preparation (stg)
-    |
-    v
-Validated semantic layer: facts + dimensions
-    |                           |
-    v                           v
-Excel Data Model / Power Pivot   limited Excel tables as needed
-    |                           |
-    +-----------+---------------+
-                v
-         KPIs and measures
-                |
-                v
-      PivotTables / formulas
-                |
-                v
-    Sales, Customers, Products
-     and Scenario dashboards
+Official AdventureWorks OLTP sources (unchanged)
+    ↓
+Power Query: source access → staging → analytical tables
+    ↓
+Validated facts and dimensions
+    ↓
+Excel Data Model / Power Pivot (if appropriate)
+    ↓
+Measures and analytical tables / PivotTables
+    ↓
+Sales, Customers, Products and Scenario dashboards
 ```
 
-## Intended grains and entities
+## Logical model
 
-- **Core sales fact:** one `SalesOrderDetail` line, uniquely identified by `SalesOrderID` + `SalesOrderDetailID` (verify source constraints).
-- **Sales header attributes:** `SalesOrderHeader` joined many lines to one order. Do **not** repeat header-level monetary amounts as additive line measures.
-- **Date:** one row per calendar day across the observed sale-date range.
-- **Product:** one row per product; enrichment with product subcategory/category must preserve uniqueness.
-- **Customer:** one row per customer identifier with careful differentiation of person and store customers; relationships to Person, Store and SalesTerritory need verified treatment.
-- **Territory:** one row per territory, joined using the selected order-level territory where present.
-- **Order type/channel:** derive from documented source attributes (e.g. `OnlineOrderFlag`); do not claim online/offline equals Internet/reseller without validation.
-- **Scenario assumptions:** separate inputs table/sheet, not joined to transaction fact rows.
+The candidate **sales fact grain** is one `SalesOrderDetail` line, with order-header attributes from `SalesOrderHeader`. Do not sum header-level totals after repeating them across detail rows.
 
-The above is a proposal, not a verified schema mapping; see [Source Map](SOURCE_MAP.md).
+| Entity | Proposed key/grain | Role |
+| --- | --- | --- |
+| Sales fact | `SalesOrderID` + `SalesOrderDetailID` (to verify) | Amounts, units, product and order linkage |
+| Order header | `SalesOrderID` | Order date, customer, territory, order type and status |
+| Product | `ProductID` | Attributes, subcategory and category hierarchy |
+| Customer | `CustomerID` | Person/store customer behavior and segmentation |
+| Territory | `TerritoryID` | Geographic commercial analysis |
+| Date | One calendar date | Monthly/yearly comparisons |
+| Assumptions | Independent input records | Scenarios, not actual sales |
 
-## Boundaries and modeling rules
+Specific keys, fields and cardinalities must be checked against the selected source. See the [Source Map](SOURCE_MAP.md).
 
-1. Source files remain unchanged and must not be overwritten by tools.
-2. Explicit data types, culture/decimal handling and null policy in Power Query.
-3. Preserve row-count granularity across many-to-one enrichment; detect accidental duplicate product/customer keys.
-4. Use a star-schema-like model where practical, without importing unrelated OLTP tables.
-5. Use a single canonical sales measure and define optional headline variants explicitly.
-6. Historical cost fields need effective-date or actual transaction-cost justification before publishing a gross-margin calculation.
-7. Protect assumptions from being confused with observed historical sales.
-8. Acknowledge that Excel Data Model relationships, DAX measures, slicers and Power Query steps may need direct desktop actions if the MCP lacks support.
+## Rules that prevent wrong analytics
 
-## Proposed workbook navigation
+1. Preserve original data and record its version / source.
+2. Explicitly check types, currencies, missing keys and date ranges.
+3. Confirm joins do not multiply sales lines or financial totals.
+4. Define the sales measure, its exclusions and discount treatment before charting.
+5. **Do not claim historical gross margin** until applicable historic costs have been validated; current product cost may not represent past cost.
+6. Differentiate observed sales from assumed changes in scenario sheets.
+7. Avoid importing unrelated manufacturing, purchasing and HR modules by default.
 
-- `00_README` — purpose, definitions, source and refresh notes.
-- `01_CONTROLS` — date window / scenario inputs / data validation indicators.
-- `10_DASH_Sales` — commercial overview.
-- `11_DASH_Customers` — segmentation and recurrence.
-- `12_DASH_Products` — product/territory and validated profitability.
-- `13_SCENARIOS` — assumed price/discount outcomes.
-- Supporting analysis sheets only where necessary; avoid one worksheet per source table.
+## Suggested workbook presentation
 
-These names may change after Phase 1.
+- `00_README`: purpose, refresh, definitions.
+- `01_CONTROLS`: as-of period, scenario assumptions and quality indicators.
+- `10_DASH_Sales`: time series, products, territories and order type.
+- `11_DASH_Customers`: recurrence and RFM groups.
+- `12_DASH_Products`: commercial product breakdowns; margins only if validated.
+- `13_SCENARIOS`: clearly marked assumptions.
 
-## Refresh and maintainability
+These names are provisional. Supporting analysis sheets should be kept to the minimum needed.
 
-- Prefer explicit Refresh All and documented dependency order before custom VBA.
-- Store source-path parameters outside hard-coded user-specific paths.
-- Capture original source URL, snapshot/version, schema and checksum where possible.
-- Track Power Query M and DAX/formula definitions as readable text when technically feasible, while the workbook remains the executable source.
-- Document the observed refresh outcome, not an assumed success.
+## Tool boundary
 
-## RDR links
+Power Query and Power Pivot are part of the technical plan, but their automation through the **user's installed Excel MCP** is not confirmed. [AI Workflow](AI_WORKFLOW.md) defines discovery, readback and Excel Desktop fallback.
 
-- [RDR-001](rdr/RDR-001-scope-and-oltp.md) — source selection and scope.
-- [RDR-002](rdr/RDR-002-ingestion-and-model.md) — ingestion and dimensional model.
-- [RDR-003](rdr/RDR-003-ai-execution.md) — AI automation boundaries.
-- [RDR-004](rdr/RDR-004-metric-semantics.md) — metric definitions and guardrails.
+Use Jira to track work items, not as the location of SQL, M code, business rules or authoritative calculation definitions. See [Jira Workflow](JIRA_WORKFLOW.md). GitHub holds versioned documents and deliverables.
