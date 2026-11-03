@@ -1,48 +1,38 @@
-# Source Map — Candidate OLTP Inputs
+# AdventureWorks OLTP — Source Map
 
-**Status:** PROVISIONAL. This is a candidate selection based on Microsoft AdventureWorks OLTP naming; do not treat as validated column mapping or dataset profiling.
+**Status:** Provisional source selection; no dataset has been downloaded or profiled in this project.
 
-Official source: [Microsoft SQL Server samples — AdventureWorks OLTP](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/adventure-works/oltp-install-script).
+The [official Microsoft OLTP installation directory](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/adventure-works/oltp-install-script) contains table-named files and `instawdb.sql`. The installation CSVs may use positional fields and SQL-script-defined schemas. **Verify column names, types, delimiters and null handling from the selected version**, not file names alone.
 
 ## Priority source candidates
 
-| Source table/file | Planned role | Proposed join or grain | Verification needed |
-| --- | --- | --- | --- |
-| `SalesOrderDetail` | Core transactional sales fact | Line, `SalesOrderID` / `SalesOrderDetailID` | Keys, `LineTotal`, prices, discounts, quantity |
-| `SalesOrderHeader` | Order date, territory, customer and channel | One row per order, `SalesOrderID` | Date choice, canceled/order status, `OnlineOrderFlag`, header totals |
-| `Product` | Product attributes/cost candidate | `ProductID` | Current cost versus sale-time cost |
-| `ProductSubcategory` | Product hierarchy | `ProductSubcategoryID` | Missing / null hierarchy |
-| `ProductCategory` | Product hierarchy | `ProductCategoryID` | Category completeness |
-| `Customer` | Customer dimension bridge | `CustomerID` | `PersonID` / `StoreID` and duplicate effects |
-| `Person` | Individual customer attributes | `BusinessEntityID` where applicable | Scope, available non-sensitive fields |
-| `Store` | Store customer attributes | `BusinessEntityID` where applicable | Distinct store/customer relationship |
-| `SalesTerritory` | Commercial geography | `TerritoryID` | Territory nulls and source of truth |
-| `ProductCostHistory` | Historical cost candidate | Product + effective dates | Applicability to shipped sales, interval overlap |
-| `ProductListPriceHistory` | Pricing history candidate | Product + effective dates | Price-history rules and missing intervals |
-| `SpecialOffer` | Promotion metadata (optional) | `SpecialOfferID` | Discount interpretation and join cardinality |
-| `SalesOrderHeaderSalesReason` / `SalesReason` | Sales reasons (optional) | Many-to-many bridge | Cannot join directly to a line fact without duplication |
+| OLTP source | Intended analytical role | Critical check |
+| --- | --- | --- |
+| `SalesOrderDetail` | One sales-order line per fact record | Key uniqueness, quantities, prices and `LineTotal` semantics |
+| `SalesOrderHeader` | Order, customer, date, territory, status, order type | Order/line cardinality; avoid adding header totals per line |
+| `Product` | Product key and descriptive attributes | Stable `ProductID`, current vs historic costs |
+| `ProductSubcategory`, `ProductCategory` | Product category drill-down | Preserve product cardinality and handle missing hierarchy |
+| `Customer` | Sales customer reference | Person vs store linkage and null values |
+| `Person`, `Store` | Optional customer attributes | Appropriate use and one-to-one/many-to-one joins |
+| `SalesTerritory` | Territory grouping | Missing values and order-level territory semantics |
+| `ProductCostHistory` | Conditional gross-margin calculation | Effective-date intervals and cost applicability |
+| `ProductListPriceHistory` | Optional price history | Dates, gaps and discounts |
+| `SpecialOffer` | Optional promotion analysis | Discount grain and join cardinality |
+| `SalesOrderHeaderSalesReason`, `SalesReason` | Optional reason analysis | Many-to-many bridge; prevent inflated sales totals |
 
 ## Deferred unless justified
 
-`WorkOrder`, `WorkOrderRouting`, `BillOfMaterials`, `ProductInventory`, `PurchaseOrderHeader`, `PurchaseOrderDetail`, `Vendor`, `TransactionHistory`, HR, credit-card and other unrelated sources.
+Manufacturing (`WorkOrder`, `WorkOrderRouting`, `BillOfMaterials`), stock (`ProductInventory`), purchasing (`PurchaseOrderHeader`, `PurchaseOrderDetail`, `Vendor`), transaction history, and employee/HR tables. OLTP gives us room to explore, but **MVP scope is commercial analytics**, not full ERP recreation.
 
-They are part of OLTP's wider scope, not approved analytics inputs by default.
+## Ingestion decisions still open
 
-## Ingestion choices to investigate
+| Option | Why consider it | Limitation |
+| --- | --- | --- |
+| **Official install CSVs + Power Query** (preferred candidate) | Portable source, no SQL Server installation required | Positional mappings, explicit types and relationship checks |
+| SQL Server backup/database + Power Query | Native schema and server constraints | Requires database setup and a reproducible connection |
 
-1. **Official install-script CSV files (preferred candidate):** easier standalone Excel refresh, but installation files may rely on positional columns and SQL script definitions. Inspect delimiter, quote handling, type mapping, `NULL` representations, encoding and schema order before import.
-2. **Restored SQL Server database:** native typed schema and keys but requires service/SQL Server setup. Use only if CSV consistency proves insufficient or analytical requirements justify it.
+## Phase 1 source verification
 
-Do not infer column names from positional CSV content without checking Microsoft's installation script.
+Record source version and URL, hashes where applicable, file counts and schema layout; then check key uniqueness, observed date span, row counts, missing foreign keys and join cardinalities. Keep the source files unchanged.
 
-## Required Phase 1 profiling
-
-- Exact source release/version, per-file SHA-256 and provenance.
-- Row count per included source, key uniqueness, nulls, minimum and maximum dates.
-- Detected encoding/delimiter and stable column order.
-- Foreign-key coverage and many-to-one join validation.
-- Monetary type/precision and date/time locale.
-- Explicit status and order inclusion/exclusion rules.
-- Row-count preservation after joins and records with unavailable dimension keys.
-
-**No source profiling has been performed in this repository.** Update this file with verified findings and actual row counts only after implementation is authorized.
+**No source row counts, monetary totals or join results have been validated yet.** See [Architecture](ARCHITECTURE.md) and [Validation Plan](VALIDATION_PLAN.md).
