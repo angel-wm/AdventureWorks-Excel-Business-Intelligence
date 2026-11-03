@@ -1,65 +1,46 @@
-# AI-Assisted Development Workflow
+# AI-Assisted Excel Development
 
-**State:** PLANNING. No installed Excel MCP capability test has yet been completed for this project.
+**Status:** Planned; exact capabilities of the user's installed Excel MCP have **not** been tested in this project.
 
-## Tool responsibilities
+The purpose is to let AI **do supported Excel work**, with short explanations and verifiable results. We do not want to repeat ProcureFlow's manual, highly tutorial-oriented build process.
 
-| Tool | Primary use | Important boundary |
+## Division of work
+
+| Tool | Intended use | Verification boundary |
 | --- | --- | --- |
-| ChatGPT (project chat) | Requirements, research, decisions, explanations, reviews | Explanations are not execution evidence |
-| Codex / Terra | Implementation coordination, coding, analysis and debugging | Choose reasoning level proportionate to task |
-| User's Excel MCP connected to Codex | Direct Excel operations **if exposed by installed tools** | Must discover actual tool list, scopes, workbook save/reopen behavior and limitations |
-| ChatGPT for Excel | Build/update cells, formulas, formatting, charts and spreadsheet tasks | Confirm outcome on workbook; advanced features may not be supported |
-| Excel Desktop | Native Power Query, Power Pivot, Data Model, PivotTables, slicers and final execution | Manual fallback when integrations cannot operate a feature |
+| **Codex + Terra** | Analyze requirements, implement repeatable operations, debug and coordinate tool calls | Reasoning alone does not prove workbook edits happened |
+| **User's Excel MCP for Codex** | Direct workbook creation/editing/inspection for capabilities exposed by the installed server | Discover actual commands before committing tasks |
+| **ChatGPT for Excel** | Supported spreadsheet formulas, tables, formatting, charts and refinements | Read back changed objects, formulas and totals |
+| **Excel 365 Desktop** | Native Power Query, Power Pivot, PivotTables and any unsupported feature | Run refresh and functional tests in the real workbook |
+| **ChatGPT project chat** | Decisions, concise explanations, calculations review and quality checkpoints | Mark draft versus executed evidence accurately |
 
-The presence of an 'official' MCP label does not establish its exact tool coverage. Codex and ChatGPT for Excel may expose different operations. They must be tested separately.
+**Terra reasoning levels:** Medium for routine operations; High for transformations, complex formulas and dashboard assembly; Extra High for difficult modeling, debugging and final cross-layer review. Extra High is a selective tool, not the default for every edit.
 
-## Codex reasoning choices
+## First technical check
 
-- **Medium:** straightforward reading, formatting, table and formula operations.
-- **High:** complex Power Query, metric logic, dashboard assembly, data analysis and repair.
-- **Extra High:** difficult dimensional modeling, ambiguous semantics, serious debugging or cross-layer validation.
+From Codex, inspect the connected **Excel MCP server identity, tool list and access permissions**. Test basic open/read/edit/save/readback on a safe temporary workbook before relying on it. Specifically verify whether the installed MCP can create/refresh Power Query, manage Excel Data Model/Power Pivot, create PivotTables/charts and manage slicers. Do not infer coverage from the tool name or marketing material.
 
-Use Medium first for routine work. Extra High is not a substitute for test data or source evidence.
+If an advanced feature is unsupported, do it through Excel Desktop or another verified method.
 
-## Safe execution loop
+## Implementation loop
 
-1. **Define** one bounded task with acceptance criteria, workbook/worksheet/range and protected areas.
-2. **Inspect** current workbook state; take a versioned working copy before broad mutations.
-3. **Discover** MCP tools and run a small reversible trial; record exact tool versions and workbook target.
-4. **Execute** only supported edits; never assume success from a tool's invocation alone.
-5. **Read back** changed cells, formulas, objects, visuals, relations and refresh state where possible.
-6. **Reconcile** totals and business rules with independent source checks.
-7. **Commit evidence** and summarize what changed, what passed and what remains unverified.
+1. Select a small Jira task with observable acceptance criteria.
+2. Inspect the target workbook/version and preserve a rollback copy before broad edits.
+3. Ask Codex or ChatGPT for Excel to perform a **bounded** change.
+4. Read the resulting workbook state back, not just the tool's success message.
+5. Reconcile the business output with the source or an independent calculation.
+6. Link the versioned artifact and evidence to Jira; only then mark the task Done.
 
-## Phase 1 MCP capability checklist
+Do not allow concurrent agents to edit the same workbook without controlled serialization or version handling.
 
-- Can Codex enumerate/open/read/save the current workbook reliably?
-- Can it create sheets, structured tables, formulas, names, formatting and charts?
-- Does it support native Power Query creation/edit/refresh and result inspection?
-- Can it create and inspect Excel Data Model relationships, DAX measures and PivotTables?
-- Can it create connected slicers/timelines, export screenshots, and inspect refresh errors?
-- Does it preserve file content and non-target sheets after save/reopen?
-- Can it recover from failed actions without stale cached values?
+## Prompt shape
 
-Use **PASS / FAIL / NOT TESTED** per operation. Unsupported actions move to Excel desktop, not to unverified substitute claims.
+> In the current workbook copy, create a monthly sales summary and chart using the **validated** Line Sales measure. Leave all source tables and Power Query queries unchanged. Read back the chart source, formulas, monthly totals and any errors. If you cannot perform a step, report it as unsupported.
 
-## Prompt policy
+This example is **illustrative**, not evidence of a completed operation.
 
-Provide scope + intended edit + preservation rules + acceptance check. Example:
+## Documentation with the owner's RDR
 
-> On a copy of the open workbook, build the monthly Line Sales chart from the validated monthly summary table. Do not change Power Query queries or input sheets. Read back the resulting chart title, source range and totals. Report unsupported actions rather than simulating success.
+Documentation follows the [Repository Documentation Readability Guide](https://github.com/angel-wm/repository-documentation-readability/blob/main/GUIDE.md), using the owner's [local Codex skill](../.agents/skills/repository-documentation-readability/SKILL.md) for repeated documentation work. **RDR means Repository Documentation Readability in this project, not Research–Design–Review.**
 
-## Verification and documentation policy
-
-- Separate **AI-generated**, **tool-reported**, and **independently validated** outcomes.
-- Preserve formula precision and source references.
-- Avoid destructive edits without backups and explicit approval.
-- Keep a concise change note per milestone, not a transcript of every prompt.
-- For important changes, use Git for text query/measure sources and preserve workbook backup/release versions.
-
-## References
-
-- [OpenAI — ChatGPT for Excel](https://help.openai.com/en/articles/20001063-chatgpt-for-excel/)
-- [Microsoft AdventureWorks guidance](https://learn.microsoft.com/sql/samples/adventureworks-install-configure)
-- [RDR-003](rdr/RDR-003-ai-execution.md)
+The guide governs presentation, not business semantics. Keep source contracts and verified figures authoritative. Use GitHub for documentation and [Jira](JIRA_WORKFLOW.md) for work tracking. Explanations to the user should remain short, practical and in Spanish.
