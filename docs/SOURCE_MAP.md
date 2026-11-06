@@ -1,8 +1,23 @@
 # AdventureWorks OLTP — Source Map
 
-**Status:** Provisional source selection; no dataset has been downloaded or profiled in this project.
+**Status:** Seven files selected and profiled locally. Workbook relationships and broader analytical validation remain pending.
 
 The [official Microsoft OLTP installation directory](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/adventure-works/oltp-install-script) contains table-named files and `instawdb.sql`. The installation CSVs may use positional fields and SQL-script-defined schemas. **Verify column names, types, delimiters and null handling from the selected version**, not file names alone.
+
+The selected snapshot is [revision `8fe3fd0c9a825fef3ae6d601e97537b612d7b214`](https://github.com/microsoft/sql-server-samples/tree/8fe3fd0c9a825fef3ae6d601e97537b612d7b214/samples/databases/adventure-works/oltp-install-script). The seven selected files use tab-separated positional columns without headers. File hashes, field counts and local checks are recorded in [initial sales load validation](validation/2026-11-06-initial-sales-load.md). The chosen route is these install files with Power Query; SQL Server is a fallback, not a dependency.
+
+## Initial source relationships
+
+| Source → lookup | Fields | Intended cardinality |
+| --- | --- | --- |
+| `SalesOrderDetail` → `SalesOrderHeader` | `SalesOrderID` | Many lines to one order |
+| `SalesOrderDetail` → `Product` | `ProductID` | Many lines to one product |
+| `SalesOrderHeader` → `Customer` | `CustomerID` | Many orders to one customer |
+| `SalesOrderHeader` → `SalesTerritory` | `TerritoryID` | Many orders to one territory |
+| `Product` → `ProductSubcategory` | `ProductSubcategoryID` | Many products to an optional subcategory |
+| `ProductSubcategory` → `ProductCategory` | `ProductCategoryID` | Many subcategories to one category |
+
+Source checks found no unmatched non-empty references for these links. The 209 products without a subcategory require an unknown member if they later appear in sales. These are source observations, not evidence that workbook model relationships exist.
 
 ## Priority source candidates
 
@@ -24,15 +39,15 @@ The [official Microsoft OLTP installation directory](https://github.com/microsof
 
 Manufacturing (`WorkOrder`, `WorkOrderRouting`, `BillOfMaterials`), stock (`ProductInventory`), purchasing (`PurchaseOrderHeader`, `PurchaseOrderDetail`, `Vendor`), transaction history, and employee/HR tables. OLTP gives us room to explore, but **MVP scope is commercial analytics**, not full ERP recreation.
 
-## Ingestion decisions still open
+## Ingestion options
 
 | Option | Why consider it | Limitation |
 | --- | --- | --- |
-| **Official install CSVs + Power Query** (preferred candidate) | Portable source, no SQL Server installation required | Positional mappings, explicit types and relationship checks |
+| **Official install files + Power Query** (selected) | No SQL Server installation required | Positional mappings, explicit types and relationship checks; current workbook paths are machine-specific |
 | SQL Server backup/database + Power Query | Native schema and server constraints | Requires database setup and a reproducible connection |
 
 ## Phase 1 source verification
 
 Record source version and URL, hashes where applicable, file counts and schema layout; then check key uniqueness, observed date span, row counts, missing foreign keys and join cardinalities. Keep the source files unchanged.
 
-**No source row counts, monetary totals or join results have been validated yet.** See [Architecture](ARCHITECTURE.md) and [Validation Plan](VALIDATION_PLAN.md).
+See [Architecture](ARCHITECTURE.md), [local validation](validation/2026-11-06-initial-sales-load.md) and [Validation Plan](VALIDATION_PLAN.md) for completed checks and remaining work.

@@ -1,6 +1,6 @@
 # Jira Workflow — AdventureWorks Excel BI
 
-**Status:** Board and four Epics configured and verified on 2026-11-06. **Implementation has not started.**
+**Status:** Board and four Epics configured; implementation has started. Live issue status belongs to Jira.
 
 Jira tracks **work status and review**. GitHub contains the versioned source, workbook artifacts and technical documentation. Keep task descriptions focused; do not duplicate the canonical metric or source definitions in Jira.
 

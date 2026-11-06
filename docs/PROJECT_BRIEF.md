@@ -1,6 +1,6 @@
 # Project Brief
 
-**Status:** Planning. This document defines intended outcomes; it is not evidence of implemented functionality.
+**Status:** Implementation has started. This brief defines intended outcomes; it is not evidence that those outcomes work.
 
 ## Purpose
 

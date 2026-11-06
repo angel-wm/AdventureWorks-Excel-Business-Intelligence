@@ -1,0 +1,5 @@
+# Downloaded source data; retain provenance separately in project documentation.
+/data/raw/
+
+# Excel's temporary lock files.
+~$*

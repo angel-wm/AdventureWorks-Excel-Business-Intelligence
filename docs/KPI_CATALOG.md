@@ -1,12 +1,18 @@
 # KPI Catalog — Draft Business Definitions
 
-**Status:** Planned. No KPI has been calculated or verified. Definitions become final only after the source/date/status choices are confirmed.
+**Status:** Planned. No KPI has been calculated or verified. Definitions remain subject to source and date validation.
+
+## Order eligibility
+
+For the main sales analysis, include orders with `SalesOrderHeader.Status = 5` (shipped). This does not establish payment or accounting revenue recognition. Analysis of pending orders is deferred for a future decision. Other date, return and calculation assumptions remain subject to validation.
+
+The initial sales view uses `OrderDate` as the proposed analysis date, with the first four metrics below as its priority. The selected source contains order dates from 2022-05-30 through 2025-06-29; these are sample dates, not current business activity. Partial periods and the treatment of returns require review before publishing comparisons.
 
 ## Core sales metrics
 
 | KPI | Intended rule | Important boundary |
 | --- | --- | --- |
-| Discounted Line Sales | Sum eligible `SalesOrderDetail.LineTotal` | Candidate sales measure; verify calculation and which statuses are eligible |
+| Discounted Line Sales | Sum eligible `SalesOrderDetail.LineTotal` | Candidate sales measure; verify calculation against the selected source |
 | Order Count | Distinct eligible `SalesOrderID` | Never count sales lines as orders |
 | Units Sold | Sum eligible `SalesOrderDetail.OrderQty` | Sales-line grain |
 | Average Order Value | Discounted Line Sales / Order Count | Numerator and denominator must cover the same orders |

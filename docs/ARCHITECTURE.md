@@ -1,6 +1,6 @@
 # Proposed Architecture
 
-**Status: Draft.** No analytical model or workbook has been implemented.
+**Status: Draft model.** A local workbook loads seven source tables into worksheets; Data Model relationships and business measures are not implemented.
 
 ## How data will move
 
@@ -20,11 +20,11 @@ Sales, Customers, Products and Scenario dashboards
 
 ## Logical model
 
-The candidate **sales fact grain** is one `SalesOrderDetail` line, with order-header attributes from `SalesOrderHeader`. Do not sum header-level totals after repeating them across detail rows.
+The selected **sales fact grain** is one `SalesOrderDetail` line, with order-header attributes from `SalesOrderHeader`. Do not sum header-level totals after repeating them across detail rows.
 
 | Entity | Proposed key/grain | Role |
 | --- | --- | --- |
-| Sales fact | `SalesOrderID` + `SalesOrderDetailID` (to verify) | Amounts, units, product and order linkage |
+| Sales fact | `SalesOrderID` + `SalesOrderDetailID` | Amounts, units, product and order linkage |
 | Order header | `SalesOrderID` | Order date, customer, territory, order type and status |
 | Product | `ProductID` | Attributes, subcategory and category hierarchy |
 | Customer | `CustomerID` | Person/store customer behavior and segmentation |
@@ -32,7 +32,7 @@ The candidate **sales fact grain** is one `SalesOrderDetail` line, with order-he
 | Date | One calendar date | Monthly/yearly comparisons |
 | Assumptions | Independent input records | Scenarios, not actual sales |
 
-Specific keys, fields and cardinalities must be checked against the selected source. See the [Source Map](SOURCE_MAP.md).
+The selected source's keys and candidate joins were checked locally; workbook relationships still need to be built and tested. See the [Source Map](SOURCE_MAP.md).
 
 ## Rules that prevent wrong analytics
 
@@ -57,6 +57,6 @@ These names are provisional. Supporting analysis sheets should be kept to the mi
 
 ## Tool boundary
 
-Power Query and Power Pivot are part of the technical plan, but their automation through the **user's installed Excel MCP** is not confirmed. [AI Workflow](AI_WORKFLOW.md) defines discovery, readback and Excel Desktop fallback.
+Excel MCP has created, refreshed and read back the seven worksheet Power Query loads in the local workbook. Data Model relationships, measures and PivotTables remain unverified in this project. [AI Workflow](AI_WORKFLOW.md) defines readback and Excel Desktop fallback.
 
 Use Jira to track work items, not as the location of SQL, M code, business rules or authoritative calculation definitions. See [Jira Workflow](JIRA_WORKFLOW.md). GitHub holds versioned documents and deliverables.
