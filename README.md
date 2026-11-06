@@ -6,6 +6,8 @@ AdventureWorks — Excel Business Intelligence is a portfolio project that will 
 
 The distinction from ProcureFlow is intentional: **commercial intelligence and dimensional modeling**, not procurement, replenishment, or VBA-heavy operations.
 
+For project context and task-specific reading guidance, see [REPO_CONTEXT.md](REPO_CONTEXT.md).
+
 ## Planned outcome
 
 An interactive Excel BI workbook with reproducible ingestion, auditable business measures, useful dashboards and scenario analysis. The project will use AI to **create and modify workbook components**, not merely explain how to build them.
