@@ -693,7 +693,7 @@ Do not place essential meaning only in Mermaid, a platform-specific extension, c
 
 ## Worked examples
 
-The guide includes three fictional before/after transformations in [examples/before-after.md](examples/before-after.md):
+The guide includes three fictional before/after transformations in [bundled before-and-after examples](before-after.md):
 
 - a dense README section rewritten into a clearer explanation, procedure, and compact reference table;
 - an overengineered Mermaid flow simplified into a numbered procedure, keeping visual structure only where it adds information;
