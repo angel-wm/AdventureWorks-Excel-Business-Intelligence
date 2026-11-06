@@ -1,6 +1,6 @@
 # Roadmap — Four-Phase Delivery
 
-**Current work:** Phase 1 review and early phase 2 ingestion are in progress. Live status belongs to Jira.
+**Current work:** Phase 1 is complete; phase 2 ingestion and modeling are in progress. Live status belongs to Jira.
 
 The target is a **short, AI-accelerated** BI project. The 8–12 working-day estimate (about 24–48 hours of effort) is provisional, not a promise. The ranges below are directional and may overlap or require rework.
 

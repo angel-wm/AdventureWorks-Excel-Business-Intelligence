@@ -6,7 +6,7 @@
 
 - Microsoft OLTP install files at [revision 8fe3fd0c9a825fef3ae6d601e97537b612d7b214](https://github.com/microsoft/sql-server-samples/tree/8fe3fd0c9a825fef3ae6d601e97537b612d7b214/samples/databases/adventure-works/oltp-install-script).
 - Validated workbook snapshot: `AdventureWorks-BI.xlsx`; SHA-256 after save and close: `df81ed3b47a7a5b51ad822f999658520b4a38d39a69de71ba8cbc0e6643daf87`. Later presentation changes mean this hash does not identify the current workbook.
-- The raw files are local and ignored by Git. Workbook queries use an absolute local path; refresh elsewhere requires adjusting it.
+- The raw files are local and ignored by Git. This snapshot used an absolute path; a later workbook-relative approach is described in [model validation](2026-11-06-model-relationships.md).
 
 | Source file | SHA-256 |
 | --- | --- |
@@ -29,8 +29,8 @@
 
 ## Remaining work
 
-Review and version this evidence and the workbook; confirm portability and the monetary precision policy before relying on higher-precision results. Relationships, business measures and dashboards have not been implemented or validated in the workbook.
+Review and version this evidence and the workbook; confirm portability and the monetary precision policy before relying on higher-precision results. At this snapshot, relationships, business measures and dashboards had not been implemented. See [subsequent model validation](2026-11-06-model-relationships.md).
 
 ## Subsequent local load
 
-After the validated snapshot above, the same workbook was extended with Power Query worksheet loads for Product (504 rows), ProductSubcategory (37), ProductCategory (4), Customer (19,820) and SalesTerritory (10). Excel readback after refreshing all seven queries confirmed these counts and 209 products without a subcategory. The initial workbook hash above does not cover this later state. Workbook-level key and relationship validation, the Data Model, measures, review and versioned evidence remain pending.
+After the validated snapshot above, the same workbook was extended with Power Query worksheet loads for Product (504 rows), ProductSubcategory (37), ProductCategory (4), Customer (19,820) and SalesTerritory (10). Excel readback after refreshing all seven queries confirmed these counts and 209 products without a subcategory. The initial workbook hash above does not cover this later state. See [model validation](2026-11-06-model-relationships.md) for subsequent checks and outstanding work.

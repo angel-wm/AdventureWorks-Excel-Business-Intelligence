@@ -6,9 +6,9 @@
 
 - The private repository contains the project plan, source map, KPI definitions and validation guidance. Local changes are not evidence of remote publication.
 - Seven files from the selected Microsoft AdventureWorks OLTP revision have been downloaded and profiled locally. Their provenance, hashes and checks are in [initial sales load validation](validation/2026-11-06-initial-sales-load.md).
-- A local `AdventureWorks-BI.xlsx` workbook contains seven Power Query worksheet loads. Refresh and readback succeeded; the Data Model, business measures and dashboards are not yet built.
+- A local `AdventureWorks-BI.xlsx` workbook contains seven Power Query worksheet and Data Model loads and six active relationships. Source counts and category/territory PivotTable checks are recorded in [sales model validation](validation/2026-11-06-model-relationships.md). Production measures and dashboards are not yet built.
 - Excel MCP and Jira have been used from Codex. Excel operations have been checked by readback; advanced model capabilities and GitHub–Jira linking remain unverified.
-- Jira is authoritative for live work status. The phase 1 and 2 Epics and their initial tasks have been started; consult the [AWBI board](https://angel231995.atlassian.net/jira/software/projects/AWBI/boards/2) for current status.
+- Jira is authoritative for live work status. Phase 1 ([AWBI-2](https://angel231995.atlassian.net/browse/AWBI-2)) and its source-design task ([AWBI-6](https://angel231995.atlassian.net/browse/AWBI-6)) were marked Done after review of the evidence in commit `9c25d66b00dfc3ae38102cc026db3c5babff5bec`. Phase 2 is in progress; consult the [AWBI board](https://angel231995.atlassian.net/jira/software/projects/AWBI/boards/2) for current status.
 
 ## Decisions and boundaries
 
@@ -19,8 +19,7 @@
 
 ## Next steps
 
-1. Review and version the phase 1 source, scope and evidence before closing its Epic.
-2. Verify workbook-level keys and relationships, then build and reconcile the analytical model in phase 2.
-3. Replace machine-specific source paths with a reproducible approach before handoff.
+1. Review and version the local workbook and model checks; extend validation beyond the initial key and territory/category checks.
+2. Review the workbook-relative source configuration and test handoff on a different computer before relying on it.
 
 No public release or licensing decision has been approved. See the [Roadmap](ROADMAP.md) for phase gates and the [Jira Workflow](JIRA_WORKFLOW.md) for review and Done.

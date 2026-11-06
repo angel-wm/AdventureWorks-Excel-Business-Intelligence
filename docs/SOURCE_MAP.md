@@ -43,7 +43,7 @@ Manufacturing (`WorkOrder`, `WorkOrderRouting`, `BillOfMaterials`), stock (`Prod
 
 | Option | Why consider it | Limitation |
 | --- | --- | --- |
-| **Official install files + Power Query** (selected) | No SQL Server installation required | Positional mappings, explicit types and relationship checks; current workbook paths are machine-specific |
+| **Official install files + Power Query** (selected) | No SQL Server installation required | Positional mappings, explicit types and relationship checks; workbook-relative paths have been tested locally, not on another computer |
 | SQL Server backup/database + Power Query | Native schema and server constraints | Requires database setup and a reproducible connection |
 
 ## Phase 1 source verification

@@ -1,6 +1,6 @@
 # Proposed Architecture
 
-**Status: Draft model.** A local workbook loads seven source tables into worksheets; Data Model relationships and business measures are not implemented.
+**Status: Initial local model.** Seven source tables load into worksheets and the Data Model; six relationships are active. Production business measures remain unimplemented. See [model validation](validation/2026-11-06-model-relationships.md).
 
 ## How data will move
 
@@ -32,7 +32,7 @@ The selected **sales fact grain** is one `SalesOrderDetail` line, with order-hea
 | Date | One calendar date | Monthly/yearly comparisons |
 | Assumptions | Independent input records | Scenarios, not actual sales |
 
-The selected source's keys and candidate joins were checked locally; workbook relationships still need to be built and tested. See the [Source Map](SOURCE_MAP.md).
+The selected source's keys and joins were checked locally; initial workbook relationships and category/territory filters were also checked. See the [Source Map](SOURCE_MAP.md) and [model validation](validation/2026-11-06-model-relationships.md).
 
 ## Rules that prevent wrong analytics
 
@@ -57,6 +57,6 @@ These names are provisional. Supporting analysis sheets should be kept to the mi
 
 ## Tool boundary
 
-Excel MCP has created, refreshed and read back the seven worksheet Power Query loads in the local workbook. Data Model relationships, measures and PivotTables remain unverified in this project. [AI Workflow](AI_WORKFLOW.md) defines readback and Excel Desktop fallback.
+Excel MCP has created and refreshed seven Power Query loads, six Data Model relationships and two validation PivotTables in the local workbook. DAX/DMV evaluation is blocked by an unregistered provider in this environment. [AI Workflow](AI_WORKFLOW.md) defines readback and Excel Desktop fallback.
 
 Use Jira to track work items, not as the location of SQL, M code, business rules or authoritative calculation definitions. See [Jira Workflow](JIRA_WORKFLOW.md). GitHub holds versioned documents and deliverables.

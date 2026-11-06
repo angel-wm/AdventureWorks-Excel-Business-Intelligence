@@ -1,6 +1,6 @@
 # AI-Assisted Excel Development
 
-**Status:** Excel MCP has been used on the local workbook to create, refresh and read back seven Power Query worksheet loads. Model relationships, PivotTables, charts and slicers remain unverified in this project.
+**Status:** Excel MCP has created, refreshed and read back seven Power Query loads, six model relationships and two validation PivotTables in the local workbook. DAX/DMV evaluation encountered a missing provider; charts and slicers remain unverified. See [model validation](validation/2026-11-06-model-relationships.md).
 
 The purpose is to let AI **do supported Excel work**, with short explanations and verifiable results. We do not want to repeat ProcureFlow's manual, highly tutorial-oriented build process.
 
