@@ -7,7 +7,7 @@ These fictional examples show how to apply the guide without changing technical 
 
 They are transformations, not templates. The useful lesson is **why** the representation changes.
 
-For the underlying guidance, see [GUIDE.md](../GUIDE.md).
+For the underlying guidance, see [GUIDE.md](GUIDE.md).
 
 ## Example 1: turn a wall of text into a reading path
 
