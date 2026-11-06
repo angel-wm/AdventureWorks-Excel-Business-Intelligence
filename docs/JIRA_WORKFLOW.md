@@ -1,81 +1,71 @@
 # Jira Workflow — AdventureWorks Excel BI
 
-**Status:** Planned. The Jira project, board and issues have **not** been created or verified.
+**Status:** Board and four Epics configured and verified on 2026-11-06. **Implementation has not started.**
 
-Jira will track **what we are doing and what has passed review**. GitHub will contain the actual versioned source, workbook and technical documentation. Avoid copying full specifications into Jira comments.
+Jira tracks **work status and review**. GitHub contains the versioned source, workbook artifacts and technical documentation. Keep task descriptions focused; do not duplicate the canonical metric or source definitions in Jira.
 
-## Proposed board
+## Kanban board
 
-Use **one Jira software project** for AdventureWorks, preferably a **Kanban board**. This is a short, incremental, AI-accelerated project, so fixed sprints and a heavyweight Scrum ceremony are unnecessary.
+- **Project:** [AdventureWorks - Excel Business Intelligence (AWBI)](https://angel231995.atlassian.net/jira/software/projects/AWBI/boards/2), team-managed software project.
+- **Board:** [AWBI board](https://angel231995.atlassian.net/jira/software/projects/AWBI/boards/2), Kanban. No sprint ceremony required.
+- **Columns:** **To Do → In Progress → In Review → Done**, all confirmed in the board configuration.
+- **Work types:** Epic, Task and Bug; use Subtasks only for separable work.
+- **Work-in-progress:** Prefer one primary active workbook task at a time to prevent conflicting agent edits. Flag blocked tasks with a reason rather than inventing a new status.
 
-- **Project name:** AdventureWorks — Excel Business Intelligence (proposed; not created).
-- **Project key:** choose an available short key in Jira, such as `AWBI` (illustrative only; no key has been reserved).
-- **Issue types:** Epic, Task and Bug; add Subtasks only for genuinely separate deliverables.
-- **Statuses:** use Jira's available workflow, ideally **To Do → In Progress → In Review → Done**. If `In Review` does not exist, record review in the issue and use the board's standard statuses. Use the board's blocking/flag mechanism instead of creating a custom `Blocked` status unless needed.
-- **Work-in-progress:** one active primary task at a time where practical; limit parallel work to avoid workbook edit conflicts.
+## Four existing Epics
 
-## Four epics
+| Issue | Phase | Status at 2026-11-06 review | Example deliverables |
+| --- | --- | --- | --- |
+| [AWBI-2](https://angel231995.atlassian.net/browse/AWBI-2) | Data Design & Preparation | To Do | Confirm source package, select tables/keys, define KPIs, verify Excel MCP tools |
+| [AWBI-3](https://angel231995.atlassian.net/browse/AWBI-3) | Data Ingestion & Modeling | To Do | Build Power Query staging, facts/dimensions and relationships; validate refresh |
+| [AWBI-4](https://angel231995.atlassian.net/browse/AWBI-4) | AI-Assisted Analytics & Dashboards | To Do | Implement KPIs, customer RFM, dashboards, scenarios and interaction checks |
+| [AWBI-5](https://angel231995.atlassian.net/browse/AWBI-5) | Validation, Documentation & Publication | To Do | Run regression/UAT, review documentation, prepare validated portfolio assets |
 
-| Epic | Phase | Example tasks |
-| --- | --- | --- |
-| 1 — Data Design & Preparation | Phase 1 | Confirm source package; map chosen tables/keys; define metrics; test Excel MCP capabilities |
-| 2 — Data Ingestion & Modeling | Phase 2 | Configure Power Query; build facts/dimensions; build relationships; validate refresh and joins |
-| 3 — AI-Assisted Analytics & Dashboards | Phase 3 | Implement verified KPIs; customer RFM; sales/product visuals; scenarios; integration checks |
-| 4 — Validation & Portfolio Release | Phase 4 | Regression and UAT; documentation review; release screenshots; publishing checks |
-
-The epics reflect the [Roadmap](ROADMAP.md); dates, assignees and Jira issue keys will be added only after setup.
+These Epics have descriptions and acceptance criteria. Live status and future child tasks must be read from Jira; this table is a dated setup record. The phases and exit requirements are defined in the [Roadmap](ROADMAP.md).
 
 ## What belongs in a Jira task
 
-Keep the issue short but actionable:
+- **Title:** A specific business or technical outcome, not a vague activity.
+- **Description:** Scope, purpose and target workbook/query/report.
+- **Acceptance criteria:** Observable result plus source reconciliation, readback or functional test.
+- **Dependencies / risks:** Only meaningful prerequisites.
+- **Evidence:** Link to the GitHub commit/PR, workbook revision or test record.
+- **AI involvement:** Optionally name the AI tool and specify what was independently verified.
 
-- **Title:** business/technical outcome, not a vague activity.
-- **Description:** what should change, why it matters and target workbook/query/report.
-- **Acceptance criteria:** observable result, plus the source reconciliation or readback needed.
-- **Dependencies / risks:** only meaningful prerequisites.
-- **Evidence:** link to the GitHub commit/PR, workbook version, test record or screenshot.
-- **AI involvement:** optional one-line note naming the tool and what was independently verified.
-
-Illustrative issue:
-
-> **Create a monthly sales summary from validated line sales.** Done when monthly totals reconcile to the chosen eligible detail rows and the chart filters correctly by the selected territory.
-
-This is an example, **not an actual Jira issue or test result**.
+Illustrative task (not created): **Create a monthly sales summary from validated line sales.** Completion requires matching totals to eligible source sales lines and a chart that filters correctly by territory.
 
 ## How issues move
 
-1. **To Do:** clearly scoped; prerequisite and acceptance criteria recorded.
-2. **In Progress:** assigned and being implemented; keep direct edits to the workbook serialized.
-3. **In Review:** test the actual artifact, independently reconcile the result, and link evidence.
-4. **Done:** the deliverable works, validation is recorded, documentation updated if relevant, and GitHub history is linked.
+1. **To Do:** Scope and acceptance criteria are recorded.
+2. **In Progress:** Implementation is happening; serialize direct edits to a shared workbook.
+3. **In Review:** Examine the real artifact and independently reconcile the output; link evidence.
+4. **Done:** The deliverable works, acceptance checks pass or an explicit exception is accepted, and its version/evidence is traceable.
 
-A blocked task stays visible with a reason, dependency and next action. A failed check stays open; an AI tool return alone does not satisfy Done.
+A blocked task remains visible with its blocker and next action. An AI tool success response alone does not satisfy Done.
 
-## Jira, Codex and GitHub together
+## Jira, Codex and GitHub
 
 ```text
 Jira task (scope and acceptance)
     ↓
-ChatGPT/Codex + Excel MCP / ChatGPT for Excel (supported execution)
+ChatGPT / Codex + verified Excel tools (execution)
     ↓
-Excel/source readback and independent QA
+Excel/source readback and independent checks
     ↓
-GitHub commit/PR with task key where available
+GitHub artifact and evidence linked to issue
     ↓
 Jira review and Done
 ```
 
-Use Jira for **work status**, GitHub for **versioned artifacts**, and [Current State](CURRENT_STATE.md) for the project's high-level factual status. Do not maintain competing versions of KPIs, source mappings or technical decisions in issue descriptions.
+ChatGPT's Atlassian connection has successfully read and edited these Epics. **Codex's Jira integration and autonomous issue transitions are not yet verified**; use them only after a successful permission/tool test. GitHub–Jira automatic linking is also unverified. Jira remains authoritative for live task status; [Current State](CURRENT_STATE.md) is a dated high-level record.
 
-## Setup checklist — not yet executed
+## Remaining preparation
 
-1. Confirm Jira workspace permissions, project name/key and board workflow.
-2. Create one Kanban project and the four epics, after authorization.
-3. Add only the next small set of phase tasks; avoid dozens of speculative tickets.
-4. Verify whether GitHub/Jira linking is available and record the actual integration method.
-5. Optionally connect the Atlassian integration to ChatGPT/Codex **if available and approved**; connection is not required to use Jira manually.
-6. Start tracking implementation only after the separate authorization to implement.
+1. Define only the first small Phase 1 tasks after agreeing their scope.
+2. Verify actual Excel MCP capabilities and independently test workbook changes.
+3. Test any desired Codex-to-Jira automation and GitHub linking before depending on it.
+4. Begin BI implementation only after explicit authorization.
 
 ## Definition of Done
 
-An issue can be Done only when the stated artifact exists, the relevant [Validation Plan](VALIDATION_PLAN.md) checks pass (or an explicit exception is accepted), and GitHub/evidence links are available. Close the corresponding epic only when all required phase deliverables pass its roadmap exit gate.
+Mark a task Done only when the artifact exists and its relevant [Validation Plan](VALIDATION_PLAN.md) checks pass, or an explicit exception is accepted, with evidence retained. Close an Epic only once all required phase deliverables pass its [Roadmap](ROADMAP.md) exit gate.
