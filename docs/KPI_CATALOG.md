@@ -1,6 +1,6 @@
 # KPI Catalog — Draft Business Definitions
 
-**Status:** Planned. No KPI has been calculated or verified. Definitions remain subject to source and date validation.
+**Status:** The shipped sales and units measures have been implemented and checked locally; see [AWBI-11 validation](validation/2026-11-07-awbi-11-prototype.md). Other definitions remain planned and subject to validation.
 
 ## Order eligibility
 
@@ -24,6 +24,8 @@ The initial sales view uses `OrderDate` as the proposed analysis date, with the 
 | Gross Profit / Margin | Line sales − justified cost of goods; gross profit / line sales | **Conditional** on a defensible historical-cost method |
 
 **Sales labeling matters:** Do not silently mix order-header `TotalDue` (which can include taxes/freight) with discounted line sales. Define dates, status exclusions, discounts, returns, cancellations, and all monetary amounts precisely before dashboard release.
+
+For the initial analytical view, display aggregated line sales to two decimal places without rounding individual lines before summing. The model uses floating-point values; compare against decimal source aggregation with an absolute tolerance below 0.005, not as fixed-decimal accounting. `LineTotal` represents discounted order-line value; it excludes header tax and freight. The selected source does not establish a return or refund adjustment, so label this as shipped order-line sales, not net revenue after returns. Validate currency and return handling before publication.
 
 ## Customer intelligence
 
