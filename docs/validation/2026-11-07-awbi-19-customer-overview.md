@@ -17,3 +17,9 @@ An independent Python aggregation of original source orders and lines, applying 
 Temporarily replacing the summary label `Other` with `Unrecognized` caused the reconciliation to show `CHECK SEGMENTS`; restoring the label returned `OK`. This tests an omitted known label, not all possible source corruption. The source-header and row-limit failure guards were read back as formulas but not exercised. Existing scenario and first monthly values were read after the change. No full source refresh was performed. The workbook was saved; `data/AWBI-19-before.xlsx` is an untracked local pre-change copy that includes the saved AWBI-17 and AWBI-18 work.
 
 Checks were performed by the project assistant, not an independent reviewer. Version and review the final workbook and evidence before Done.
+
+## Subsequent guard checks
+
+On 2026-11-07, the project assistant tested the delivered formulas in a disposable copy of workbook commit `5bf42e1504a24841eb78ef1e59c59721a8bbf83f`. With the unfiltered customer view, `CustomerOverview!B5` initially returned 19,119. Entering a numeric value in `CustomerRFM!A20000` made that result `#N/A`; clearing it removed the row-boundary condition. Changing the PivotTable's `CustomerRFM!I5` header from `RFM Segment` to `Changed header` also made the result `#N/A`. Restoring the header returned 19,119. Excel read back each result. The copy was closed without saving and the main workbook was not edited for these checks.
+
+These tests exercise the stated numeric boundary and expected-header guards, not every possible source-layout change. The checks and acceptance review were performed by the project assistant, not an independent human reviewer.
