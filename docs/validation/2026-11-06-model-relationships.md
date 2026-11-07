@@ -12,6 +12,8 @@ Two Data Model PivotTables on `ModelChecks` aggregate line sales by order territ
 
 A third PivotTable cross-tabulates territory and product category. All 40 intersections differed from independent decimal source calculations by less than 0.005. This validates the tested combinations for the selected snapshot, not all future filters or other dimensions.
 
+On 2026-11-06, a temporary Data Model PivotTable grouped by customer returned 1189.3300000000002 for customer 11091, against 1189.330000 calculated independently from source lines. The same PivotTable grouped by `SalesOrderHeader.OrderDate` returned 503805.9169000006 for 2022-05-30, 43425.729999999974 for 2024-06-01 and 2643.6100000000006 for 2025-06-29, matching the respective decimal source totals within 0.005. The temporary PivotTable was removed after inspection. These are grouping checks, not evidence of working interactive report filters or combined customer/date filtering.
+
 For each of the 31,465 source orders, the header subtotal equals the sum of source line totals rounded to four decimal places using decimal half-up rounding. This observed agreement explains the pattern consistently but does not prove the upstream implementation. For these reconciliation checks, compare aggregate values with an absolute tolerance strictly below 0.005; do not round each line before summing. A final business reporting and currency precision policy remains open.
 
 An Excel MCP refresh of all eight queries and both PivotTables reported success; the key-check sheet still returned zeros afterwards. `KeyChecks` references worksheet tables, so future refresh ordering and stale-check behavior must be reviewed before relying on it for a changed source.
@@ -21,6 +23,8 @@ The source path now derives from the saved workbook directory and `data/raw/adve
 ## Limitations
 
 - The Excel MCP DAX/DMV evaluation route failed because its reported `MSOLAP.7` provider was not registered. Native Excel Data Model PivotTables worked and were used for the checks above; this does not establish that other DAX operations work.
+- Selecting and reading an OLAP report filter through Excel MCP failed because Excel did not expose the ADO session required by the tool. The attempted filter was removed; customer and date groups were verified as described above. MCP-driven interactive filtering remains unverified.
+- Manual follow-up: the user selected customer 11091 using the original `Customer` and `SalesOrderDetail` model tables and supplied a screenshot showing 1189.33; the user also reported testing both filter states. This verifies that specific customer selection manually, not automated MCP filter access or combined customer/date interaction. Two unrelated duplicate model tables created during the attempt and the temporary PivotTable were subsequently removed. The seven original model tables, six active relationships and three validation PivotTables were read back; all three PivotTables refreshed and the grand totals remained consistent.
 - The relative folder structure and source files must be preserved; cloud paths, a different computer and missing-source recovery remain untested. Version the workbook and evidence before handoff.
 - The filter checks cover territory and category, not every customer, date, scenario or dashboard interaction. Define the monetary precision policy and handle unknown members explicitly before production analytics.
 

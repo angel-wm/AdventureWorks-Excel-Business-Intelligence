@@ -22,6 +22,10 @@ Sales, Customers, Products and Scenario dashboards
 
 The selected **sales fact grain** is one `SalesOrderDetail` line, with order-header attributes from `SalesOrderHeader`. Do not sum header-level totals after repeating them across detail rows.
 
+The following screenshot shows the local Power Pivot model on 2026-11-06. The named sales calculations shown in the diagram were created for validation and are not approved production KPIs.
+
+![Power Pivot diagram showing seven sales, customer, territory and product tables with their relationships](images/sales-data-model.png)
+
 | Entity | Proposed key/grain | Role |
 | --- | --- | --- |
 | Sales fact | `SalesOrderID` + `SalesOrderDetailID` | Amounts, units, product and order linkage |
