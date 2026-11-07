@@ -34,4 +34,6 @@ For the original source, segment counts were: Champions 964; Frequent 695; Recen
 
 A diagnostic DAX context selecting status 1 returned blanks for all three scores and the segment while a model control found 26 non-shipped units. This checks that context, not all interactive selections; the diagnostic formulas were not separately read back. Product-filtered RFM remains unvalidated, as described in AWBI-15. Visual inspection covered the workbook's rule guide. The workbook and test copy were saved; a local pre-change backup is `data/AWBI-16-before.xlsx`. The fixture and backup are untracked. No full source refresh was performed in this task.
 
+The product-filter limitation above describes this checkpoint. See [AWBI-20](2026-11-07-awbi-20-category-rfm.md) for the later correction and its tested category scope.
+
 The checks were performed by the project assistant, not an independent reviewer. Version and review the workbook and evidence before marking the task Done.

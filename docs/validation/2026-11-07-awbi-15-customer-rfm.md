@@ -17,6 +17,8 @@ RFM Sales = CALCULATE([Shipped Sales], KEEPFILTERS('SalesOrderHeader'[OrderDate]
 
 Existing filters intersect the fixed window. The delivered table uses customer context and has no product filter. Product filters are not validated: last order uses the header while frequency and monetary values use sales lines, so product context may affect them differently. Do not interpret the measures as a product-filtered RFM without further work. At this checkpoint no scores, bands or segments were implemented; see the [later scoring validation](2026-11-07-awbi-16-rfm-segments.md).
 
+The product-filter limitation described above applies to this historical checkpoint. A later correction and its bounded category tests are documented in [AWBI-20](2026-11-07-awbi-20-category-rfm.md).
+
 ## Checks
 
 An independent Python aggregation of the pinned original source joined headers and sales lines, applied the same status and dates, and calculated each customer's most recent date, elapsed calendar days, distinct order IDs and decimal line sales. All **19,119** customers with qualifying sales lines matched the Excel PivotTable: dates, recency and counts exactly; the largest absolute sales difference was below 0.000000002, within the existing 0.005 tolerance.

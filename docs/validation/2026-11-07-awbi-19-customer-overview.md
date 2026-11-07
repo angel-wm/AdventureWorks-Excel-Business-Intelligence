@@ -6,6 +6,8 @@
 
 `CustomerOverview` presents the number of observed customers, counts for the five mutually exclusive RFM segments and a bar chart. It uses the customer rows and segment labels in `CustomerRFM`, with the fixed sample window and cutoff documented in [RFM scoring validation](2026-11-07-awbi-16-rfm-segments.md). Segment labels describe the sample; they are not a prediction of future behavior, and the sample is not lifetime history. Product-filtered RFM is not validated.
 
+The product-filter limitation above describes this checkpoint. A later category correction and checks of overview counts are documented in [AWBI-20](2026-11-07-awbi-20-category-rfm.md).
+
 The formulas count the current `CustomerRFM` PivotTable rows, not an independent model population. They check the expected segment column header, an upper bound at row 20000 and the presence of numeric customer IDs. If these checks fail, the displayed count is unavailable. A separate reconciliation checks that the five known segment counts sum to the customer count. Review both the source PivotTable and its refresh state if the view is unavailable or shows a check message. These guards cannot detect every stale or semantically incorrect source result; the fixed row bound and column layout must be reassessed if the workbook changes.
 
 ## Checks

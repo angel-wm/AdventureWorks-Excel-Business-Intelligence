@@ -11,6 +11,7 @@
 - A fixed-volume sales scenario is implemented locally; its assumptions and checks are in [AWBI-17 validation](validation/2026-11-07-awbi-17-sales-scenario.md). It is an arithmetic sensitivity, not a demand forecast.
 - A fixed-window monthly shipped-sales trend is implemented locally; its filter and reconciliation checks are in [AWBI-18 validation](validation/2026-11-07-awbi-18-monthly-sales.md).
 - An initial customer segment overview is implemented locally; its checks and source-layout limitations are in [AWBI-19 validation](validation/2026-11-07-awbi-19-customer-overview.md).
+- Category-filtered customer RFM is corrected locally and checked for the selections recorded in [AWBI-20 validation](validation/2026-11-07-awbi-20-category-rfm.md); other product and combined filters remain unverified.
 - Excel MCP and Jira have been used from Codex. Excel operations have been checked by readback and GitHub evidence linked manually in Jira; automatic linking and some advanced model operations remain unverified.
 - Jira is authoritative for live work status. Phase 1 ([AWBI-2](https://angel231995.atlassian.net/browse/AWBI-2)) and phase 2 ([AWBI-3](https://angel231995.atlassian.net/browse/AWBI-3)) are Done. Phase 2 evidence and the tested workbook are versioned in commit `7baf498280cb67531bbf2c6b9dabbc7b0a288bcc`. Consult the [AWBI board](https://angel231995.atlassian.net/jira/software/projects/AWBI/boards/2) for current status.
 - Audit remediation and public-portfolio preparation are in progress under [AWBI-12](https://angel231995.atlassian.net/browse/AWBI-12), alongside the planned phase 3 work. See the [audit follow-up](validation/2026-11-07-audit-remediation.md).
@@ -30,7 +31,8 @@
 4. Version and review the fixed-volume scenario in [AWBI-17](https://angel231995.atlassian.net/browse/AWBI-17).
 5. Version and review the monthly trend in [AWBI-18](https://angel231995.atlassian.net/browse/AWBI-18).
 6. Version and review the customer segment overview in [AWBI-19](https://angel231995.atlassian.net/browse/AWBI-19).
-7. Test handoff on a different computer before relying on the workbook-relative source configuration.
-8. Review workbook metadata and Git history for public visibility; current and earlier workbook versions contain local user-identifying information.
+7. Version and review category-filtered RFM in [AWBI-20](https://angel231995.atlassian.net/browse/AWBI-20).
+8. Test handoff on a different computer before relying on the workbook-relative source configuration.
+9. Review workbook metadata and Git history for public visibility; current and earlier workbook versions contain local user-identifying information.
 
 The project uses MIT for project-authored material and retains Microsoft's third-party notice. Public visibility may be considered during development; check current visibility and review workbook metadata and Git history before changing it. See the [Roadmap](ROADMAP.md) for phase gates and the [Jira Workflow](JIRA_WORKFLOW.md) for review and Done.
