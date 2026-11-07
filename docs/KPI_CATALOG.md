@@ -1,6 +1,6 @@
 # KPI Catalog — Draft Business Definitions
 
-**Status:** The shipped sales and units measures have been implemented and checked locally; see [AWBI-11 validation](validation/2026-11-07-awbi-11-prototype.md). Other definitions remain planned and subject to validation.
+**Status:** The four initial shipped sales measures have been implemented and checked locally; see [sales and units validation](validation/2026-11-07-awbi-11-prototype.md) and [orders and AOV validation](validation/2026-11-07-awbi-13-orders-aov.md). Other definitions remain planned and subject to validation.
 
 ## Order eligibility
 
@@ -22,6 +22,8 @@ The initial sales view uses `OrderDate` as the proposed analysis date, with the 
 | Sales Share | Selected product/territory sales / relevant total | Explicit denominator and filters |
 | Weighted Discount Rate | (Undiscounted line value − discounted line value) / undiscounted line value | Do not average discount percentages unweighted |
 | Gross Profit / Margin | Line sales − justified cost of goods; gross profit / line sales | **Conditional** on a defensible historical-cost method |
+
+Under a product-category filter, AOV divides the selected category's eligible line sales by the distinct orders containing those lines. It is not the full value of those orders. Order counts across categories can overlap and must not be added together.
 
 **Sales labeling matters:** Do not silently mix order-header `TotalDue` (which can include taxes/freight) with discounted line sales. Define dates, status exclusions, discounts, returns, cancellations, and all monetary amounts precisely before dashboard release.
 
