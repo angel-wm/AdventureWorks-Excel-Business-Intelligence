@@ -31,3 +31,13 @@ The source path now derives from the saved workbook directory and `data/raw/adve
 ## Workbook organization
 
 The unused blank `Sheet1` was removed after checking that its used range and shape count were empty. The remaining sheets are ordered as validation, model and key checks; order, product and customer/territory sources; then source configuration. The workbook remains open in the same Excel session.
+
+## Phase 2 reconciliation follow-up
+
+After the initial snapshot, numeric, date and identifier types were made explicit for the seven queries. Before applying them, Power Query evaluated each complete converted table and returned zero rows with conversion errors. After a full refresh, model metadata showed date types for `DueDate`, `ShipDate` and `SellStartDate`, integer types for keys and flags, and numeric types for `StandardCost`, `ListPrice`, `SalesYTD` and line sales. `LineTotal` remains floating-point to preserve its source precision; this is not fixed-decimal arithmetic.
+
+For the selected source, independently summing `OrderQty` for status 5 gives **274,914 units**. A temporary Data Model PivotTable returned the same total and the same counts for all ten territories; it was removed after the check. All 31,465 source orders are status 5. The model and validation PivotTables do **not** automatically restrict future data to shipped orders: enforce that rule in production measures and test mixed statuses before relying on them.
+
+The eight queries and three remaining validation PivotTables refreshed successfully, with the 24 key checks returning zero and the sales total unchanged. The saved workbook was also copied with the seven source files to a different local folder, reopened and refreshed: all eight queries and three PivotTables succeeded, the source folder resolved to that copy, key checks returned zero and the sales total was unchanged. Other computers and cloud paths remain untested.
+
+The original saved workbook's SHA-256 at this checkpoint is `0d10a3363743d0bdc99a871923ecddc0bcd533ea4975a650a2fc2c001b236099`. This is evidence of the tested local file, not a claim that a later commit or modified workbook has the same hash. The checks were performed by the project assistant, except for the user's manual customer filter check noted above; they were not independently reviewed by a separate reviewer.
