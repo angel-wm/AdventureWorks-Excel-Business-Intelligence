@@ -1,12 +1,12 @@
 # Sales model — local validation
 
-**Date:** 2026-11-06. **Status:** local workbook evidence; not yet versioned or reviewed. The workbook remains open, so no file hash was taken for this state.
+**Date:** 2026-11-06. **Status:** historical workbook evidence, versioned in Git. The phase 2 checkpoint hash is recorded below; later workbook changes must be assessed separately. Review was by the project assistant, not an independent reviewer.
 
 ## Model and checks
 
 The local `AdventureWorks-BI.xlsx` loads the seven selected Power Query tables into worksheets and the Excel Data Model. Excel MCP read back seven model tables with the expected row counts and six active relationships described in the [Source Map](../SOURCE_MAP.md).
 
-The `KeyChecks` sheet reads the worksheet tables and reports zero duplicate keys, unmatched references and missing required keys across 24 checks. Product subcategory is optional: 209 source products have no subcategory and none occurs in the selected sales lines.
+At this checkpoint, the `KeyChecks` sheet read worksheet tables and reported zero duplicate keys, unmatched references and missing required keys across 24 checks. Product subcategory is optional: 209 source products have no subcategory and none occurs in the selected sales lines. See the [later audit follow-up](2026-11-07-audit-remediation.md) for the revised query and added check.
 
 Two Data Model PivotTables on `ModelChecks` aggregate line sales by order territory and product category. Their grand total is 109846381.3998877. Each territory and category total matched an independent decimal aggregation of the source at two decimal places; the exact source total is 109846381.399888. The current source has only status 5 orders. These PivotTables do not implement an explicit shipped-order filter and must not be treated as production KPIs for a changed source.
 
@@ -16,7 +16,7 @@ On 2026-11-06, a temporary Data Model PivotTable grouped by customer returned 11
 
 For each of the 31,465 source orders, the header subtotal equals the sum of source line totals rounded to four decimal places using decimal half-up rounding. This observed agreement explains the pattern consistently but does not prove the upstream implementation. For these reconciliation checks, compare aggregate values with an absolute tolerance strictly below 0.005; do not round each line before summing. A final business reporting and currency precision policy remains open.
 
-An Excel MCP refresh of all eight queries and both PivotTables reported success; the key-check sheet still returned zeros afterwards. `KeyChecks` references worksheet tables, so future refresh ordering and stale-check behavior must be reviewed before relying on it for a changed source.
+An Excel MCP refresh of all eight queries and both PivotTables reported success; the key-check sheet still returned zeros afterwards. At that checkpoint `KeyChecks` referenced worksheet tables, leaving changed-source freshness unverified; see the [later audit follow-up](2026-11-07-audit-remediation.md).
 
 The source path now derives from the saved workbook directory and `data/raw/adventureworks-oltp-8fe3fd0c/`. A temporary copy of the workbook and the seven source files was placed in a different local directory. After opening the copy, Excel showed the new source path, refreshed all queries and both PivotTables, returned zeros for all 24 key checks and preserved the grand total. This checks a local directory move, not another device, cloud path or missing-source recovery. Raw files remain excluded from Git and must be obtained separately.
 
@@ -26,7 +26,7 @@ The source path now derives from the saved workbook directory and `data/raw/adve
 - A subsequent disposable-copy test created `SUM('SalesOrderDetail'[OrderQty])` as a DAX measure through MCP and read back 274,914 from a native PivotTable after refresh. The copy and test measure were discarded. This confirms one measure-creation path, not direct DAX/DMV querying or general measure validation.
 - Selecting and reading an OLAP report filter through Excel MCP failed because Excel did not expose the ADO session required by the tool. The attempted filter was removed; customer and date groups were verified as described above. MCP-driven interactive filtering remains unverified.
 - Manual follow-up: the user selected customer 11091 using the original `Customer` and `SalesOrderDetail` model tables and supplied a screenshot showing 1189.33; the user also reported testing both filter states. This verifies that specific customer selection manually, not automated MCP filter access or combined customer/date interaction. Two unrelated duplicate model tables created during the attempt and the temporary PivotTable were subsequently removed. The seven original model tables, six active relationships and three validation PivotTables were read back; all three PivotTables refreshed and the grand totals remained consistent.
-- The relative folder structure and source files must be preserved; cloud paths, a different computer and missing-source recovery remain untested. Version the workbook and evidence before handoff.
+- The relative folder structure and source files must be preserved; cloud paths, a different computer and missing-source recovery remain untested. A workbook checkpoint and this evidence are versioned; validate the chosen handoff revision separately.
 - The filter checks cover territory and category, not every customer, date, scenario or dashboard interaction. Define the monetary precision policy and handle unknown members explicitly before production analytics.
 
 ## Workbook organization

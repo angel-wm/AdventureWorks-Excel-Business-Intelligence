@@ -16,7 +16,7 @@ An interactive Excel BI workbook with reproducible ingestion, auditable business
 | --- | --- |
 | Excel 365 Desktop, Power Query, Power Pivot | Data preparation, analytical model and interactive workbook |
 | Codex with Terra (Medium / High / Extra High) | Development, analysis, review and tool coordination |
-| User's Excel MCP for Codex | Direct Excel actions **after its actual capabilities are verified** |
+| User's Excel MCP for Codex | Direct Excel actions within verified capabilities |
 | ChatGPT for Excel | Supported formula, sheet, formatting and chart work |
 | Jira | Lightweight planning and task tracking |
 | GitHub | Versioned artifacts, documentation and implementation evidence |
@@ -26,6 +26,10 @@ An interactive Excel BI workbook with reproducible ingestion, auditable business
 Four phases are planned: **data design**, **ingestion and modeling**, **AI-assisted analytics and dashboards**, and **validation and publication**. The initial estimate is **8–12 working days (approximately 24–48 hours of effort)**; it will be revised after the data and tool checks. See the [Roadmap](docs/ROADMAP.md).
 
 The exact scope is deliberately smaller than the full OLTP database. No historical performance claims or profit figures are published before validating their underlying data.
+
+## Open and refresh the workbook
+
+Open [AdventureWorks-BI.xlsx](AdventureWorks-BI.xlsx) in Excel 365 Desktop to inspect the current sample. To obtain the excluded original files and refresh it, follow the [data setup guide](docs/DATA_SETUP.md).
 
 ## Where to go next
 
@@ -48,7 +52,7 @@ The exact scope is deliberately smaller than the full OLTP database. No historic
 
 ## Implementation boundary
 
-The repository is private during development. A public portfolio release requires separate approval. Original data files and local backups are excluded from Git.
+The project is intended for a public portfolio, including possible publication during development. Original data files and local backups are excluded from Git. The workbook and earlier Git history contain local author or path metadata; review these and other potentially sensitive information before changing visibility. See the [audit follow-up](docs/validation/2026-11-07-audit-remediation.md) for the checks and their limits.
 
 ## License
 

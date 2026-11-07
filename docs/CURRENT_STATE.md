@@ -1,14 +1,15 @@
 # Current State
 
-**Last reviewed:** 2026-11-06. This is a local snapshot, not a live Jira or remote-publication feed.
+**Last reviewed:** 2026-11-07. This is a dated snapshot, not a live Jira or remote-publication feed.
 
 ## What exists
 
-- The private repository contains the project plan, source map, KPI definitions and validation guidance. Local changes are not evidence of remote publication.
+- The repository contains the project plan, source map, KPI definitions and validation guidance. It is intended for public portfolio use; local changes do not prove remote publication.
 - Seven files from the selected Microsoft AdventureWorks OLTP revision have been downloaded and profiled locally. Their provenance, hashes and checks are in [initial sales load validation](validation/2026-11-06-initial-sales-load.md).
 - A local `AdventureWorks-BI.xlsx` workbook contains seven Power Query worksheet and Data Model loads and six active relationships. Source counts and category/territory PivotTable checks are recorded in [sales model validation](validation/2026-11-06-model-relationships.md). Production measures and dashboards are not yet built.
 - Excel MCP and Jira have been used from Codex. Excel operations have been checked by readback and GitHub evidence linked manually in Jira; automatic linking and some advanced model operations remain unverified.
 - Jira is authoritative for live work status. Phase 1 ([AWBI-2](https://angel231995.atlassian.net/browse/AWBI-2)) and phase 2 ([AWBI-3](https://angel231995.atlassian.net/browse/AWBI-3)) are Done. Phase 2 evidence and the tested workbook are versioned in commit `7baf498280cb67531bbf2c6b9dabbc7b0a288bcc`. Consult the [AWBI board](https://angel231995.atlassian.net/jira/software/projects/AWBI/boards/2) for current status.
+- Audit remediation and public-portfolio preparation are in progress under [AWBI-12](https://angel231995.atlassian.net/browse/AWBI-12), alongside the planned phase 3 work. See the [audit follow-up](validation/2026-11-07-audit-remediation.md).
 
 ## Decisions and boundaries
 
@@ -21,5 +22,6 @@
 
 1. Implement and validate the shipped-order production measures, including a mixed-status test, in [AWBI-11](https://angel231995.atlassian.net/browse/AWBI-11).
 2. Test handoff on a different computer before relying on the workbook-relative source configuration.
+3. Review workbook metadata and Git history for public visibility; current and earlier workbook versions contain local user-identifying information.
 
-The project uses MIT for project-authored material and retains Microsoft's third-party notice. No public release has been approved. See the [Roadmap](ROADMAP.md) for phase gates and the [Jira Workflow](JIRA_WORKFLOW.md) for review and Done.
+The project uses MIT for project-authored material and retains Microsoft's third-party notice. Public visibility may be considered during development; check current visibility and review workbook metadata and Git history before changing it. See the [Roadmap](ROADMAP.md) for phase gates and the [Jira Workflow](JIRA_WORKFLOW.md) for review and Done.

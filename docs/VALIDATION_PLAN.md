@@ -1,27 +1,27 @@
 # Validation Plan
 
-**Status:** Not executed. Each test below is **NOT RUN**. A documented requirement is not evidence of a working workbook.
+**Status:** Some checks have been executed against a specific workbook and source; several broader checks remain incomplete. Results below describe coverage, not blanket acceptance. See the [source evidence](validation/2026-11-06-initial-sales-load.md), [model evidence](validation/2026-11-06-model-relationships.md) and [audit follow-up](validation/2026-11-07-audit-remediation.md) for baselines, dates and limitations.
 
-## What will be checked
+## Coverage and remaining checks
 
-| ID | Check | Initial status |
+| ID | Check | Coverage |
 | --- | --- | --- |
-| DV-01 | Record Microsoft source version, file provenance and hashes | NOT RUN |
-| DV-02 | Validate CSV/schema mapping, data types and null handling | NOT RUN |
-| DV-03 | Check primary keys, duplicates and nulls at intended grains | NOT RUN |
-| DV-04 | Confirm join cardinalities and foreign-key completeness | NOT RUN |
-| DV-05 | Confirm sales-line counts and amounts survive enrichment | NOT RUN |
-| DV-06 | Validate order date/status logic and incomplete periods | NOT RUN |
-| DV-07 | Reconcile eligible line sales and units with original source | NOT RUN |
-| DV-08 | Compare header SubTotal with summed detail where appropriate; separate tax/freight | NOT RUN |
-| DV-09 | Independently test order, customer, growth, discount and RFM metrics | NOT RUN |
-| DV-10 | Validate historical-cost intervals or exclude historical margin | NOT RUN |
-| DV-11 | Test PivotTables, interactive filters and dashboard totals | NOT RUN |
-| DV-12 | Ensure scenario inputs never change historical facts | NOT RUN |
-| DV-13 | Repeat full Power Query refresh and check no stale values | NOT RUN |
-| DV-14 | Verify Excel MCP operations by actual readback/save/reopen | NOT RUN |
-| DV-15 | Inspect usability, dates, number formats, labels and empty states | NOT RUN |
-| DV-16 | Review project links, source attribution and publication assets | NOT RUN |
+| DV-01 | Record Microsoft source version, file provenance and hashes | Recorded for the selected snapshot |
+| DV-02 | Validate CSV/schema mapping, data types and null handling | Partial: selected source checked; changed-source handling remains |
+| DV-03 | Check primary keys, duplicates and nulls at intended grains | Partial: initial source and workbook checks; changed-source coverage remains |
+| DV-04 | Confirm join cardinalities and foreign-key completeness | Partial: initial relationships checked; ongoing coverage needs review |
+| DV-05 | Confirm sales-line counts and amounts survive enrichment | Partial: selected model breakdowns reconcile; broader enrichment remains |
+| DV-06 | Validate order date/status logic and incomplete periods | Partial: dates and current statuses observed; mixed statuses and partial periods remain |
+| DV-07 | Reconcile eligible line sales and units with original source | Partial: selected snapshot reconciled; mixed-status eligibility remains |
+| DV-08 | Compare header SubTotal with summed detail where appropriate; separate tax/freight | Partial: source subtotals checked; broader reporting treatment remains |
+| DV-09 | Independently test order, customer, growth, discount and RFM metrics | Pending production metrics |
+| DV-10 | Validate historical-cost intervals or exclude historical margin | Pending profitability decision |
+| DV-11 | Test PivotTables, interactive filters and dashboard totals | Partial: model PivotTables and one manual customer filter checked; dashboards remain |
+| DV-12 | Ensure scenario inputs never change historical facts | Pending scenarios |
+| DV-13 | Repeat full Power Query refresh and check no stale values | Partial: repeated refresh tested; changed-source ordering and freshness remain |
+| DV-14 | Verify Excel MCP operations by actual readback/save/reopen | Partial: exercised operations checked; other operations remain unverified |
+| DV-15 | Inspect usability, dates, number formats, labels and empty states | Pending complete usability review |
+| DV-16 | Review project links, source attribution and publication assets | Partial: source notice recorded; final release review remains |
 
 ## Independent spot checks
 

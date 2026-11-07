@@ -1,6 +1,6 @@
 # AdventureWorks OLTP — Source Map
 
-**Status:** Seven files selected and profiled locally. Workbook relationships and broader analytical validation remain pending.
+**Status:** Seven files selected and profiled; six initial workbook relationships have been checked. Broader analytical validation remains pending.
 
 The [official Microsoft OLTP installation directory](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/adventure-works/oltp-install-script) contains table-named files and `instawdb.sql`. The installation CSVs may use positional fields and SQL-script-defined schemas. **Verify column names, types, delimiters and null handling from the selected version**, not file names alone.
 

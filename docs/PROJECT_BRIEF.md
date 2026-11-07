@@ -35,9 +35,9 @@ Full ERP, procurement/replenishment management, standalone forecasting, manufact
 
 ## Constraints and decisions
 
-- **Dataset variant:** AdventureWorks OLTP; precise snapshot / source package awaits confirmation.
-- **Ingestion:** Power Query preferred; official CSV files are a candidate; a SQL Server source remains a fallback if needed.
-- **Model:** Power Pivot / Excel Data Model where appropriate; capabilities must be tested.
+- **Dataset variant:** AdventureWorks OLTP, pinned to the [selected source revision](SOURCE_MAP.md).
+- **Ingestion:** Selected official install files and Power Query; SQL Server remains a fallback if needed.
+- **Model:** Excel Data Model with verified initial relationships; advanced capabilities remain subject to testing.
 - **Project duration:** four phases, approximately 8–12 working days / 24–48 working hours (planning estimate).
 - **Tracking:** Jira for work status; GitHub for source/version history, per [Jira Workflow](JIRA_WORKFLOW.md).
 - **Documentation:** owner’s [RDR presentation guide](https://github.com/angel-wm/repository-documentation-readability/blob/main/GUIDE.md), keeping explanations concise without removing technical conditions.

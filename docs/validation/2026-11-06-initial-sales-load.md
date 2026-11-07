@@ -1,6 +1,6 @@
 # Initial sales load — local validation
 
-**Date:** 2026-11-06. **Status:** local evidence awaiting versioning and review. This is not a phase acceptance or release.
+**Date:** 2026-11-06. **Status:** historical local evidence, versioned in Git. This record is not itself a public release or independent review.
 
 ## Baseline
 
@@ -29,7 +29,7 @@
 
 ## Remaining work
 
-Review and version this evidence and the workbook; confirm portability and the monetary precision policy before relying on higher-precision results. At this snapshot, relationships, business measures and dashboards had not been implemented. See [subsequent model validation](2026-11-06-model-relationships.md).
+At this snapshot, relationships, business measures and dashboards had not been implemented. The evidence and a later workbook were versioned; portability beyond a local folder move and monetary precision require further review. See [subsequent model validation](2026-11-06-model-relationships.md).
 
 ## Subsequent local load
 

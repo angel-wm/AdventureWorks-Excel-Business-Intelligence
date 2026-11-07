@@ -14,14 +14,14 @@ Jira tracks **work status and review**. GitHub contains the versioned source, wo
 
 ## Four existing Epics
 
-| Issue | Phase | Status at 2026-11-06 review | Example deliverables |
-| --- | --- | --- | --- |
-| [AWBI-2](https://angel231995.atlassian.net/browse/AWBI-2) | Data Design & Preparation | To Do | Confirm source package, select tables/keys, define KPIs, verify Excel MCP tools |
-| [AWBI-3](https://angel231995.atlassian.net/browse/AWBI-3) | Data Ingestion & Modeling | To Do | Build Power Query staging, facts/dimensions and relationships; validate refresh |
-| [AWBI-4](https://angel231995.atlassian.net/browse/AWBI-4) | AI-Assisted Analytics & Dashboards | To Do | Implement KPIs, customer RFM, dashboards, scenarios and interaction checks |
-| [AWBI-5](https://angel231995.atlassian.net/browse/AWBI-5) | Validation, Documentation & Publication | To Do | Run regression/UAT, review documentation, prepare validated portfolio assets |
+| Issue | Phase | Example deliverables |
+| --- | --- | --- |
+| [AWBI-2](https://angel231995.atlassian.net/browse/AWBI-2) | Data Design & Preparation | Confirm source package, select tables/keys, define KPIs, verify Excel MCP tools |
+| [AWBI-3](https://angel231995.atlassian.net/browse/AWBI-3) | Data Ingestion & Modeling | Build Power Query staging, facts/dimensions and relationships; validate refresh |
+| [AWBI-4](https://angel231995.atlassian.net/browse/AWBI-4) | AI-Assisted Analytics & Dashboards | Implement KPIs, customer RFM, dashboards, scenarios and interaction checks |
+| [AWBI-5](https://angel231995.atlassian.net/browse/AWBI-5) | Validation, Documentation & Publication | Run regression/UAT, review documentation, prepare validated portfolio assets |
 
-These Epics have descriptions and acceptance criteria. Live status and future child tasks must be read from Jira; this table is a dated setup record. The phases and exit requirements are defined in the [Roadmap](ROADMAP.md).
+These Epics have descriptions and acceptance criteria. Read live status and child tasks from Jira. The phases and exit requirements are defined in the [Roadmap](ROADMAP.md).
 
 ## What belongs in a Jira task
 
@@ -57,14 +57,13 @@ GitHub artifact and evidence linked to issue
 Jira review and Done
 ```
 
-ChatGPT's Atlassian connection has successfully read and edited these Epics. **Codex's Jira integration and autonomous issue transitions are not yet verified**; use them only after a successful permission/tool test. GitHub–Jira automatic linking is also unverified. Jira remains authoritative for live task status; [Current State](CURRENT_STATE.md) is a dated high-level record.
+Codex has read, created, edited and transitioned Jira issues, and linked GitHub evidence manually. Automatic GitHub–Jira linking remains unverified. Jira remains authoritative for live task status; [Current State](CURRENT_STATE.md) is a dated high-level record.
 
 ## Remaining preparation
 
-1. Define only the first small Phase 1 tasks after agreeing their scope.
-2. Verify actual Excel MCP capabilities and independently test workbook changes.
-3. Test any desired Codex-to-Jira automation and GitHub linking before depending on it.
-4. Begin BI implementation only after explicit authorization.
+1. Keep new tasks small, with clear checks and traceable evidence.
+2. Verify Excel operations by readback and independently reconcile relevant results.
+3. Test automatic GitHub linking before depending on it.
 
 ## Definition of Done
 
