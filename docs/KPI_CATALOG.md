@@ -39,7 +39,7 @@ Use a stated `CustomerID`, analysis-as-of date and observation window for **RFM*
 
 Scoring bands, ties and customer segment names must be recorded as modeling choices. The first purchase **observed in the sample** may not be the customer's first-ever transaction.
 
-The local RFM base uses the fixed 2022-05-30 to 2025-06-29 sample window and a 2025-06-29 as-of date. It has not been validated under product filters; last-order date uses the header while frequency and monetary measures use sales lines. See [customer RFM validation](validation/2026-11-07-awbi-15-customer-rfm.md). Scores and segments remain planned.
+The local RFM base uses the fixed 2022-05-30 to 2025-06-29 sample window and a 2025-06-29 as-of date. It has not been validated under product filters; last-order date uses the header while frequency and monetary measures use sales lines. See [customer RFM validation](validation/2026-11-07-awbi-15-customer-rfm.md). Fixed scoring bands, tie handling and descriptive segments are implemented and documented in [RFM scoring validation](validation/2026-11-07-awbi-16-rfm-segments.md); they do not predict customer behavior.
 
 ## Channel, cost and scenarios
 

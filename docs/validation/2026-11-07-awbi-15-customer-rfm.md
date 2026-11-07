@@ -15,7 +15,7 @@ RFM Orders = CALCULATE([Shipped Orders], KEEPFILTERS('SalesOrderHeader'[OrderDat
 RFM Sales = CALCULATE([Shipped Sales], KEEPFILTERS('SalesOrderHeader'[OrderDate] >= DATE(2022,5,30)), KEEPFILTERS('SalesOrderHeader'[OrderDate] < DATE(2025,6,30)))
 ```
 
-Existing filters intersect the fixed window. The delivered table uses customer context and has no product filter. Product filters are not validated: last order uses the header while frequency and monetary values use sales lines, so product context may affect them differently. Do not interpret the measures as a product-filtered RFM without further work. No scores, bands or segments are implemented.
+Existing filters intersect the fixed window. The delivered table uses customer context and has no product filter. Product filters are not validated: last order uses the header while frequency and monetary values use sales lines, so product context may affect them differently. Do not interpret the measures as a product-filtered RFM without further work. At this checkpoint no scores, bands or segments were implemented; see the [later scoring validation](2026-11-07-awbi-16-rfm-segments.md).
 
 ## Checks
 
