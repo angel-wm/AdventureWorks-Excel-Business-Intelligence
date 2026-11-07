@@ -1,6 +1,6 @@
 # AdventureWorks — Excel Business Intelligence
 
-**Status: Planning.** This repository currently contains project documentation only. No workbook, Power Query pipeline, data model, dashboard, or verified KPI has been implemented.
+**Status: In development.** The repository includes an initial workbook, Power Query loads and a data model. Dashboards and production KPIs are not yet complete. See [Current State](docs/CURRENT_STATE.md) for verified progress and limitations.
 
 AdventureWorks — Excel Business Intelligence is a portfolio project that will turn **Microsoft AdventureWorks OLTP transactional data** into a practical **commercial decision-support solution in Excel 365 Desktop**. It will explore sales, customers, products, territories, profitability where cost data allow, and business scenarios.
 
@@ -43,9 +43,13 @@ The exact scope is deliberately smaller than the full OLTP database. No historic
 
 ## Data and documentation sources
 
-- [Microsoft's AdventureWorks sample documentation](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure) and [official OLTP installation files](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/adventure-works/oltp-install-script). The selected source snapshot, CSV schema and licensing/redistribution conditions must be recorded before use.
+- [Microsoft's AdventureWorks sample documentation](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure) and [selected OLTP source revision](https://github.com/microsoft/sql-server-samples/tree/8fe3fd0c9a825fef3ae6d601e97537b612d7b214/samples/databases/adventure-works/oltp-install-script). The workbook contains sample data; the original source files are excluded from Git. See [source provenance](docs/validation/2026-11-06-initial-sales-load.md) and [third-party notices](THIRD_PARTY_NOTICES.md).
 - Documentation presentation follows the owner's [Repository Documentation Readability Guide (RDR)](https://github.com/angel-wm/repository-documentation-readability/blob/main/GUIDE.md), not the unrelated Research–Design–Review methodology. A repository-local copy of the owner's [Codex documentation skill](.agents/skills/repository-documentation-readability/SKILL.md) supports repeat use.
 
 ## Implementation boundary
 
-The repository is **private during planning**. Building workbooks, downloading data, changing production logic, setting up Jira issues, and publishing a portfolio release require separate authorization. The code and data are not yet available for a Quick Start, so none is presented as functional.
+The repository is private during development. A public portfolio release requires separate approval. Original data files and local backups are excluded from Git.
+
+## License
+
+Project-authored material is licensed under the [MIT License](LICENSE). Microsoft's AdventureWorks sample has its own copyright and license notice, reproduced in [Third-party notices](THIRD_PARTY_NOTICES.md).
