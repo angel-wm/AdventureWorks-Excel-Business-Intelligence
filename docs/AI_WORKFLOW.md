@@ -8,6 +8,8 @@ A separate disposable workbook test confirmed that MCP can create a simple DAX m
 
 The purpose is to let AI **do supported Excel work**, with short explanations and verifiable results. We do not want to repeat ProcureFlow's manual, highly tutorial-oriented build process.
 
+The [workbook improvements record](validation/2026-11-07-workbook-improvements.md) documents the subsequent consolidation into two control sheets, dynamic chart/range checks, nine-query full refresh and regression scope. Historical tool failures above describe specific routes and checkpoints; they do not negate later bounded successful operations.
+
 ## Division of work
 
 | Tool | Intended use | Verification boundary |

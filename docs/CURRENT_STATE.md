@@ -1,6 +1,6 @@
 # Current State
 
-**Last reviewed:** 2026-11-07. This is a dated snapshot, not a live Jira or remote-publication feed.
+**Last reviewed:** 2026-11-08. This is a dated snapshot, not a live Jira or remote-publication feed.
 
 ## What exists
 
@@ -11,7 +11,8 @@
 - A fixed-volume sales scenario is implemented locally; its assumptions and checks are in [AWBI-17 validation](validation/2026-11-07-awbi-17-sales-scenario.md). It is an arithmetic sensitivity, not a demand forecast.
 - A fixed-window monthly shipped-sales trend is implemented locally; its filter and reconciliation checks are in [AWBI-18 validation](validation/2026-11-07-awbi-18-monthly-sales.md).
 - An initial customer segment overview is implemented locally; its checks and source-layout limitations are in [AWBI-19 validation](validation/2026-11-07-awbi-19-customer-overview.md).
-- Category-filtered customer RFM is corrected locally and checked for the selections recorded in [AWBI-20 validation](validation/2026-11-07-awbi-20-category-rfm.md); other product and combined filters remain unverified.
+- Category-filtered customer RFM is corrected locally. All four category selections and their segment counts were checked in the [workbook improvements regression](validation/2026-11-07-workbook-improvements.md). The later [dashboard validation](validation/2026-11-08-dashboards.md) checks all 30 category/segment combinations exposed by the new customer dashboard; other product-level filters remain unverified.
+- `DashboardSales` and `DashboardCustomers` are implemented locally with coherent dark backgrounds, light chart panels, green accents and native filters. They lead the workbook, followed by `SalesScenario`. Their scope, source reconciliation, refresh results and automation limitations are recorded in [dashboard validation](validation/2026-11-08-dashboards.md). The three overlapping legacy views remain in the workbook as hidden sheets because the dashboards and controls depend on them.
 - Excel MCP and Jira have been used from Codex. Excel operations have been checked by readback and GitHub evidence linked manually in Jira; automatic linking and some advanced model operations remain unverified.
 - Jira is authoritative for live work status. Phases 1 ([AWBI-2](https://angel231995.atlassian.net/browse/AWBI-2)), 2 ([AWBI-3](https://angel231995.atlassian.net/browse/AWBI-3)) and 3 ([AWBI-4](https://angel231995.atlassian.net/browse/AWBI-4)) were marked Done on 2026-11-07. Phase 3's acceptance was performed by the project assistant, not an independent human reviewer; see the [evidence review](validation/2026-11-07-phase-3-review.md) and the later AWBI-19 guard checks. Consult the [AWBI board](https://angel231995.atlassian.net/jira/software/projects/AWBI/boards/2) for live status.
 - Audit remediation and public-portfolio preparation are tracked under [AWBI-12](https://angel231995.atlassian.net/browse/AWBI-12). See the [audit follow-up](validation/2026-11-07-audit-remediation.md) and live Jira status.
@@ -22,11 +23,13 @@
 - Prioritize sales, units, distinct orders and average order value. Historical margin remains conditional on a defensible historical-cost method.
 - A workbook and early ingestion were explicitly authorized. Publishing remains subject to separate approval. Raw files stay local and ignored by Git.
 - A two-decimal presentation and source reconciliation policy is documented in the KPI catalog; sub-cent floating-point differences remain and the model is not fixed-decimal accounting.
+- The owner accepted describing amounts provisionally as source monetary amounts with currency unconfirmed. The common-currency interpretation remains unverified; see the [currency boundary](KPI_CATALOG.md#currency-boundary).
+- Following the [initial worksheet review](validation/2026-11-07-workbook-sheet-review.md), [workbook improvements](validation/2026-11-07-workbook-improvements.md) corrected disclosures and dynamic ranges and consolidated four control sheets into `Validation` and `KeyChecks`. That checkpoint had 18 sheets and 4 PivotTables. The workbook now has 20 sheets, of which 17 are visible, 9 query loads, 5 PivotTables and 10 charts. The existing chart helper was renamed `DashboardData` and reused. Full refresh and bounded interaction checks passed; currency interpretation and broader coverage remain limited as documented.
 
 ## Next steps
 
-1. Confirm currency and returns treatment before publication. Other product and combined RFM filters remain unverified.
-2. Test handoff on a different computer before relying on the workbook-relative source configuration.
+1. Investigate the currency interpretation; warnings have been added to the workbook. Returns are not deducted by the shipped-sales measure; see the [currency and returns review](validation/2026-11-07-currency-returns-review.md). Other product-level RFM filters remain unverified beyond the category/segment dashboard checks.
+2. Disclose that refresh has been tested after a local folder move on one computer, not on a different computer. The owner declined a cross-computer test.
 3. Before public visibility, review workbook metadata and Git history within the intended release scope. The owner accepted exposure of the identified Windows user name and local paths; the existing scan has limits and does not establish that all other information is safe to publish.
 
 These next steps are not authorization to begin additional phase 4 work or publish changes.

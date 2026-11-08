@@ -16,7 +16,7 @@ The workbook contains the current sample data, so it can be inspected without th
    Get-FileHash data/raw/adventureworks-oltp-8fe3fd0c/*.csv -Algorithm SHA256
    ```
 
-5. Open and save the workbook in Excel. Check that the `SourceConfig` sheet points to the source folder, then use **Data → Refresh All**. Inspect the `Validation`, `KeyChecks` and `ModelChecks` sheets and any refresh errors.
+5. Open and save the workbook in Excel. Check that the `SourceConfig` sheet points to the source folder, then use **Data → Refresh All**. Review refresh errors, the overall status and individual results in `Validation`, and the key/join results and source summary in `KeyChecks`. The two control sheets are described in the [workbook improvements record](validation/2026-11-07-workbook-improvements.md).
 
 ```text
 project folder/
