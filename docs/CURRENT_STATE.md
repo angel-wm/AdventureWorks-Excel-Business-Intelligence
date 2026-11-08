@@ -13,7 +13,8 @@
 - An initial customer segment overview is implemented locally; its checks and source-layout limitations are in [AWBI-19 validation](validation/2026-11-07-awbi-19-customer-overview.md).
 - Category-filtered customer RFM is corrected locally. All four category selections and their segment counts were checked in the [workbook improvements regression](validation/2026-11-07-workbook-improvements.md). The later [dashboard validation](validation/2026-11-08-dashboards.md) checks all 30 category/segment combinations exposed by the new customer dashboard; other product-level filters remain unverified.
 - `DashboardSales` and `DashboardCustomers` are implemented locally with coherent dark backgrounds, light chart panels, green accents and native filters. They lead the workbook, followed by `SalesScenario`. Their scope, source reconciliation, refresh results and automation limitations are recorded in [dashboard validation](validation/2026-11-08-dashboards.md). The three overlapping legacy views remain in the workbook as hidden sheets because the dashboards and controls depend on them.
-- The README presents both dashboards with Excel-generated sample previews and links to setup, metric definitions and validation evidence. The documentation and images are local until versioned and published.
+- The README presents both dashboards with Excel-generated sample previews and links to setup, metric definitions and validation evidence. The repository was public on 2026-11-08; consult Git and GitHub for the exact revision available locally and remotely.
+- The owner reported completing a human workbook review on 2026-11-08. Navigation and readability refinements discussed during that review, and the scope of their checks, are recorded in [workbook review follow-up](validation/2026-11-08-workbook-review-follow-up.md).
 - Excel MCP and Jira have been used from Codex. Excel operations have been checked by readback and GitHub evidence linked manually in Jira; automatic linking and some advanced model operations remain unverified.
 - Jira is authoritative for live work status. Phases 1 ([AWBI-2](https://angel231995.atlassian.net/browse/AWBI-2)), 2 ([AWBI-3](https://angel231995.atlassian.net/browse/AWBI-3)) and 3 ([AWBI-4](https://angel231995.atlassian.net/browse/AWBI-4)) were marked Done on 2026-11-07. Phase 3's acceptance was performed by the project assistant, not an independent human reviewer; see the [evidence review](validation/2026-11-07-phase-3-review.md) and the later AWBI-19 guard checks. Consult the [AWBI board](https://angel231995.atlassian.net/jira/software/projects/AWBI/boards/2) for live status.
 - Audit remediation and public-portfolio preparation are tracked under [AWBI-12](https://angel231995.atlassian.net/browse/AWBI-12). See the [audit follow-up](validation/2026-11-07-audit-remediation.md) and live Jira status.
@@ -21,7 +22,7 @@
 ## Decisions and boundaries
 
 - Use the selected OLTP install files and Power Query for commercial analytics. The initial sales grain is one order line, and the main sales view includes shipped orders (`Status = 5`).
-- Prioritize sales, units, distinct orders and average order value. Historical margin remains conditional on a defensible historical-cost method.
+- Prioritize sales, units, distinct orders and average order value. Historical margin remains conditional on a defensible historical-cost method. The owner accepted the documented currency limitation and declined a second-computer refresh test for this project phase.
 - A workbook and early ingestion were explicitly authorized. Publishing remains subject to separate approval. Raw files stay local and ignored by Git.
 - A two-decimal presentation and source reconciliation policy is documented in the KPI catalog; sub-cent floating-point differences remain and the model is not fixed-decimal accounting.
 - The owner accepted describing amounts provisionally as source monetary amounts with currency unconfirmed. The common-currency interpretation remains unverified; see the [currency boundary](KPI_CATALOG.md#currency-boundary).
@@ -29,10 +30,7 @@
 
 ## Next steps
 
-1. Investigate the currency interpretation; warnings have been added to the workbook. Returns are not deducted by the shipped-sales measure; see the [currency and returns review](validation/2026-11-07-currency-returns-review.md). Other product-level RFM filters remain unverified beyond the category/segment dashboard checks.
-2. Disclose that refresh has been tested after a local folder move on one computer, not on a different computer. The owner declined a cross-computer test.
-3. Before public visibility, review workbook metadata and Git history within the intended release scope. The owner accepted exposure of the identified Windows user name and local paths; the existing scan has limits and does not establish that all other information is safe to publish.
+1. Record the completed owner review and current evidence in [AWBI-5](https://angel231995.atlassian.net/browse/AWBI-5), then assess its closure under the [Jira workflow](JIRA_WORKFLOW.md). On 2026-11-08 the epic was In Review; consult Jira for its live status.
+2. Preserve the documented limitations: currency is unconfirmed, returns are not deducted from shipped sales, refresh on another computer was not tested, and product-level RFM filters beyond the tested category/segment combinations remain unverified. See the [currency and returns review](validation/2026-11-07-currency-returns-review.md).
 
-These next steps are not authorization to begin additional phase 4 work or publish changes.
-
-The project uses MIT for project-authored material and retains Microsoft's third-party notice. Public visibility may be considered during development; check current visibility and review workbook metadata and Git history before changing it. See the [Roadmap](ROADMAP.md) for phase gates and the [Jira Workflow](JIRA_WORKFLOW.md) for review and Done.
+The project uses MIT for project-authored material and retains Microsoft's third-party notice. The owner accepted exposure of the identified Windows user name and local paths; the bounded scan in the [audit follow-up](validation/2026-11-07-audit-remediation.md) does not establish that all other information is safe to publish. Consult the [Roadmap](ROADMAP.md) for phase gates.

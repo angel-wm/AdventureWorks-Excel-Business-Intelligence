@@ -1,6 +1,6 @@
 # AdventureWorks — Excel Business Intelligence
 
-**Status: In development.** Sales and customer dashboards, validated shipped-sales metrics and a scenario worksheet are implemented locally. Portfolio documentation and release review are in progress. See [Current State](docs/CURRENT_STATE.md) for verified progress and limitations.
+**Status: In review.** Sales and customer dashboards, shipped-sales metrics and a scenario worksheet are implemented. The owner has completed a workbook review; phase 4 remains in review in Jira. See [Current State](docs/CURRENT_STATE.md) for progress and limitations.
 
 AdventureWorks — Excel Business Intelligence is a portfolio project that turns **Microsoft AdventureWorks OLTP** sample data into a commercial analysis workbook in **Excel 365 Desktop**. Power Query prepares the data, the Excel Data Model connects the commercial tables, and interactive views bring sales, customers, products, territories and scenarios together.
 
@@ -53,7 +53,7 @@ Refresh was tested after a local folder move on one computer. Refresh on another
 - **Currency is unconfirmed** and comparability across currencies has not been established. Amounts are source values with no assumed conversion. Historical gross margin is unavailable without a validated cost method.
 - Customer RFM covers qualifying purchases from **30 May 2022 through 29 June 2025**, measured as of **29 June 2025**. Fixed scoring bands are descriptive; they do not represent lifetime history or predict future behavior.
 
-The [KPI catalog](docs/KPI_CATALOG.md) defines the measures and limitations. The [dashboard validation record](docs/validation/2026-11-08-dashboards.md) describes source reconciliation, tested filters and refresh. The project assistant performed these checks; they are not independent human acceptance.
+The [KPI catalog](docs/KPI_CATALOG.md) defines the measures and limitations. The [dashboard validation record](docs/validation/2026-11-08-dashboards.md) describes source reconciliation, tested filters and refresh performed by the project assistant. The owner subsequently reported completing a workbook review; see the [review follow-up](docs/validation/2026-11-08-workbook-review-follow-up.md).
 
 ## Where to go next
 
