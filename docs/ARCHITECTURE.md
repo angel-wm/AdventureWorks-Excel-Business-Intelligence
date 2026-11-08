@@ -1,40 +1,40 @@
-# Proposed Architecture
+# Workbook Architecture
 
-**Status: Local model and initial analytics.** Seven source tables load into worksheets and the Data Model; six relationships are active. Shipped sales, units, distinct orders and average order value have been implemented and checked locally. See [model validation](validation/2026-11-06-model-relationships.md), [sales and units validation](validation/2026-11-07-awbi-11-prototype.md) and [orders and AOV validation](validation/2026-11-07-awbi-13-orders-aov.md). These checks do not establish every filter interaction or publication readiness.
+**Status: Implemented locally.** Seven source tables load into worksheets and the Data Model; six relationships are active. Shipped sales, units, distinct orders, average order value, fixed-window RFM and the sales and customer dashboards have bounded local validation. See [model validation](validation/2026-11-06-model-relationships.md) and [dashboard validation](validation/2026-11-08-dashboards.md). These checks do not establish every filter interaction or publication readiness.
 
-## How data will move
+## Data flow
 
 ```text
 Official AdventureWorks OLTP sources (unchanged)
     ↓
-Power Query: source access → staging → analytical tables
-    ↓
-Validated facts and dimensions
-    ↓
-Excel Data Model / Power Pivot (if appropriate)
-    ↓
-Measures and analytical tables / PivotTables
-    ↓
-Sales, Customers, Products and Scenario dashboards
+Power Query: seven source loads
+    ├──→ worksheet tables ──→ validation controls
+    └──→ Excel Data Model: seven tables and six relationships
+             ↓
+         measures and PivotTables
+             ↓
+         sales and customer dashboards, category/territory analysis, scenario
+
+Power Query: KeyChecks and SourceChecks ──→ key and source validation controls
 ```
 
 ## Logical model
 
 The selected **sales fact grain** is one `SalesOrderDetail` line, with order-header attributes from `SalesOrderHeader`. Do not sum header-level totals after repeating them across detail rows.
 
-The following screenshot shows the local Power Pivot model on 2026-11-06. The named sales calculations shown in the diagram were created for validation and are not approved production KPIs.
+The following screenshot shows the local Power Pivot model on 2026-11-06. The named sales calculations in that historical image were created for validation; the later shipped measures are documented in the [KPI catalog](KPI_CATALOG.md).
 
 ![Power Pivot diagram showing seven sales, customer, territory and product tables with their relationships](images/sales-data-model.png)
 
-| Entity | Proposed key/grain | Role |
+| Entity | Key/grain | Role |
 | --- | --- | --- |
 | Sales fact | `SalesOrderID` + `SalesOrderDetailID` | Amounts, units, product and order linkage |
 | Order header | `SalesOrderID` | Order date, customer, territory, order type and status |
 | Product | `ProductID` | Attributes, subcategory and category hierarchy |
 | Customer | `CustomerID` | Person/store customer behavior and segmentation |
 | Territory | `TerritoryID` | Geographic commercial analysis |
-| Date | One calendar date | Monthly/yearly comparisons |
-| Assumptions | Independent input records | Scenarios, not actual sales |
+| Order date | `SalesOrderHeader.OrderDate` | Monthly sales and date filtering; no separate date table is claimed |
+| Scenario inputs | Worksheet inputs | Assumptions, not actual sales |
 
 The selected source's keys and joins were checked locally; initial workbook relationships and category/territory filters were also checked. See the [Source Map](SOURCE_MAP.md) and [model validation](validation/2026-11-06-model-relationships.md).
 
@@ -48,16 +48,16 @@ The selected source's keys and joins were checked locally; initial workbook rela
 6. Differentiate observed sales from assumed changes in scenario sheets.
 7. Avoid importing unrelated manufacturing, purchasing and HR modules by default.
 
-## Suggested workbook presentation
+## Workbook presentation
 
-- `00_README`: purpose, refresh, definitions.
-- `01_CONTROLS`: as-of period, scenario assumptions and quality indicators.
-- `10_DASH_Sales`: time series, products, territories and order type.
-- `11_DASH_Customers`: recurrence and RFM groups.
-- `12_DASH_Products`: commercial product breakdowns; margins only if validated.
-- `13_SCENARIOS`: clearly marked assumptions.
+- `DashboardSales`: shipped sales metrics, monthly trend, category and territory comparisons.
+- `DashboardCustomers`: descriptive fixed-window RFM segments and distributions.
+- `SalesScenario`: fixed-volume price and discount assumptions.
+- `SalesByDate`, `CustomerRFM` and `RFMGuide`: analytical detail and scoring rules.
+- `Validation` and `KeyChecks`: reconciliation and source/key controls.
+- `DashboardData`, `SourceConfig` and seven source sheets: dashboard support, refresh configuration and loaded data.
 
-These names are provisional. Supporting analysis sheets should be kept to the minimum needed.
+`SalesOverview`, `SalesMonthly` and `CustomerOverview` are hidden, retained views with dependencies used by the dashboards and controls. The workbook has 20 sheets, 17 visible. Category and territory comparisons are part of the sales dashboard; no separate product dashboard or order-type filter is claimed.
 
 ## Tool boundary
 

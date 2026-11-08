@@ -10,6 +10,8 @@ The workbook contains 20 worksheets, 9 Power Query loads, 7 model tables, 6 rela
 
 Both dashboards use a dark green background, light panels and green accents. The revised landscape canvas is 1414.5 by 617.25 points, with equal KPI cards and a filter panel at the right. Both sheet views are saved at 100% zoom and A1. KPI values use 28-point text, labels 12 points, chart titles 15 points and axis labels 11.5-12 points. All ten territory labels are shown. Slicers have equal horizontal insets and two button columns; their final heights accommodate the last item row. Print areas include the full dashboard.
 
+The [sales](../images/dashboard-sales.png) and [customer](../images/dashboard-customers.png) images in the README were rendered from those native Excel PDF exports, with the white page margin cropped. They show the unfiltered sample at this dashboard checkpoint. The subsequent navigation change hid three support views and did not redesign the dashboards.
+
 ## Measurements and filters
 
 | View | Indicators and charts | Controls |

@@ -21,7 +21,7 @@
 | DV-13 | Repeat full Power Query refresh and check no stale values | Nine-query full refresh and final readback passed on the main workbook; arbitrary changed-source ordering and freshness remain unestablished |
 | DV-14 | Verify Excel MCP operations by actual readback/save/reopen | Partial: exercised operations checked; other operations remain unverified |
 | DV-15 | Inspect usability, dates, number formats, labels and empty states | Dashboard layout, font sizes, filter bounds, territory labels, disclosures and empty states inspected in Excel captures and native exports; complete human usability review remains |
-| DV-16 | Review project links, source attribution and publication assets | Partial: source notice recorded; final release review remains |
+| DV-16 | Review project links, source attribution and publication assets | Partial: source notice recorded and dashboard previews added to the README; final release review remains |
 
 ## Independent spot checks
 

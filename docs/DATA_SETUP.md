@@ -33,4 +33,4 @@ project folder/
 
 The files are tab-delimited and have no header row; the workbook's queries assign column names. The selected files and workbook contain fictional Microsoft sample data. Raw files are excluded from Git, but the workbook includes loaded data. Retain the [Microsoft attribution and license](../THIRD_PARTY_NOTICES.md) when redistributing the workbook.
 
-Refresh has been tested after a local folder move on one computer. Other computers, cloud paths, missing files and refresh ordering under changed source data remain unverified. The main sales rule is shipped orders only; current validation sums do not enforce that rule for a different, mixed-status source.
+Refresh has been tested after a local folder move on one computer. Other computers, cloud paths, missing files and refresh ordering under changed source data remain unverified. The main sales rule is shipped orders only. `Validation` compares both all-status and shipped totals; a historical mixed-status fixture was checked, but this does not establish every changed-source case. See the [workbook improvements record](validation/2026-11-07-workbook-improvements.md).
