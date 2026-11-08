@@ -50,6 +50,6 @@ The owner reported completing a human workbook review. Technical source reconcil
 
 ## Delivery and publication
 
-The owner authorized publication and the repository was made public on 2026-11-08. [Current State](CURRENT_STATE.md) distinguishes that published baseline from local audit corrections. The owner performs Git commits. [Handoff](HANDOFF.md) identifies the exact workbook by SHA-256 and describes how the containing commit becomes its immutable reference.
+The owner authorized publication and the repository was made public on 2026-11-08. The 14-point audit artifact was subsequently published in commit `431284ac4cfd255a8082a36b88cff1951f0d61a8`. [Current State](CURRENT_STATE.md) distinguishes that published artifact from later maintenance. The owner performs Git commits. [Handoff](HANDOFF.md) identifies the exact workbook by SHA-256 and immutable commit.
 
 The identified local username/path metadata was accepted by the owner; the bounded historical scan is described in the [audit follow-up](validation/2026-11-07-audit-remediation.md). This does not certify every byte or past Git object as safe.

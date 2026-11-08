@@ -4,8 +4,10 @@
   "workbook_sha256": "ec7aba23a1954af5a8e99a093ef65b8e4cf99e7373f898f3108dc4b2cb352662",
   "source_revision": "8fe3fd0c9a825fef3ae6d601e97537b612d7b214",
   "baseline_public_commit": "30b4ea8f37e3ee6ab3ba1af6260708591ee00ac4",
-  "repository_reference": "The Git commit containing this manifest and a matching workbook hash. Before the owner commits, this is a local artifact, not a published release.",
+  "published_artifact_commit": "431284ac4cfd255a8082a36b88cff1951f0d61a8",
+  "repository_reference": "The designated workbook was published in published_artifact_commit; its SHA-256 remains the artifact identity. baseline_public_commit identifies the earlier pre-audit snapshot.",
   "evidence": "docs/validation/2026-11-08-audit-closure.md",
   "verification_command": "python scripts/verify.py --output data/validation/latest.json",
+  "regression_command": "python -m unittest discover -s tests -v",
   "currency_policy": "Original source amounts; currency unconfirmed; no conversion; monetary comparability not validated."
 }

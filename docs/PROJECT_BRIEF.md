@@ -11,7 +11,7 @@ Codex and Excel MCP produced spreadsheet artifacts, with native Excel fallbacks 
 ## Business questions
 
 - **Sales:** Where do orders, sold units and discounted sales change by month, product category, territory and order entry method? The dashboards cover the first three; the [business review](BUSINESS_REVIEW.md#order-entry-method) covers entry method.
-- **Customers:** Which observed customers are most valuable, most recent or recurring? Can we define reproducible descriptive RFM segments while explaining person/store differences?
+- **Customers:** Which observed customers purchased most recently or repeatedly, and how do their original source amounts differ? Can reproducible descriptive RFM segments explain these patterns alongside separate person/store comparisons? Monetary comparability is unconfirmed; pooled RFM scores do not establish equivalent economic value across customer types.
 - **Products:** Which categories sell most? Is a historically defensible margin available?
 - **Commercial planning:** How do explicit price or discount assumptions affect a scenario, without rewriting historical facts?
 

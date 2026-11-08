@@ -27,7 +27,9 @@ The table records historical phase coverage. Broader cases described as remainin
 
 ## Executable follow-up
 
-Run the [verification command](HANDOFF.md#reproduce-the-checks) against the pinned raw files and designated saved workbook. It independently recomputes monthly/group/customer outputs, checks source hashes/schema/keys, dashboard cards, scenario defaults, package errors, local links and handoff identity. It also generates the entry-method, complete-year volume and person/store summaries in the business review. The retained result identifies the exact workbook hash.
+Run the [regression suite and verification command](HANDOFF.md#reproduce-the-checks). Synthetic tests exercise valid and deliberately invalid output populations, values, headers, package structure and handoff identity; a disposable changed-source CLI fixture must exit 1. They do not validate Excel runtime behavior.
+
+Against the pinned raw files and designated saved workbook, the verifier independently recomputes complete monthly/customer populations and group outputs, checks source hashes/schema/keys, dashboard cards, scenario defaults, package structure/errors, local links and required handoff identity. It also generates the entry-method, complete-year volume and person/store summaries in the business review. The [hardening record](validation/2026-11-08-verifier-hardening.md) and its retained result identify the execution and exact workbook hash.
 
 This is saved-output verification: no Excel refresh, new interactive-filter run, direct DAX readback or independent human technical review is implied. The audit correction changed five text cells; native add-in readback/images and a before/after package comparison check preservation. The [closure record](validation/2026-11-08-audit-closure.md) records executed outcomes and failure-fixture results.
 

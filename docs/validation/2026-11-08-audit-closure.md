@@ -1,6 +1,6 @@
 # Fourteen-point audit closure
 
-**Date:** 2026-11-08. **Tracking:** [AWBI-21](https://angel231995.atlassian.net/browse/AWBI-21). **Artifact:** [AWBI-2026-11-08-audit-closure](../HANDOFF.md), identified by the SHA-256 in [handoff.json](../handoff.json). This record covers local corrections and assistant-run checks; the owner performs Git publication and version-linked acceptance.
+**Date:** 2026-11-08. **Tracking:** [AWBI-21](https://angel231995.atlassian.net/browse/AWBI-21). **Artifact:** [AWBI-2026-11-08-audit-closure](../HANDOFF.md), identified by the SHA-256 in [handoff.json](../handoff.json). This record preserves the original corrections and assistant-run checks. The owner subsequently published them in commit `431284a`; publication was verified later the same day. [Subsequent verifier hardening](2026-11-08-verifier-hardening.md) has its own tests and result.
 
 ## Authorization and scope
 
@@ -15,7 +15,7 @@ The owner explicitly accepted retaining original amounts with currency unconfirm
 | 3 | Early implementation statuses | Brief and Jira workflow now distinguish delivered requirements from live issue state |
 | 4 | Ambiguous KPI catalog | [Catalog](../KPI_CATALOG.md) identifies workbook metrics, report-only metrics and exclusions, with reasons in the decision record |
 | 5 | Wrong phase dates | Current State records phase 1 and 2 closure on Nov 6, matching Jira status history |
-| 6 | Publication wording | Current State distinguishes the previously authorized public baseline from uncommitted local corrections |
+| 6 | Publication wording | Current State distinguishes the earlier baseline, the audit artifact published in `431284a` and subsequent maintenance |
 | 7 | Historical supersession | Every original dated record has a historical notice; the [evidence index](README.md) explains what changed and routes current instructions |
 | 8 | Repeated maintained state | Current State owns dated state, Scope decisions owns exceptions, Handoff owns artifact/setup checks; other documents link to those sources |
 | 9 | Non-rerunnable public checks | Standard-library [verification script](../../scripts/verify.py), command, retained JSON and failure behavior supplied |
@@ -37,7 +37,7 @@ The owner explicitly accepted retaining original amounts with currency unconfirm
 | FR-06 Profitability | Permitted conditional exclusion: historical cost unvalidated and margin unavailable |
 | FR-07 Scenario | Existing fixed-volume formulas/defaults and historical input tests; visible-control guidance corrected |
 | FR-08 AI evidence | Exact add-in reads/writes/images, source computation and package-preservation checks; no independent human technical review implied |
-| FR-09 Portfolio documentation | Maintained sources reconciled, current previews, public-ready runner and hash-addressed handoff; local publication boundary explicit |
+| FR-09 Portfolio documentation | Maintained sources reconciled, current previews, public runner and hash-addressed handoff; published audit commit identified below |
 
 No additional workbook entry-method filter, cohort-specific RFM score or optional monetary KPI is claimed. The business review supplies the missing analytical comparisons without adding redundant workbook views. Accepted source/schema, cross-computer and wider-filter exclusions are maintained in [Scope decisions](../DECISIONS.md#accepted-verification-boundary).
 
@@ -74,4 +74,8 @@ The preservation detail and raw live reads are local diagnostics; the table and 
 
 ## Publication and acceptance
 
-The original public baseline is commit `30b4ea8f37e3ee6ab3ba1af6260708591ee00ac4`. The audit corrections are prepared locally. AWBI-21 stays In Review until the owner commits/publishes the artifact and the immutable version is linked and reviewed under the Jira workflow. No commit, push, tag, release or independent human acceptance of this follow-up is claimed here.
+The original public baseline was commit `30b4ea8f37e3ee6ab3ba1af6260708591ee00ac4`. The owner subsequently published the audit corrections in [commit 431284a](https://github.com/angel-wm/AdventureWorks-Excel-Business-Intelligence/commit/431284ac4cfd255a8082a36b88cff1951f0d61a8). Local HEAD and public GitHub `main` were verified at that commit before subsequent verifier maintenance. The designated workbook hash is unchanged.
+
+Immutable published evidence: [this audit record](https://github.com/angel-wm/AdventureWorks-Excel-Business-Intelligence/blob/431284ac4cfd255a8082a36b88cff1951f0d61a8/docs/validation/2026-11-08-audit-closure.md), [original checker result](https://github.com/angel-wm/AdventureWorks-Excel-Business-Intelligence/blob/431284ac4cfd255a8082a36b88cff1951f0d61a8/docs/validation/results/2026-11-08-checks.json), [manifest](https://github.com/angel-wm/AdventureWorks-Excel-Business-Intelligence/blob/431284ac4cfd255a8082a36b88cff1951f0d61a8/docs/handoff.json) and [business review](https://github.com/angel-wm/AdventureWorks-Excel-Business-Intelligence/blob/431284ac4cfd255a8082a36b88cff1951f0d61a8/docs/BUSINESS_REVIEW.md). The old commit's pending-publication wording describes its pre-publication checkpoint; this section records the subsequent verified event without altering its measurements.
+
+AWBI-21 received those immutable references and transitioned to Done on 2026-11-08 after the assistant's version-linked review under the [Jira workflow](../JIRA_WORKFLOW.md). Later verifier maintenance is tracked separately in [AWBI-22](https://angel231995.atlassian.net/browse/AWBI-22). The owner requested execution of the re-audit follow-up; no separate independent human technical review, tag or GitHub Release is claimed.

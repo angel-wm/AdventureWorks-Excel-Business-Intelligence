@@ -4,9 +4,10 @@ Read [Handoff](../HANDOFF.md) for the designated workbook and current controls, 
 
 ## Current follow-up
 
-- [2026-11-08 audit closure](2026-11-08-audit-closure.md): all 14 audit dispositions, current workbook readback, executable checks and publication boundary.
-- [Retained executable result](results/2026-11-08-checks.json): independently recomputed source expectations and saved-output comparison for the hash in the [handoff manifest](../handoff.json).
-- [Verification script](../../scripts/verify.py): reproducible source/package checks. It does not refresh Excel or repeat every historical interaction test.
+- [2026-11-08 verifier hardening](2026-11-08-verifier-hardening.md): complete saved-output populations, 29 executable regression tests, mandatory package checks and publication-state reconciliation, without workbook edits.
+- [Current verifier result](results/2026-11-08-verifier-hardening.json): verifier version 2, fresh source expectations and complete saved-output comparison for the designated workbook hash.
+- [2026-11-08 audit closure](2026-11-08-audit-closure.md): original 14 dispositions and workbook readback, subsequently published in `431284a`; the [original result](results/2026-11-08-checks.json) preserves that earlier verifier's schema and execution.
+- [Verification script](../../scripts/verify.py) and [regression tests](../../tests/test_workbook_checks.py): rerun using [Handoff](../HANDOFF.md#reproduce-the-checks). These do not refresh Excel or repeat every historical interaction test.
 
 The current README previews were captured from the connected Excel workbook during this follow-up, after blank-category visibility and customer-note corrections. They are native range images, not the earlier PDF exports. Screenshot appearance is evidence of the captured view, not every possible filter state.
 

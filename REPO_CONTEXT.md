@@ -11,7 +11,7 @@
 ## Published state
 
 - **Repository:** [angel-wm/AdventureWorks-Excel-Business-Intelligence](https://github.com/angel-wm/AdventureWorks-Excel-Business-Intelligence), normally read at the selected GitHub ref (default branch `main` when no ref is specified). It is intended for public portfolio use; verify actual visibility rather than inferring it from intent.
-- **Publication / handoff sources:** [Handoff](docs/HANDOFF.md) and [manifest](docs/handoff.json) identify the designated workbook by hash and the containing-commit convention; [Current State](docs/CURRENT_STATE.md) distinguishes the prior public baseline from local corrections. A manifest is not proof of remote publication.
+- **Publication / handoff sources:** [Handoff](docs/HANDOFF.md) and [manifest](docs/handoff.json) identify the designated workbook by hash and immutable published commit; [Current State](docs/CURRENT_STATE.md) distinguishes that artifact from later maintenance. A manifest alone is not proof of remote publication.
 - **Visibility rule:** A remote reader reports only the retrieved repository/ref snapshot. Changes that exist only locally are **Unknown**. A local reader distinguishes uncommitted edits, commits and confirmed remote publication; a clean worktree or commit alone does not prove a release.
 
 ## Source map

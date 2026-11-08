@@ -18,6 +18,8 @@ import urllib.parse
 import xml.etree.ElementTree as ET
 import zipfile
 
+from workbook_checks import check_rfm_output, check_monthly_output, package_failures, handoff_matches
+
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--repo', type=pathlib.Path, default=pathlib.Path(__file__).resolve().parents[1])
 parser.add_argument('--output', type=pathlib.Path, default=pathlib.Path('data/validation/latest.json'))
@@ -154,6 +156,9 @@ for sheet in wb.find('m:sheets', ns):
     sheet_inventory.append({'name': name, 'state': sheet.get('state', 'visible')})
     values = {}
     for _, cell in ET.iterparse(z.open(path), events=('end',)):
+        if cell.tag == '{' + ns['m'] + '}row':
+            cell.clear()
+            continue
         if cell.tag != '{' + ns['m'] + '}c':
             continue
         v = cell.find('m:v', ns)
@@ -178,33 +183,9 @@ for sheet in wb.find('m:sheets', ns):
     if name in needed:
         sheets[name] = values
 
-epoch = dt.date(1899, 12, 30)
-rfm_values = sheets['CustomerRFM']
-header_map = {col: rfm_values.get(col + '5') for col in 'ABCDEFGHI'}
-rfm_mismatches = []
-seen = []
-max_customer_sales_delta = 0.0
-for row in range(6, 6 + len(rfm)):
-    actual = {col: rfm_values.get(col + str(row)) for col in 'ABCDEFGHI'}
-    customer = int(actual['A'])
-    seen.append(customer)
-    c = rfm.get(customer)
-    if c is None:
-        rfm_mismatches.append([customer, 'unexpected customer'])
-        continue
-    expected = {'B': (c['date'] - epoch).days, 'C': c['recency'], 'D': c['frequency'],
-                'E': float(c['sales']), 'F': c['R'], 'G': c['F'], 'H': c['M'], 'I': c['segment']}
-    max_customer_sales_delta = max(max_customer_sales_delta, abs(actual['E'] - expected['E']))
-    for col, wanted in expected.items():
-        observed = actual[col]
-        same = abs(observed - wanted) < .005 if col == 'E' else observed == wanted
-        if not same:
-            rfm_mismatches.append([customer, col, str(wanted), observed])
-month_deltas = {}
-for row in range(5, 5 + len(months)):
-    date = epoch + dt.timedelta(days=int(sheets['SalesMonthly']['A' + str(row)]))
-    key = date.strftime('%Y-%m')
-    month_deltas[key] = abs(float(months[key]) - sheets['SalesMonthly']['B' + str(row)])
+customer_check = check_rfm_output(sheets['CustomerRFM'], rfm)
+monthly_check = check_monthly_output(sheets['SalesMonthly'], months)
+
 group_mismatches = []
 max_group_delta = 0.0
 v = sheets['Validation']
@@ -252,6 +233,7 @@ for file in md_files:
                 paragraphs[normalized].append(str(file.relative_to(repo)))
 
 result = {
+    'verifier_version': 2,
     'baseline': {'source_revision': '8fe3fd0c9a825fef3ae6d601e97537b612d7b214',
                  'sha256': hashlib.sha256(book.read_bytes()).hexdigest(), 'workbook_bytes': book.stat().st_size},
     'sources': source_info,
@@ -272,10 +254,8 @@ result = {
             'store' if customers[str(c)][2] else 'person' if customers[str(c)][1] else 'other' for c in rfm)),
     },
     'saved_output_comparison': {
-        'customer_headers': header_map, 'customer_rows_compared': len(seen),
-        'customer_set_matches': set(seen) == set(rfm), 'duplicate_customers': len(seen) - len(set(seen)),
-        'customer_mismatches': rfm_mismatches, 'max_customer_sales_delta': max_customer_sales_delta,
-        'monthly_values_compared': len(month_deltas), 'max_monthly_delta': max(month_deltas.values()),
+        'customers': customer_check,
+        'monthly': monthly_check,
         'territory_category_groups_compared': 40, 'group_mismatches': group_mismatches,
         'max_group_delta': max_group_delta,
         'sales_dashboard_values': {k: sheets['DashboardSales'][k] for k in ['B9', 'L9', 'V9', 'AF9']},
@@ -300,9 +280,9 @@ def require(condition, label):
 require(not any(key_checks.values()), 'Source keys or references')
 require(pricing_mismatches == 0, 'Source pricing identity')
 require(result['independent_source']['header_subtotals_not_matching_four_decimal_half_up'] == 0, 'Header subtotal rounding')
-require(not errors and not ref_errors, 'Saved worksheet errors')
-require(not rfm_mismatches and set(seen) == set(rfm) and len(seen) == len(set(seen)), 'Customer RFM values/set')
-require(set(month_deltas) == set(months) and max(month_deltas.values()) < .005, 'Monthly values/set')
+failures.extend(package_failures(result['saved_package']))
+require(customer_check['passed'], 'Complete customer output population/headers/values')
+require(monthly_check['passed'], 'Complete monthly output population/headers/values')
 require(not group_mismatches, 'Territory/category groups')
 require(not broken_links and not broken_anchors, 'Documentation links/anchors')
 require(sheets['DashboardSales']['L9'] == units and sheets['DashboardSales']['V9'] == len(orders), 'Sales count cards')
@@ -315,9 +295,8 @@ require(abs(sheets['DashboardCustomers']['AF9'] - float(result['independent_sour
 require(sheets['SalesScenario']['B7'] == 0 and sheets['SalesScenario']['B8'] == 0, 'Scenario defaults')
 require(abs(sheets['SalesScenario']['B5'] - float(sales)) < .005 and abs(sheets['SalesScenario']['B10'] - float(sales)) < .005, 'Scenario baseline/default result')
 manifest = repo / 'docs/handoff.json'
-if manifest.exists():
-    handoff = json.loads(manifest.read_text(encoding='utf-8'))
-    require(result['baseline']['sha256'] == handoff['workbook_sha256'], 'Designated handoff workbook hash')
+handoff = json.loads(manifest.read_text(encoding='utf-8')) if manifest.exists() else None
+require(handoff_matches(result['baseline']['sha256'], handoff), 'Required designated handoff identity')
 result['status'] = 'FAIL' if failures else 'PASS'
 result['failed_checks'] = failures
 out.write_text(json.dumps(result, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
