@@ -1,6 +1,6 @@
 # Roadmap — Four-Phase Delivery
 
-**Current work:** Phases 1 and 2 are complete. Phase 3 analytics are next; public-portfolio preparation has started alongside them. Live status belongs to Jira.
+**Current work:** Phases 1–3 are recorded as complete, and phase 4 validation and public-portfolio preparation are underway. The phase 3 acceptance was performed by the project assistant, not an independent human reviewer. See [Current State](CURRENT_STATE.md) for the dated snapshot; live status belongs to Jira.
 
 The target is a **short, AI-accelerated** BI project. The 8–12 working-day estimate (about 24–48 hours of effort) is provisional, not a promise. The ranges below are directional and may overlap or require rework.
 

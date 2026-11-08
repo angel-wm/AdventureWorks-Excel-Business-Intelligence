@@ -1,6 +1,6 @@
 # Proposed Architecture
 
-**Status: Initial local model.** Seven source tables load into worksheets and the Data Model; six relationships are active. Production business measures remain unimplemented. See [model validation](validation/2026-11-06-model-relationships.md).
+**Status: Local model and initial analytics.** Seven source tables load into worksheets and the Data Model; six relationships are active. Shipped sales, units, distinct orders and average order value have been implemented and checked locally. See [model validation](validation/2026-11-06-model-relationships.md), [sales and units validation](validation/2026-11-07-awbi-11-prototype.md) and [orders and AOV validation](validation/2026-11-07-awbi-13-orders-aov.md). These checks do not establish every filter interaction or publication readiness.
 
 ## How data will move
 
@@ -61,6 +61,6 @@ These names are provisional. Supporting analysis sheets should be kept to the mi
 
 ## Tool boundary
 
-Excel MCP has created and refreshed seven Power Query loads, six Data Model relationships and two validation PivotTables in the local workbook. DAX/DMV evaluation is blocked by an unregistered provider in this environment. [AI Workflow](AI_WORKFLOW.md) defines readback and Excel Desktop fallback.
+Excel MCP has created and refreshed Power Query loads, model relationships and validation PivotTables in the local workbook. Direct DAX/DMV evaluation encountered an unregistered provider. [AI Workflow](AI_WORKFLOW.md) describes the tested operations, their limits and the Excel Desktop fallback.
 
 Use Jira to track work items, not as the location of SQL, M code, business rules or authoritative calculation definitions. See [Jira Workflow](JIRA_WORKFLOW.md). GitHub holds versioned documents and deliverables.

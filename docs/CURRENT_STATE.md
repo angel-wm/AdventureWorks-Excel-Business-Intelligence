@@ -27,7 +27,7 @@
 
 1. Confirm currency and returns treatment before publication. Other product and combined RFM filters remain unverified.
 2. Test handoff on a different computer before relying on the workbook-relative source configuration.
-3. Review workbook metadata and Git history for public visibility; current and earlier workbook versions contain local user-identifying information.
+3. Before public visibility, review workbook metadata and Git history within the intended release scope. The owner accepted exposure of the identified Windows user name and local paths; the existing scan has limits and does not establish that all other information is safe to publish.
 
 These next steps are not authorization to begin additional phase 4 work or publish changes.
 

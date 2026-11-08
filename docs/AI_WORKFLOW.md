@@ -1,6 +1,8 @@
 # AI-Assisted Excel Development
 
-**Status:** Excel MCP has created, refreshed and read back seven Power Query loads, six model relationships and three validation PivotTables in the local workbook. DAX/DMV evaluation encountered a missing provider; charts and slicers remain unverified. See [model validation](validation/2026-11-06-model-relationships.md).
+**Status:** Excel MCP has created, refreshed and read back seven Power Query loads, six model relationships and validation PivotTables in the local workbook. Direct DAX/DMV evaluation encountered a missing provider; see [model validation](validation/2026-11-06-model-relationships.md).
+
+The [sales view validation](validation/2026-11-07-awbi-14-sales-view.md) records a standard chart and specific category and territory slicer and date timeline selections read back in Excel. A representative combined selection was reconciled to source. These checks do not establish every interaction or refresh path. PivotChart creation through MCP failed in that test; a standard chart from a formula-backed range was used instead.
 
 A separate disposable workbook test confirmed that MCP can create a simple DAX measure and use it in a native Data Model PivotTable: summed order units returned 274,914 after refresh. Direct DAX/DMV queries and programmatic OLAP report-filter selection remain blocked in this environment; use native Excel or the add-in where needed, and validate actual outputs. This narrow test does not establish that all measure operations work.
 

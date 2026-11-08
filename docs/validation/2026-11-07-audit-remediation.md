@@ -23,4 +23,12 @@ The tracked workbook contains Microsoft sample data, workbook author metadata an
 
 A targeted pattern scan covered 64 text blob versions and XML/relationship parts of three workbook blob versions reachable from the local Git refs. The current workbook's binary Data Model was also scanned as raw bytes for the same patterns. The scan found no matches for the specific GitHub, AWS and OpenAI token formats or private-key headers checked. It is limited: raw byte scanning is not structured inspection of the Data Model, older binary models were not scanned, and no scan covers every possible secret format. A remote heads-and-tags check on 2026-11-07 returned only `main` at the previously synchronized commit and no tags; it does not cover other remote reference types. Git author/committer addresses observed in local history used GitHub's no-reply domain.
 
-No repository deletion or history rewrite was performed. Before changing repository visibility, decide whether the exposed author identity and paths are acceptable, inspect the chosen remote refs and binary content as appropriate, and review the current workbook's metadata. Removing a path from a new workbook revision alone does not erase it from earlier commits. Any history rewrite or public visibility change is a separate operation.
+No repository deletion or history rewrite was performed. Removing a path from a new workbook revision alone does not erase it from earlier commits. Any history rewrite or public visibility change is a separate operation.
+
+## AWBI-12 follow-up review
+
+The owner accepted public exposure of the identified Windows user name and local paths, including their presence in workbook history. This acceptance does not establish that all other metadata or potential secrets are safe to publish, and it is not approval to change repository visibility.
+
+The later committed workbook at `09d3ae787351e8c37ab84f0d9afc8dcae70e1224` contains author metadata and user paths in workbook XML; a raw inspection also found user paths in the binary Data Model. These are observations of the committed workbook, not a structured inspection of the entire model. The original pattern scan and its limitations above still apply to its own historical baseline; they do not certify later versions.
+
+A follow-up check found no missing file targets among 128 local Markdown links in the README, context map and documentation. It did not validate external links or section anchors. The source setup remains verified only to the local folder-move scope in [Data Setup](../DATA_SETUP.md). Current architecture, AI workflow and roadmap descriptions were corrected in the same review; historical validation records retain their original checkpoint status and Jira is authoritative for live status.
