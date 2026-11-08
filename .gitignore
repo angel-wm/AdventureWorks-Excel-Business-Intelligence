@@ -1,6 +1,9 @@
 # Downloaded source data; retain provenance separately in project documentation.
 /data/raw/
 /data/backups/
+# Local test fixtures and workbook rollback copies.
+/data/data/
+/data/AWBI-*.xlsx
 
 # Excel's temporary lock files.
 ~$*
