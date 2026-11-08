@@ -11,7 +11,7 @@
 ## Published state
 
 - **Repository:** [angel-wm/AdventureWorks-Excel-Business-Intelligence](https://github.com/angel-wm/AdventureWorks-Excel-Business-Intelligence), normally read at the selected GitHub ref (default branch `main` when no ref is specified). It is intended for public portfolio use; verify actual visibility rather than inferring it from intent.
-- **Publication / handoff sources:** [README](README.md) for release intent and implementation boundary; [Current State](docs/CURRENT_STATE.md) for its dated project snapshot. No designated release/handoff ref is documented.
+- **Publication / handoff sources:** [Handoff](docs/HANDOFF.md) and [manifest](docs/handoff.json) identify the designated workbook by hash and the containing-commit convention; [Current State](docs/CURRENT_STATE.md) distinguishes the prior public baseline from local corrections. A manifest is not proof of remote publication.
 - **Visibility rule:** A remote reader reports only the retrieved repository/ref snapshot. Changes that exist only locally are **Unknown**. A local reader distinguishes uncommitted edits, commits and confirmed remote publication; a clean worktree or commit alone does not prove a release.
 
 ## Source map
@@ -25,10 +25,10 @@
 | Planned Work | [Roadmap](docs/ROADMAP.md) and [Jira AWBI issues](https://angel231995.atlassian.net/issues/?jql=project%20%3D%20AWBI) | Roadmap defines planned phase scope; Jira tracks queued tasks | Selecting next work; a plan is not execution authorization |
 | Architecture and data sources | [Architecture](docs/ARCHITECTURE.md), [Source Map](docs/SOURCE_MAP.md) | Intended flow and selected mappings; validation records establish implemented behavior | Model, ingestion, keys, source-grain or workbook structure |
 | Source setup | [Data Setup](docs/DATA_SETUP.md), [Source Map](docs/SOURCE_MAP.md) | Setup procedure and source selection; validation records establish tested behavior | Obtaining excluded raw files or refreshing the workbook |
-| Business calculations | [KPI Catalog](docs/KPI_CATALOG.md) | Draft metric definitions and analytical boundaries | Creating or reviewing measures and dashboards |
-| Recorded decisions / rationale | [Project Brief](docs/PROJECT_BRIEF.md#constraints-and-decisions), [Source Map](docs/SOURCE_MAP.md#ingestion-options), [Current State](docs/CURRENT_STATE.md) | Records confirmed choices and open alternatives; a dedicated decision-history index is **Not documented** | Investigating decisions, assumptions or supersession |
-| Validation / evidence | [Validation Plan](docs/VALIDATION_PLAN.md), selected Jira issue and linked GitHub artifact or test record | Plan defines required checks; only executed, baseline-specific evidence supports a pass | Accepting work, auditing calculations or reviewing a release |
-| AI tool boundaries | [AI Workflow](docs/AI_WORKFLOW.md) | Planned use of Codex, Excel MCP, ChatGPT for Excel and required runtime verification | Assigning automation or assessing actual capability |
+| Business calculations | [KPI Catalog](docs/KPI_CATALOG.md), [Business Review](docs/BUSINESS_REVIEW.md) | Delivered definitions and separately identified source-derived findings; calculation status is explicit | Creating or reviewing measures, dashboards or commercial conclusions |
+| Recorded decisions / rationale | [Scope Decisions](docs/DECISIONS.md), [Project Brief](docs/PROJECT_BRIEF.md#constraints-and-decisions) | Maintained analytical boundaries, accepted exceptions and optional-metric rationale | Investigating decisions, assumptions or scope |
+| Validation / evidence | [Validation Plan](docs/VALIDATION_PLAN.md), [Evidence Index](docs/validation/README.md), selected Jira issue | Plan defines coverage; the index distinguishes historical checkpoints and current executable checks | Accepting work, auditing calculations or reviewing a release |
+| AI tool boundaries | [AI Workflow](docs/AI_WORKFLOW.md) | Exercised Codex, Excel MCP, native Excel and add-in operations, with verification limits | Assigning automation or assessing actual capability |
 | Documentation conventions | [Repository Documentation Readability skill](.agents/skills/repository-documentation-readability/SKILL.md) | Author's local RDR guidance for documentation presentation, not project business logic | Writing or substantially reviewing repository documentation |
 
 **Missing information:** **None** means the native records explicitly show no such work; **Not documented** means no maintained source exists; **Unknown** means the available snapshot or permissions cannot establish the answer. If Jira cannot be reached, do not infer live issue status from this map or an older state document.

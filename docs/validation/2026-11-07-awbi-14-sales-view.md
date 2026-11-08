@@ -1,5 +1,7 @@
 # Initial sales view — local checkpoint
 
+> **Historical checkpoint:** status, sheet positions and limitations below describe this record's original baseline. They are not live task status or current instructions. See the [evidence index](README.md) for later corrections and the current handoff.
+
 **Date:** 2026-11-07. **Status:** implemented and checked locally; [AWBI-14](https://angel231995.atlassian.net/browse/AWBI-14) remains in progress pending versioning and review. The underlying measures in AWBI-11 and AWBI-13 are in review.
 
 ## Built

@@ -16,7 +16,7 @@ The workbook contains the current sample data, so it can be inspected without th
    Get-FileHash data/raw/adventureworks-oltp-8fe3fd0c/*.csv -Algorithm SHA256
    ```
 
-5. Open and save the workbook in Excel. Check that the `SourceConfig` sheet points to the source folder, then use **Data → Refresh All**. Review refresh errors, the overall status and individual results in `Validation`, and the key/join results and source summary in `KeyChecks`. The two control sheets are described in the [workbook improvements record](validation/2026-11-07-workbook-improvements.md).
+5. Open and save the workbook in Excel. Check that the `SourceConfig` sheet points to the source folder, then use **Data → Refresh All**. Review refresh errors, the overall status and individual results in `Validation`, and the key/join results and source summary in `KeyChecks`. Use the [current control layout](HANDOFF.md#current-control-layout); older validation records retain their historical sheet positions.
 
 ```text
 project folder/
@@ -34,3 +34,7 @@ project folder/
 The files are tab-delimited and have no header row; the workbook's queries assign column names. The selected files and workbook contain fictional Microsoft sample data. Raw files are excluded from Git, but the workbook includes loaded data. Retain the [Microsoft attribution and license](../THIRD_PARTY_NOTICES.md) when redistributing the workbook.
 
 Refresh has been tested after a local folder move on one computer. Other computers, cloud paths, missing files and refresh ordering under changed source data remain unverified. The main sales rule is shipped orders only. `Validation` compares both all-status and shipped totals; a historical mixed-status fixture was checked, but this does not establish every changed-source case. See the [workbook improvements record](validation/2026-11-07-workbook-improvements.md).
+
+## Check the saved artifact
+
+After saving a refreshed, unfiltered workbook, run the [reproducible checks](HANDOFF.md#reproduce-the-checks). They inspect saved outputs and pinned files; they do not initiate refresh or certify new source versions. Accepted portability and changed-source limits are recorded in [Scope decisions](DECISIONS.md#accepted-verification-boundary).

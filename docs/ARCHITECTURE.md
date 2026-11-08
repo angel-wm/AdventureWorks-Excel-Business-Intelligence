@@ -1,6 +1,6 @@
 # Workbook Architecture
 
-**Status: Implemented locally.** Seven source tables load into worksheets and the Data Model; six relationships are active. Shipped sales, units, distinct orders, average order value, fixed-window RFM and the sales and customer dashboards have bounded local validation. See [model validation](validation/2026-11-06-model-relationships.md) and [dashboard validation](validation/2026-11-08-dashboards.md). These checks do not establish every filter interaction or publication readiness.
+**Status: Implemented.** Seven source tables load into worksheets and the Data Model; six relationships are active. Shipped sales, units, distinct orders, average order value, fixed-window RFM and the sales and customer dashboards have bounded local validation. See [model validation](validation/2026-11-06-model-relationships.md) and [dashboard validation](validation/2026-11-08-dashboards.md). The [evidence index](validation/README.md) separates checkpoints and current verification; [Scope decisions](DECISIONS.md) records accepted limits.
 
 ## Data flow
 
@@ -57,7 +57,7 @@ The selected source's keys and joins were checked locally; initial workbook rela
 - `Validation` and `KeyChecks`: reconciliation and source/key controls.
 - `DashboardData`, `SourceConfig` and seven source sheets: dashboard support, refresh configuration and loaded data.
 
-`SalesOverview`, `SalesMonthly` and `CustomerOverview` are hidden, retained views with dependencies used by the dashboards and controls. The workbook has 20 sheets, 17 visible. Category and territory comparisons are part of the sales dashboard; no separate product dashboard or order-type filter is claimed.
+`SalesOverview`, `SalesMonthly` and `CustomerOverview` are hidden, retained views with dependencies used by the dashboards and controls. The workbook has 20 sheets, 17 visible. Category and territory comparisons are part of the sales dashboard. Order entry method is analyzed in the reproducible [business review](BUSINESS_REVIEW.md#order-entry-method), not an extra dashboard filter. The current control layout is documented in [Handoff](HANDOFF.md#current-control-layout).
 
 ## Tool boundary
 

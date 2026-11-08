@@ -1,5 +1,7 @@
 # Phase 3 evidence review
 
+> **Historical checkpoint:** status, sheet positions and limitations below describe this record's original baseline. They are not live task status or current instructions. See the [evidence index](README.md) for later corrections and the current handoff.
+
 **Date:** 2026-11-07. **Baseline:** local commit `5bf42e1504a24841eb78ef1e59c59721a8bbf83f`. This is an assistant review of the recorded evidence, not an independent human review or acceptance. Live issue status is maintained in Jira.
 
 ## Review scope

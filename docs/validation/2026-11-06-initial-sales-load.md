@@ -1,5 +1,7 @@
 # Initial sales load — local validation
 
+> **Historical checkpoint:** status, sheet positions and limitations below describe this record's original baseline. They are not live task status or current instructions. See the [evidence index](README.md) for later corrections and the current handoff.
+
 **Date:** 2026-11-06. **Status:** historical local evidence, versioned in Git. This record is not itself a public release or independent review.
 
 ## Baseline

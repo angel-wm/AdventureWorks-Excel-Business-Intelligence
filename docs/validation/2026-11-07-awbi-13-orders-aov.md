@@ -1,5 +1,7 @@
 # Shipped orders and average order value — local validation
 
+> **Historical checkpoint:** status, sheet positions and limitations below describe this record's original baseline. They are not live task status or current instructions. See the [evidence index](README.md) for later corrections and the current handoff.
+
 **Date:** 2026-11-07. **Status:** implemented and checked locally; review and versioned evidence are pending. [AWBI-13](https://angel231995.atlassian.net/browse/AWBI-13) depends on the shipped sales measure in [AWBI-11](https://angel231995.atlassian.net/browse/AWBI-11), which remains in review.
 
 ## Definitions

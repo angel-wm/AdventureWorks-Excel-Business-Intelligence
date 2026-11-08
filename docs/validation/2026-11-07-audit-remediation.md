@@ -1,5 +1,7 @@
 # Audit follow-up — 2026-11-07
 
+> **Historical checkpoint:** status, sheet positions and limitations below describe this record's original baseline. They are not live task status or current instructions. See the [evidence index](README.md) for later corrections and the current handoff.
+
 **Scope:** local documentation, the current workbook, Jira status and the Git objects reachable from local refs. This record is not a security certification or public-release approval.
 
 ## Workbook checks

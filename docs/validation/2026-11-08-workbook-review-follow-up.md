@@ -1,5 +1,7 @@
 # Workbook review follow-up
 
+> **Historical checkpoint:** status, sheet positions and limitations below describe this record's original baseline. They are not live task status or current instructions. See the [evidence index](README.md) for later corrections and the current handoff.
+
 **Date:** 2026-11-08. The owner reported completing a human review of the workbook. This statement records that report; it does not imply that the owner independently repeated the assistant's earlier reconciliation or refresh tests. Jira remains authoritative for phase status.
 
 ## Navigation and readability

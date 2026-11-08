@@ -1,6 +1,6 @@
 # Jira Workflow — AdventureWorks Excel BI
 
-**Status:** Board and four Epics configured; implementation has started. Live issue status belongs to Jira.
+**Workflow:** Jira is authoritative for current work status. The original four-phase closure and later follow-up are summarized in [Current State](CURRENT_STATE.md); this document defines the process.
 
 Jira tracks **work status and review**. GitHub contains the versioned source, workbook artifacts and technical documentation. Keep task descriptions focused; do not duplicate the canonical metric or source definitions in Jira.
 
@@ -59,11 +59,11 @@ Jira review and Done
 
 Codex has read, created, edited and transitioned Jira issues, and linked GitHub evidence manually. Automatic GitHub–Jira linking remains unverified. Jira remains authoritative for live task status; [Current State](CURRENT_STATE.md) is a dated high-level record.
 
-## Remaining preparation
+## Continuing the workflow
 
 1. Keep new tasks small, with clear checks and traceable evidence.
 2. Verify Excel operations by readback and independently reconcile relevant results.
-3. Test automatic GitHub linking before depending on it.
+3. Evidence links are maintained manually; automatic GitHub linking is optional and not relied upon.
 
 ## Definition of Done
 

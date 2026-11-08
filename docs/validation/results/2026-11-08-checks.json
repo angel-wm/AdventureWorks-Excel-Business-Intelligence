@@ -1,0 +1,304 @@
+{
+  "baseline": {
+    "source_revision": "8fe3fd0c9a825fef3ae6d601e97537b612d7b214",
+    "sha256": "ec7aba23a1954af5a8e99a093ef65b8e4cf99e7373f898f3108dc4b2cb352662",
+    "workbook_bytes": 33281291
+  },
+  "sources": {
+    "Customer": {
+      "rows": 19820,
+      "sha256": "4704aa5b46aed326599014524c821aca50e938587e6a1133c0f6d9aae5c5efc6",
+      "hash_matches_document": true,
+      "bad_width_rows": 0
+    },
+    "Product": {
+      "rows": 504,
+      "sha256": "df0379a7cba8b11b97ea5d104cf1313ef9f683137b6426f2fac6bb8c74c2a2ea",
+      "hash_matches_document": true,
+      "bad_width_rows": 0
+    },
+    "ProductCategory": {
+      "rows": 4,
+      "sha256": "d86dde135e023960633ed1d6a2fb72f56b74aa2f7d07af983b6bff5e33dfceb2",
+      "hash_matches_document": true,
+      "bad_width_rows": 0
+    },
+    "ProductSubcategory": {
+      "rows": 37,
+      "sha256": "a90dce80f310044b99a920790cbf60b83982079af421a5935fda7bc7ab69bc75",
+      "hash_matches_document": true,
+      "bad_width_rows": 0
+    },
+    "SalesOrderDetail": {
+      "rows": 121317,
+      "sha256": "220129977aa63e34fa4a1d66c2604bd2184373151efb09c98b343371ba77ab8a",
+      "hash_matches_document": true,
+      "bad_width_rows": 0
+    },
+    "SalesOrderHeader": {
+      "rows": 31465,
+      "sha256": "cf637c7d58006ebbc13daf0b8ed6cf7f738165d298ae0b5479a59237429c1882",
+      "hash_matches_document": true,
+      "bad_width_rows": 0
+    },
+    "SalesTerritory": {
+      "rows": 10,
+      "sha256": "cb087c101765605e848635f6127123b1a0814397635ce5faebe52f516ccfc861",
+      "hash_matches_document": true,
+      "bad_width_rows": 0
+    }
+  },
+  "business_review": {
+    "order_entry": {
+      "0": {
+        "meaning": "Salesperson placed",
+        "orders": 3806,
+        "units": 214516,
+        "source_amount": "80487704.179188"
+      },
+      "1": {
+        "meaning": "Customer placed online",
+        "orders": 27659,
+        "units": 60398,
+        "source_amount": "29358677.220700"
+      }
+    },
+    "annual_volume": {
+      "2022": {
+        "orders": 1692,
+        "units": 15026
+      },
+      "2023": {
+        "orders": 3830,
+        "units": 66441
+      },
+      "2024": {
+        "orders": 14244,
+        "units": 131936
+      },
+      "2025": {
+        "orders": 11699,
+        "units": 61511
+      }
+    },
+    "customer_cohorts": {
+      "person": {
+        "customers": 18484,
+        "repeat_customers": 6865,
+        "repeat_rate": 0.37140229387578444,
+        "median_orders": 1.0,
+        "median_recency": 168.0,
+        "segments": {
+          "Less recent repeat": 2126,
+          "Other": 8801,
+          "Recent": 6352,
+          "Frequent": 678,
+          "Champions": 527
+        }
+      },
+      "store": {
+        "customers": 635,
+        "repeat_customers": 605,
+        "repeat_rate": 0.952755905511811,
+        "median_orders": 4,
+        "median_recency": 91,
+        "segments": {
+          "Champions": 437,
+          "Less recent repeat": 147,
+          "Frequent": 17,
+          "Other": 27,
+          "Recent": 7
+        }
+      }
+    },
+    "population_policy": "StoreID populated takes precedence; otherwise PersonID populated; otherwise unclassified. CustomerID is the counting grain. Shared RFM bands are descriptive sample bands, not equivalent customer value."
+  },
+  "source_key_violations": {
+    "Customer_duplicate_keys": 0,
+    "Customer_empty_keys": 0,
+    "Product_duplicate_keys": 0,
+    "Product_empty_keys": 0,
+    "ProductCategory_duplicate_keys": 0,
+    "ProductCategory_empty_keys": 0,
+    "ProductSubcategory_duplicate_keys": 0,
+    "ProductSubcategory_empty_keys": 0,
+    "SalesOrderDetail_duplicate_keys": 0,
+    "SalesOrderDetail_empty_keys": 0,
+    "SalesOrderHeader_duplicate_keys": 0,
+    "SalesOrderHeader_empty_keys": 0,
+    "SalesTerritory_duplicate_keys": 0,
+    "SalesTerritory_empty_keys": 0,
+    "detail_without_order": 0,
+    "detail_without_product": 0,
+    "header_without_customer": 0,
+    "header_without_territory": 0,
+    "invalid_product_subcategory": 0,
+    "subcategory_without_category": 0
+  },
+  "independent_source": {
+    "shipped_sales": "109846381.399888",
+    "units": 274914,
+    "orders": 31465,
+    "aov": "3491.065672966407119021134594",
+    "months": 38,
+    "customers": 19119,
+    "segments": {
+      "Champions": 964,
+      "Less recent repeat": 2273,
+      "Other": 8828,
+      "Recent": 6359,
+      "Frequent": 695
+    },
+    "median_recency": 165,
+    "median_orders": 1,
+    "median_sales": "548.980000",
+    "pricing_mismatches_exact_decimal": 0,
+    "header_subtotals_not_matching_four_decimal_half_up": 0,
+    "header_order_flags": {
+      "0": 3806,
+      "1": 27659
+    },
+    "customer_person_store_mix": {
+      "store": 635,
+      "person": 18484
+    }
+  },
+  "saved_output_comparison": {
+    "customer_headers": {
+      "A": "Row Labels",
+      "B": "RFM Last Order",
+      "C": "RFM Recency Days",
+      "D": "RFM Orders",
+      "E": "RFM Sales",
+      "F": "RFM R Score",
+      "G": "RFM F Score",
+      "H": "RFM M Score",
+      "I": "RFM Segment"
+    },
+    "customer_rows_compared": 19119,
+    "customer_set_matches": true,
+    "duplicate_customers": 0,
+    "customer_mismatches": [],
+    "max_customer_sales_delta": 1.979060471057892e-09,
+    "monthly_values_compared": 38,
+    "max_monthly_delta": 5.960464477539063e-08,
+    "territory_category_groups_compared": 40,
+    "group_mismatches": [],
+    "max_group_delta": 1.2442469596862793e-06,
+    "sales_dashboard_values": {
+      "B9": 109846381.3998877,
+      "L9": 274914.0,
+      "V9": 31465.0,
+      "AF9": 3491.0656729663974
+    },
+    "customer_dashboard_values": {
+      "B9": 19119.0,
+      "L9": 165.0,
+      "V9": 1.0,
+      "AF9": 548.98
+    }
+  },
+  "saved_package": {
+    "sheets": [
+      {
+        "name": "DashboardSales",
+        "state": "visible"
+      },
+      {
+        "name": "DashboardCustomers",
+        "state": "visible"
+      },
+      {
+        "name": "SalesScenario",
+        "state": "visible"
+      },
+      {
+        "name": "SalesOverview",
+        "state": "hidden"
+      },
+      {
+        "name": "SalesMonthly",
+        "state": "hidden"
+      },
+      {
+        "name": "CustomerOverview",
+        "state": "hidden"
+      },
+      {
+        "name": "SalesByDate",
+        "state": "visible"
+      },
+      {
+        "name": "CustomerRFM",
+        "state": "visible"
+      },
+      {
+        "name": "RFMGuide",
+        "state": "visible"
+      },
+      {
+        "name": "Validation",
+        "state": "visible"
+      },
+      {
+        "name": "KeyChecks",
+        "state": "visible"
+      },
+      {
+        "name": "DashboardData",
+        "state": "visible"
+      },
+      {
+        "name": "SourceConfig",
+        "state": "visible"
+      },
+      {
+        "name": "SalesOrderHeader",
+        "state": "visible"
+      },
+      {
+        "name": "SalesOrderDetail",
+        "state": "visible"
+      },
+      {
+        "name": "Product",
+        "state": "visible"
+      },
+      {
+        "name": "ProductSubcategory",
+        "state": "visible"
+      },
+      {
+        "name": "ProductCategory",
+        "state": "visible"
+      },
+      {
+        "name": "Customer",
+        "state": "visible"
+      },
+      {
+        "name": "SalesTerritory",
+        "state": "visible"
+      }
+    ],
+    "formula_elements": 133978,
+    "cached_errors": [],
+    "ref_errors": [],
+    "external_link_parts": [],
+    "chart_parts": 10,
+    "pivot_parts": 5
+  },
+  "documentation": {
+    "markdown_files_scanned": 37,
+    "broken_links": [],
+    "anchor_candidates_to_review": [],
+    "exact_long_paragraph_duplicates": []
+  },
+  "limits": [
+    "Saved cached outputs only: no new interactive-filter test, refresh, save or DAX formula readback.",
+    "Arithmetic reconciliation does not establish currency comparability or business causality.",
+    "The same assistant ran source calculations and workbook inspection; this is not independent human review."
+  ],
+  "status": "PASS",
+  "failed_checks": []
+}

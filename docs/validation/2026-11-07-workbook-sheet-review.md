@@ -1,5 +1,7 @@
 # Workbook sheets, errors and navigation review
 
+> **Historical checkpoint:** status, sheet positions and limitations below describe this record's original baseline. They are not live task status or current instructions. See the [evidence index](README.md) for later corrections and the current handoff.
+
 **Date:** 2026-11-07. **Method:** assistant review of the open workbook through Excel MCP and local source reconciliation. The review is not independent human acceptance. The workbook was backed up before reordering. No sheets were deleted or hidden, and no full refresh or new interactive-filter test was performed.
 
 ## Baselines and checks

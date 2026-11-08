@@ -1,5 +1,7 @@
 # Currency and returns — bounded workbook review
 
+> **Historical checkpoint:** status, sheet positions and limitations below describe this record's original baseline. They are not live task status or current instructions. See the [evidence index](README.md) for later corrections and the current handoff.
+
 **Scope:** A local disposable copy of `AdventureWorks-BI.xlsx`, SHA-256 `827a1332b20d46370f63e6a3be4130d4e12bfb4aea138411cb862f6d9955f344`, matching the saved main workbook at copy time. Excel MCP opened and read the copy; it was closed without saving. No refresh, workbook modification or exhaustive formatting audit was performed.
 
 ## Currency readback

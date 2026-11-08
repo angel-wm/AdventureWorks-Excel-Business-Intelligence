@@ -19,7 +19,7 @@ The selected snapshot is [revision `8fe3fd0c9a825fef3ae6d601e97537b612d7b214`](h
 
 Source checks found no unmatched non-empty references for these links. The 209 products without a subcategory require an unknown member if they later appear in sales. These are source observations, not evidence that workbook model relationships exist.
 
-## Priority source candidates
+## Selected and optional sources
 
 | OLTP source | Intended analytical role | Critical check |
 | --- | --- | --- |
@@ -51,3 +51,7 @@ Manufacturing (`WorkOrder`, `WorkOrderRouting`, `BillOfMaterials`), stock (`Prod
 Record source version and URL, hashes where applicable, file counts and schema layout; then check key uniqueness, observed date span, row counts, missing foreign keys and join cardinalities. Keep the source files unchanged.
 
 See [Architecture](ARCHITECTURE.md), [local validation](validation/2026-11-06-initial-sales-load.md) and [Validation Plan](VALIDATION_PLAN.md) for completed checks and remaining work.
+
+## Source interpretation decisions
+
+The [entry-method definition](DECISIONS.md#order-entry-method), [customer classification](DECISIONS.md#customer-populations-and-rfm) and [currency investigation](DECISIONS.md#currency) distinguish source facts from analytical choices. Only the seven selected files are required by the verification runner; no additional dataset is needed for the business review.

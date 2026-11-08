@@ -1,5 +1,7 @@
 # Customer RFM base — local validation
 
+> **Historical checkpoint:** status, sheet positions and limitations below describe this record's original baseline. They are not live task status or current instructions. See the [evidence index](README.md) for later corrections and the current handoff.
+
 **Date:** 2026-11-07. **Status:** implemented and tested locally; [AWBI-15](https://angel231995.atlassian.net/browse/AWBI-15) awaits versioning and review. This base depends on shipped measures in AWBI-11 and AWBI-13, both in review.
 
 ## Scope and definitions

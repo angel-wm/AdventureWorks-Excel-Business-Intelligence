@@ -1,5 +1,7 @@
 # Customer RFM by product category — local validation
 
+> **Historical checkpoint:** status, sheet positions and limitations below describe this record's original baseline. They are not live task status or current instructions. See the [evidence index](README.md) for later corrections and the current handoff.
+
 **Date:** 2026-11-07. **Status:** implemented and checked locally; [AWBI-20](https://angel231995.atlassian.net/browse/AWBI-20) is in progress pending versioning and review. It depends on the RFM base and scores in AWBI-15 and AWBI-16, both in review.
 
 ## Semantics and correction

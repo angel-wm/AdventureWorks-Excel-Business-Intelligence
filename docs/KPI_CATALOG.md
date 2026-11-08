@@ -1,31 +1,32 @@
-# KPI Catalog — Draft Business Definitions
+# KPI Catalog — Delivered Definitions
 
-**Status:** The four initial shipped sales measures have been implemented and checked locally; see [sales and units validation](validation/2026-11-07-awbi-11-prototype.md) and [orders and AOV validation](validation/2026-11-07-awbi-13-orders-aov.md). Fixed-window RFM and the dashboard summaries below are also implemented and checked within their recorded scope. Other definitions remain planned and subject to validation.
+**Status:** Delivered workbook definitions and explicitly scoped report metrics. The [evidence index](validation/README.md) identifies current and historical checks; [Scope decisions](DECISIONS.md#metric-scope) explains exclusions. A listed optional definition is not a delivered workbook feature.
 
 ## Order eligibility
 
-For the main sales analysis, include orders with `SalesOrderHeader.Status = 5` (shipped). This does not establish payment or accounting revenue recognition. Analysis of pending orders is deferred for a future decision. Other date, return and calculation assumptions remain subject to validation.
+For the main sales analysis, include orders with `SalesOrderHeader.Status = 5` (shipped). This does not establish payment or accounting revenue recognition. Analysis of pending orders is deferred for a future decision. Return exclusions and accepted verification boundaries are recorded in [Scope decisions](DECISIONS.md).
 
-The initial sales view uses `OrderDate` as the proposed analysis date, with the first four metrics below as its priority. The selected source contains order dates from 2022-05-30 through 2025-06-29; these are sample dates, not current business activity. Partial periods and the treatment of returns require review before publishing comparisons.
+The sales dashboard uses `OrderDate` as its analysis date and the four delivered sales measures below. The selected source contains order dates from 2022-05-30 through 2025-06-29; these are sample dates, not current business activity. Boundary months and selected date ranges can be partial; use comparable complete periods for comparisons. Return adjustments are excluded.
 
 ## Core sales metrics
 
-| KPI | Intended rule | Important boundary |
+| KPI | Rule | Delivery status / boundary |
 | --- | --- | --- |
-| Discounted Line Sales | Sum eligible `SalesOrderDetail.LineTotal` | Candidate sales measure; verify calculation against the selected source |
-| Order Count | Distinct eligible `SalesOrderID` | Never count sales lines as orders |
-| Units Sold | Sum eligible `SalesOrderDetail.OrderQty` | Sales-line grain |
-| Average Order Value | Discounted Line Sales / Order Count | Numerator and denominator must cover the same orders |
-| Monthly Sales Growth | Current monthly sales / prior comparable month − 1 | Missing/partial months need clear treatment |
-| Purchasing Customers | Distinct qualifying `CustomerID` | Selected time window and order status |
-| Repeat Customer Rate | Qualifying customers with at least two orders / purchasing customers | Observed behavior, not necessarily lifetime behavior |
-| Sales Share | Selected product/territory sales / relevant total | Explicit denominator and filters |
-| Weighted Discount Rate | (Undiscounted line value − discounted line value) / undiscounted line value | Do not average discount percentages unweighted |
-| Gross Profit / Margin | Line sales − justified cost of goods; gross profit / line sales | **Conditional** on a defensible historical-cost method |
+| Discounted Line Sales | Sum eligible `SalesOrderDetail.LineTotal` | Workbook: `Shipped Sales`; currency unconfirmed |
+| Order Count | Distinct eligible detail `SalesOrderID` | Workbook: `Shipped Orders`; not line count |
+| Units Sold | Sum eligible detail `OrderQty` | Workbook: `Shipped Units` |
+| Average Order Value | Shipped Sales / Shipped Orders | Workbook: `Shipped AOV`; selected lines per qualifying order |
+| Purchasing Customers | Distinct qualifying `CustomerID` | Workbook RFM population and customer dashboard |
+| Repeat Customer Rate | Customers with at least two qualifying orders / purchasing customers in the same cohort/window | Source-derived business review; not a workbook KPI |
+| Comparable-year volume growth | Current complete-year units or orders / prior complete-year value − 1 | Business review: 2024 vs 2023; not monetary growth |
+| Monthly Sales Growth | Current monthly sales / prior comparable month − 1 | Not implemented; partial contexts and currency require explicit treatment |
+| Sales Share | Selected sales / relevant filtered total | Not implemented as a separate KPI; denominator/currency semantics would need validation |
+| Weighted Discount Rate | (Undiscounted − discounted line value) / undiscounted line value | Not implemented; no discount-effectiveness requirement |
+| Gross Profit / Margin | Sales − justified historical cost; profit / sales | Conditional exclusion: historical-cost method unvalidated |
 
 Under a product-category filter, AOV divides the selected category's eligible line sales by the distinct orders containing those lines. It is not the full value of those orders. Order counts across categories can overlap and must not be added together.
 
-**Sales labeling matters:** Do not silently mix order-header `TotalDue` (which can include taxes/freight) with discounted line sales. Define dates, status exclusions, discounts, returns, cancellations, and all monetary amounts precisely before dashboard release.
+**Sales labeling matters:** Do not silently mix order-header `TotalDue` (which can include taxes/freight) with discounted line sales. Use the eligibility, amount and return boundaries in this catalog; these define the delivered measures.
 
 For the initial analytical view, display aggregated line sales to two decimal places without rounding individual lines before summing. The model uses floating-point values; compare against decimal source aggregation with an absolute tolerance below 0.005, not as fixed-decimal accounting. `LineTotal` represents discounted order-line value; it excludes header tax and freight.
 
@@ -35,21 +36,19 @@ Describe sales as **shipped order-line sales without return or refund adjustment
 
 ### Currency boundary
 
-The owner accepted using **source monetary amounts; currency not confirmed** as the interim description while the source semantics are investigated. Do not label amounts as confirmed USD or apply a currency conversion without evidence. The current aggregate has not been established as a sum of values in a single currency; it must not be presented as a confirmed comparable monetary total across currencies.
+The owner accepted **original source monetary amounts; currency unconfirmed; no conversion** on 2026-11-08. Source semantics and the meaning of missing exchange-rate references were investigated but not resolved by the reviewed Microsoft OLTP documentation. This is a closed, accepted source limitation for this scope, not a pending conversion task.
 
-In the pinned sample, 13,976 of 31,465 order headers have a `CurrencyRateID`; the other 17,489 have none. The referenced IDs match 2,514 distinct records in Microsoft's [CurrencyRate.csv at the pinned revision](https://github.com/microsoft/sql-server-samples/blob/8fe3fd0c9a825fef3ae6d601e97537b612d7b214/samples/databases/adventure-works/oltp-install-script/CurrencyRate.csv), all with USD as the source currency and AUD, CAD, FRF, GBP, DEM or EUR as destinations. The [source schema](https://github.com/microsoft/sql-server-samples/blob/8fe3fd0c9a825fef3ae6d601e97537b612d7b214/samples/databases/adventure-works/oltp-install-script/instawdb.sql) defines the rate reference and line-total calculation, but the reviewed definitions do not establish the currency stored in each line or the interpretation of missing rate IDs. These observations do not prove whether a conversion is required.
-
-Currency warnings were added to the sales, scenario and customer RFM views and read back in Excel; see [currency and returns review](validation/2026-11-07-currency-returns-review.md). Continue seeking source evidence for the currency interpretation.
+Do not label amounts as confirmed USD, assume that different currencies are mixed, or claim verified monetary comparability. The qualification applies to AOV, monetary RFM scores/segments and scenario amounts. The [currency decision](DECISIONS.md#currency) retains the official sources and rationale. Workbook disclosures and independent arithmetic checks do not establish common-currency meaning.
 
 ## Customer intelligence
 
-Use a stated `CustomerID`, analysis-as-of date and observation window for **RFM**:
+RFM uses `CustomerID`, the fixed observation window and analysis-as-of date described below:
 
 - **Recency:** days since the last observed qualifying order.
 - **Frequency:** number of distinct qualifying orders.
 - **Monetary:** discounted line sales for those orders.
 
-Scoring bands, ties and customer segment names must be recorded as modeling choices. The first purchase **observed in the sample** may not be the customer's first-ever transaction.
+Scoring bands, ties and customer segment names are explicit modeling choices recorded in `RFMGuide` and the [scoring evidence](validation/2026-11-07-awbi-16-rfm-segments.md). The first purchase **observed in the sample** may not be the customer's first-ever transaction.
 
 The local RFM base uses the fixed 2022-05-30 to 2025-06-29 sample window and a 2025-06-29 as-of date. Under a category filter, measures refer to qualifying orders and lines in that category; the fixed whole-sample score bands do not change. Bikes and Accessories were checked in the historical mixed-status fixture; all four category selections and their segment counts were reconciled in the [workbook improvements regression](validation/2026-11-07-workbook-improvements.md). The dashboard checks below extend this to category/segment combinations; other product-level contexts remain unverified. See [category RFM validation](validation/2026-11-07-awbi-20-category-rfm.md). Fixed scoring bands, tie handling and descriptive segments are documented in [RFM scoring validation](validation/2026-11-07-awbi-16-rfm-segments.md); they do not predict customer behavior.
 
@@ -66,11 +65,11 @@ The local RFM base uses the fixed 2022-05-30 to 2025-06-29 sample window and a 2
 
 These are customer-level medians, not averages of subgroup medians. The four charts show customer counts by segment, recency band, order-count band and rounded-sales band. The bands reuse the fixed rules in `RFMGuide` and [RFM scoring validation](validation/2026-11-07-awbi-16-rfm-segments.md); only monetary band assignment rounds each customer's total to two decimals. No-match selections show zero customers, unavailable medians and zero chart counts. A source-layout failure remains distinct from an empty selection.
 
-The fixed observation window, cutoff, return exclusions and unresolved monetary comparability also apply here. [Dashboard validation](validation/2026-11-08-dashboards.md) reconciles all 30 exposed category/segment combinations and the empty category against independent source aggregation.
+The fixed observation window, cutoff, return exclusions and unresolved monetary comparability also apply here. The pooled person/store population uses shared bands for sample description, not equivalent commercial value; use the [separate cohort analysis](BUSINESS_REVIEW.md#customer-populations) before discussing actions. [Dashboard validation](validation/2026-11-08-dashboards.md) reconciles all 30 exposed category/segment combinations and the empty category against independent source aggregation.
 
 ## Channel, cost and scenarios
 
-`OnlineOrderFlag` is a possible order-type dimension. Its semantics must be checked before calling it Internet/reseller or online/offline in a published chart.
+`OnlineOrderFlag` records order entry: 0 = salesperson placed, 1 = customer placed online, per the [official source](https://github.com/microsoft/sql-server-samples/blob/8fe3fd0c9a825fef3ae6d601e97537b612d7b214/samples/databases/adventure-works/oltp-install-script/instawdb.sql#L6420). The [business review](BUSINESS_REVIEW.md#order-entry-method) delivers a pinned-source comparison. This is not automatically reseller classification and is not an additional dashboard filter.
 
 A product's current standard cost may not represent the cost at an older sale. Use validated cost history or omit the historical gross-profit metric. Pricing and discount scenario assumptions do **not** prove actual demand responses.
 

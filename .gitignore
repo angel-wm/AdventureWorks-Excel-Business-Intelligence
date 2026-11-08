@@ -4,6 +4,9 @@
 # Local test fixtures and workbook rollback copies.
 /data/data/
 /data/AWBI-*.xlsx
+/data/validation/
+__pycache__/
+*.pyc
 
 # Excel's temporary lock files.
 ~$*

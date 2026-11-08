@@ -1,5 +1,7 @@
 # Monthly shipped sales — local validation
 
+> **Historical checkpoint:** status, sheet positions and limitations below describe this record's original baseline. They are not live task status or current instructions. See the [evidence index](README.md) for later corrections and the current handoff.
+
 **Date:** 2026-11-07. **Status:** implemented and checked locally; [AWBI-18](https://angel231995.atlassian.net/browse/AWBI-18) is in progress pending versioning and review. The view depends on the shipped measures and date PivotTable in AWBI-11 and AWBI-14, both in review.
 
 ## Scope

@@ -1,6 +1,6 @@
 # Roadmap — Four-Phase Delivery
 
-**Current work:** All four phases were marked Done in Jira by 2026-11-08, with documented coverage boundaries and accepted exceptions. The phase 3 acceptance was performed by the project assistant; the owner subsequently reported completing a workbook review. See [Current State](CURRENT_STATE.md) for the dated snapshot; live status belongs to Jira.
+**Phase closure:** All four original phases were marked Done in Jira by 2026-11-08, with documented coverage boundaries and accepted exceptions. The phase 3 acceptance was performed by the project assistant; the owner subsequently reported completing a workbook review. See [Current State](CURRENT_STATE.md) for the dated snapshot; live status belongs to Jira.
 
 The target is a **short, AI-accelerated** BI project. The 8–12 working-day estimate (about 24–48 hours of effort) is provisional, not a promise. The ranges below are directional and may overlap or require rework.
 
@@ -25,13 +25,13 @@ Create a reproducible Power Query pipeline after authorization, with source → 
 
 ## Phase 3 — AI-Assisted Analytics & Dashboards
 
-Use Codex/Terra, Excel MCP and ChatGPT for Excel to construct formulas, summaries, charts, customer RFM, commercial views and scenario worksheets, delegating only capabilities actually supported by those tools. Use Excel Desktop where native functions are unsupported.
+Use Codex and verified Excel tools to construct formulas, summaries, charts, customer RFM, commercial views and scenario worksheets, delegating only capabilities actually supported by those tools. Use Excel Desktop where native functions are unsupported.
 
 **Exit:** key outputs independently validated against transformed/source data. Jira Epic 3.
 
 ## Phase 4 — Validation, Documentation & Publication
 
-Test repeatable refresh, formulas, model filters, scenarios and workbook usability. Record limitations, results, source attribution, screenshots and versioned release artifacts. Publication itself needs explicit approval.
+Test repeatable refresh, formulas, model filters, scenarios and workbook usability. Record limitations, results, source attribution, screenshots and versioned release artifacts. Publication requires explicit approval; that approval and the original public publication are recorded in [Scope decisions](DECISIONS.md#delivery-and-publication). Later local corrections are not automatically published.
 
 **Exit:** the [Validation Plan](VALIDATION_PLAN.md) is fulfilled or documented exceptions accepted. Jira Epic 4.
 
@@ -40,3 +40,7 @@ Test repeatable refresh, formulas, model filters, scenarios and workbook usabili
 Jira holds epics and short tasks; no separate heavyweight phase-closeout dossier is required. Use an issue only for work with a clear deliverable and test. Keep GitHub commits and PRs linked to Jira keys where practical. See [Jira Workflow](JIRA_WORKFLOW.md).
 
 After each meaningful step, summarize **built → verified → pending**. Reassess scope and timeline after the Phase 1 data and MCP checks rather than treating estimates as validated.
+
+## Audit follow-up
+
+The owner authorized resolving the 14 audit points on 2026-11-08. [AWBI-21](https://angel231995.atlassian.net/browse/AWBI-21) tracks that follow-up without changing the historical four-phase acceptance. See [Current State](CURRENT_STATE.md) and the [closure record](validation/2026-11-08-audit-closure.md) for implementation, verification and publication state.
