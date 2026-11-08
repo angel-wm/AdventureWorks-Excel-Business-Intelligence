@@ -1,6 +1,6 @@
 # Validation Plan
 
-**Status:** Some checks have been executed against a specific workbook and source; several broader checks remain incomplete. Results below describe coverage, not blanket acceptance. See the [source evidence](validation/2026-11-06-initial-sales-load.md), [model evidence](validation/2026-11-06-model-relationships.md), [audit follow-up](validation/2026-11-07-audit-remediation.md), [workbook improvements regression](validation/2026-11-07-workbook-improvements.md) and latest [dashboard validation](validation/2026-11-08-dashboards.md) for baselines, dates and limitations.
+**Status:** The owner accepted the documented coverage boundaries for phase 4, which was marked Done on 2026-11-08. Several broader checks remain unperformed; results below describe coverage, not blanket verification. See the [source evidence](validation/2026-11-06-initial-sales-load.md), [model evidence](validation/2026-11-06-model-relationships.md), [audit follow-up](validation/2026-11-07-audit-remediation.md), [dashboard validation](validation/2026-11-08-dashboards.md) and [owner review follow-up](validation/2026-11-08-workbook-review-follow-up.md) for baselines, dates and limitations.
 
 ## Coverage and remaining checks
 
@@ -20,8 +20,8 @@
 | DV-12 | Ensure scenario inputs never change historical facts | Fixed-volume formulas, representative inputs and invalid-input guard checked; not a demand model |
 | DV-13 | Repeat full Power Query refresh and check no stale values | Nine-query full refresh and final readback passed on the main workbook; arbitrary changed-source ordering and freshness remain unestablished |
 | DV-14 | Verify Excel MCP operations by actual readback/save/reopen | Partial: exercised operations checked; other operations remain unverified |
-| DV-15 | Inspect usability, dates, number formats, labels and empty states | Dashboard layout, font sizes, filter bounds, territory labels, disclosures and empty states inspected in Excel captures and native exports; complete human usability review remains |
-| DV-16 | Review project links, source attribution and publication assets | Partial: source notice recorded and dashboard previews added to the README; final release review remains |
+| DV-15 | Inspect usability, dates, number formats, labels and empty states | The assistant inspected dashboard captures and native exports; the owner subsequently reported completing a workbook review. The owner's report does not imply independent repetition of each technical check |
+| DV-16 | Review project links, source attribution and publication assets | Source notice, README and dashboard previews recorded; the repository was made public with owner authorization. Previews are historical exports and do not reflect every later filter appearance change |
 
 ## Independent spot checks
 

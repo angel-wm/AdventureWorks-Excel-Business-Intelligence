@@ -17,6 +17,7 @@
 - The owner reported completing a human workbook review on 2026-11-08. Navigation and readability refinements discussed during that review, and the scope of their checks, are recorded in [workbook review follow-up](validation/2026-11-08-workbook-review-follow-up.md).
 - Excel MCP and Jira have been used from Codex. Excel operations have been checked by readback and GitHub evidence linked manually in Jira; automatic linking and some advanced model operations remain unverified.
 - Jira is authoritative for live work status. Phases 1 ([AWBI-2](https://angel231995.atlassian.net/browse/AWBI-2)), 2 ([AWBI-3](https://angel231995.atlassian.net/browse/AWBI-3)) and 3 ([AWBI-4](https://angel231995.atlassian.net/browse/AWBI-4)) were marked Done on 2026-11-07. Phase 3's acceptance was performed by the project assistant, not an independent human reviewer; see the [evidence review](validation/2026-11-07-phase-3-review.md) and the later AWBI-19 guard checks. Consult the [AWBI board](https://angel231995.atlassian.net/jira/software/projects/AWBI/boards/2) for live status.
+- Phase 4 ([AWBI-5](https://angel231995.atlassian.net/browse/AWBI-5)) was marked Done on 2026-11-08 after the owner reported completing the workbook review. The issue links the follow-up evidence and records the owner's accepted coverage boundaries.
 - Audit remediation and public-portfolio preparation are tracked under [AWBI-12](https://angel231995.atlassian.net/browse/AWBI-12). See the [audit follow-up](validation/2026-11-07-audit-remediation.md) and live Jira status.
 
 ## Decisions and boundaries
@@ -30,7 +31,6 @@
 
 ## Next steps
 
-1. Record the completed owner review and current evidence in [AWBI-5](https://angel231995.atlassian.net/browse/AWBI-5), then assess its closure under the [Jira workflow](JIRA_WORKFLOW.md). On 2026-11-08 the epic was In Review; consult Jira for its live status.
-2. Preserve the documented limitations: currency is unconfirmed, returns are not deducted from shipped sales, refresh on another computer was not tested, and product-level RFM filters beyond the tested category/segment combinations remain unverified. See the [currency and returns review](validation/2026-11-07-currency-returns-review.md).
+The agreed phase scope is complete. Preserve the documented limitations: currency is unconfirmed, returns are not deducted from shipped sales, refresh on another computer was not tested, and product-level RFM filters beyond the tested category/segment combinations remain unverified. See the [currency and returns review](validation/2026-11-07-currency-returns-review.md).
 
 The project uses MIT for project-authored material and retains Microsoft's third-party notice. The owner accepted exposure of the identified Windows user name and local paths; the bounded scan in the [audit follow-up](validation/2026-11-07-audit-remediation.md) does not establish that all other information is safe to publish. Consult the [Roadmap](ROADMAP.md) for phase gates.

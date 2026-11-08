@@ -1,6 +1,6 @@
 # AdventureWorks — Excel Business Intelligence
 
-**Status: In review.** Sales and customer dashboards, shipped-sales metrics and a scenario worksheet are implemented. The owner has completed a workbook review; phase 4 remains in review in Jira. See [Current State](docs/CURRENT_STATE.md) for progress and limitations.
+**Status: Complete for the agreed project scope.** Sales and customer dashboards, shipped-sales metrics and a scenario worksheet are implemented. The owner completed a workbook review and phase 4 was marked Done in Jira. See [Current State](docs/CURRENT_STATE.md) for the dated status and limitations.
 
 AdventureWorks — Excel Business Intelligence is a portfolio project that turns **Microsoft AdventureWorks OLTP** sample data into a commercial analysis workbook in **Excel 365 Desktop**. Power Query prepares the data, the Excel Data Model connects the commercial tables, and interactive views bring sales, customers, products, territories and scenarios together.
 
